@@ -17,13 +17,13 @@ export default function Navbar() {
               <Link href={"/"}>Inicio</Link>
             </li>
             <li>
-              <Link href={"/"}>Explorar</Link>
+              <Link href={"/explore"}>Explorar</Link>
             </li>
             <li>
               <Link href={"/"}>Carrito</Link>
             </li>
             <li>
-              <Link href={"/"}>Contacto</Link>
+              <Link href={"/contact"}>Contacto</Link>
             </li>
           </ul>
         </div>
