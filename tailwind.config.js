@@ -8,7 +8,10 @@ module.exports = {
     extend: {
       spacing: {
         '128': '43rem',
-      }
+      },
+      colors: {
+        'basic-gary': '#F2F2F2',
+      },
     },
   },
   plugins: [],

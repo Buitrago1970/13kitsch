@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav>
+    <nav className="shadow-md">
       <div className="h-14 items-center flex justify-between border-b border-black">
         <div className="h-full w-1/4 border-r border-black">13Kitsch</div>
         <div className="mr-6 ">
@@ -20,7 +20,7 @@ export default function Navbar() {
               <Link href={"/explore"}>Explorar</Link>
             </li>
             <li>
-              <Link href={"/"}>Carrito</Link>
+              <Link href={"/cart"}>Carrito</Link>
             </li>
             <li>
               <Link href={"/contact"}>Contacto</Link>
