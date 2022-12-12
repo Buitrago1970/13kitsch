@@ -6,7 +6,6 @@ export default function Home() {
     <Layout>
       <HomeCard />
       <HomeCard />
-
     </Layout>
   )
 }
