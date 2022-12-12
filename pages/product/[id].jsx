@@ -1,15 +1,24 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout/Layout";
+import Image from "next/image";
 
 export default function ProductPage() {
   const {
     query: { id },
   } = useRouter();
+
   return (
     <Layout>
       <section className="min-h-screen bg-black grid overflow-hidden grid-cols-2 grid-rows-1 text-white">
-        <div className="border-r">image</div>
+        <div className="border-r relative">
+          <Image
+            src="https://balenciaga.dam.kering.com/m/12e38bc725baafd4/Medium-725268TNU181000_F.jpg?v=3"
+            alt="13Kitsch"
+            objectFit="cover"
+            layout="fill"
+          />
+        </div>
         <article className="h-full">
           <div className="w-full h-1/5 border-b font-semibold text-center flex flex-col items-center">
             <p className="text-2xl my-6">SCOPE T-SHIRT</p>

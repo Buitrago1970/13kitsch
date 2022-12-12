@@ -1,13 +1,20 @@
 import React from "react";
+import Image from "next/image";
 
 export default function ItemShoppingCard() {
   return (
     <div className=" grid overflow-hidden grid-cols-2 grid-rows-[70px_minmax(500px,_1fr)_40px] bg-white ">
       <div className="border-r border-black row-span-3 p-2">
-        <div className="bg-gray-100 h-full">
+        <div className="bg-gray-100 h-full relative">
           <div>
-            <p>image</p>
-            <picture>{/* <img></img> */}</picture>
+            <Image
+              src="https://balenciaga.dam.kering.com/m/12e38bc725baafd4/Medium-725268TNU181000_F.jpg?v=3"
+              alt="test"
+              objectFit="cover"
+              layout="fill"
+              width={100}
+              height={100}
+            />
           </div>
           <svg focusable="false" aria-hidden="true"></svg>
         </div>
