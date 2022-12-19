@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function ItemShoppingCard() {
   return (
-    <div className=" grid overflow-hidden grid-cols-2 grid-rows-[70px_minmax(500px,_1fr)_40px] bg-white ">
-      <div className="border-r border-black row-span-3 p-2">
+    <div className=" grid overflow-hidden mb-5 border-b border-black grid-cols-2 grid-rows-[70px_minmax(500px,_1fr)_40px] bg-white ">
+      <div className="border-r border-black row-span-3 p-2 mb-5">
         <div className="bg-gray-100 h-full relative">
           <div>
             <Image

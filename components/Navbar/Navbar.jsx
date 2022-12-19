@@ -39,8 +39,14 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="italic font-semibold mx-6">
-          <a className="mr-2">Instagram</a>
-          <a>Facebook</a>
+          <Link href={"https://www.instagram.com/13kitsch/"}>
+            <a className="mr-2">Instagram</a>
+          </Link>
+          <Link
+            href={"https://www.facebook.com/profile.php?id=100084927608726"}
+          >
+            <a className="">Facebook</a>
+          </Link>
         </div>
       </div>
     </nav>
