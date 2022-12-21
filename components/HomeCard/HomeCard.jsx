@@ -9,7 +9,9 @@ function HomeCard() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("http://localhost:1337/api/collections");
+      const response = await axios.get(
+        "http://localhost:1337/api/collections?populate=*"
+      );
       setCollections(response.data);
     }
     fetchData();
@@ -22,7 +24,8 @@ function HomeCard() {
             <li key={collection.id}>
               <div className="min-h-[75%] w-full relative">
                 {/* <Image
-                  src="https://balenciaga.dam.kering.com/m/4f130129f6cc026b/Large-26_New_Design_Balcom_HP_and_Balcon-HP_Mobile_PR_Winter22Campaign_2600x1300px_-ratio_200-_No_Logo_5.jpg"
+                  // src="https://balenciaga.dam.kering.com/m/4f130129f6cc026b/Large-26_New_Design_Balcom_HP_and_Balcon-HP_Mobile_PR_Winter22Campaign_2600x1300px_-ratio_200-_No_Logo_5.jpg"
+                  // src={`http://localhost:1337/${collection[0].attributes.coverImage.data[0].attributes.formats.large.url}`}
                   alt="test"
                   objectFit="cover"
                   layout="fill"
