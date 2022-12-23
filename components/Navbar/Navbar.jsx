@@ -27,9 +27,9 @@ export default function Navbar() {
             <li>
               <Link href={"/"}>Inicio</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={"/explore"}>Explorar</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={"/cart"}>Carrito</Link>
             </li>
