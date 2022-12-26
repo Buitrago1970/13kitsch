@@ -4,6 +4,7 @@ import HomeCardTemp from "../components/HomeCardTemp/HomeCardTemp"
 
 
 export default function Home() {
+
   return (
     <Layout>
       {/* <HomeCard /> */}
