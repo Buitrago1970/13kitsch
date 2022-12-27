@@ -21,29 +21,32 @@ export default function HomeCardTemp() {
     }
     fetchData();
   }, [dispatch]);
+
   return (
     <>
       <div className="h-10 border-b border-black flex items-center px-3">
         <p className="">23 Productos</p>
       </div>
-      <section className="w-full h-screen grid grid-cols-3">
-        {products &&
+      <section className="w-full min-h-screen grid grid-cols-3">
+        {products.products.payload &&
           products.products.payload.map((product) => (
-            <Link href="/product/1" key={product.id}>
-              <div className="h-128 border-r border-b border-black flex flex-col justify-center items-center relative cursor-pointer ">
-                <div className="w-full h-full relative">
+            <Link
+              href="/product/[id]"
+              as={`/product/${product.id}`}
+              key={product.id}
+            >
+              <div className="h-[550px] border-r border-b border-black flex flex-col items-center relative cursor-pointer ">
+                <div className="w-full h-3/4 relative mt-10">
                   <Image
                     src={`http://localhost:1337${product.attributes.image.data[0].attributes.formats.medium.url}`}
                     alt="test"
                     objectFit="contain"
                     layout="fill"
-                    width={100}
-                    height={100}
                   />
                 </div>
-                <div className="text-center absolute bottom-1">
-                  <p>{product.attributes.name}</p>
-                  <p>{product.attributes.colors[0].number} colors</p>
+                <div className="text-center absolute bottom-1 text-sm mb-10">
+                  <p className="font-bold">{product.attributes.name}</p>
+                  <p className="font-light">colors</p>
                 </div>
               </div>
             </Link>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Layout from "../components/Layout/Layout"
 import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios';
@@ -18,7 +17,7 @@ export default function Expolore() {
         fetchData();
     }, []);
     return (
-        <Layout>
+        <>
             <div className='h-10 border-b border-black flex items-center px-3'>
                 <p className=''>23 Productos</p>
             </div>
@@ -45,7 +44,9 @@ export default function Expolore() {
 
                 ))}
             </section>
-        </Layout >
+        </>
+
+
 
     )
 }

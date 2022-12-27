@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout/Layout";
+
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -20,10 +20,8 @@ export default function Collections() {
     }
     fetchData();
   }, []);
-  console.log(products);
-  debugger;
   return (
-    <Layout>
+    <>
       <div className="h-10 border-b border-black flex items-center px-3">
         <p className="">23 Productos</p>
       </div>
@@ -51,6 +49,6 @@ export default function Collections() {
             </Link>
           ))}
       </section>
-    </Layout>
+    </>
   );
 }
