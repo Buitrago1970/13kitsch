@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../features/product/productSlice";
 
 import Image from "next/image";
 import axios from "axios";
@@ -9,6 +11,8 @@ export default function ProductPage() {
   const [product, setProduct] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const dispatch = useDispatch()
+
   const {
     query: { id },
   } = useRouter();
@@ -41,6 +45,20 @@ export default function ProductPage() {
   } else {
     formattedPrice = "No disponible";
   }
+
+  function handleAddToCart() {
+    if(selectedSize === '' ){
+      alert('Selecciona talla ')
+      return
+    }
+    if(selectedColor === '' ){
+      alert('Selecciona color ')
+      return
+
+    }
+    dispatch(addToCart({ product, selectedSize, selectedColor }))
+  }
+  
   const { name, description, price, image, features, imgcolorslider } = product;
 
   return (
@@ -77,6 +95,8 @@ export default function ProductPage() {
                           : ""
                       }`}
                       key={item.id}
+                      data-value={item.id}
+                        onClick={handleColorChange}
                     >
                       <Image
                         src={
@@ -159,10 +179,10 @@ export default function ProductPage() {
           <p className="text-2xl text-center my-4 font-normal">
             $ {formattedPrice}
           </p>
-          <button className="w-2/3 h-11 border rounded-md mb-3 bg-black text-white">
+          <button className="w-2/3 h-11 border rounded-md mb-3 bg-black text-white hover:opacity-80" onClick={()=> {handleAddToCart()}}>
             Añadir a la cesta
           </button>
-          <button className="w-2/3 h-11 border rounded-md border-black bg-white text-black mb-3">
+          <button className="w-2/3 h-11 border rounded-md border-black bg-white text-black mb-3 hover:opacity-80">
             Comprar ahora
           </button>
         </div>

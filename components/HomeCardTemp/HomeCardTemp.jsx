@@ -21,11 +21,11 @@ export default function HomeCardTemp() {
     }
     fetchData();
   }, [dispatch]);
-
+ 
   return (
     <>
       <div className="h-10 border-b border-black flex items-center px-3">
-        <p className="">23 Productos</p>
+        <p className="">{products.products.payload && products.products.payload.length} Productos</p>
       </div>
       <section className="w-full min-h-screen grid grid-cols-3">
         {products.products.payload &&
