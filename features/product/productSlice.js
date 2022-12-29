@@ -14,7 +14,7 @@ export const productSlice = createSlice({
         },
         // Acción para agregar un producto al carrito
         addToCart: (state, action) => {
-            debugger
+            
             state.cart.push({
                 product: action.payload.product,
                 size: action.payload.selectedSize,

@@ -2,7 +2,12 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/logo.gif";
+import { useSelector } from "react-redux";
+
 export default function Navbar() {
+  const cart = useSelector((state) => state.products.cart);
+  console.log(cart, "cart");
+
   return (
     <nav>
       <div className="h-14 items-center flex justify-between border-b border-t border-black">
@@ -21,12 +26,17 @@ export default function Navbar() {
             <li>
               <Link href={"/"}>Inicio</Link>
             </li>
-            {/* <li>
-              <Link href={"/explore"}>Explorar</Link>
-            </li> */}
-            <li>
-              <Link href={"/cart"}>Carrito</Link>
+            <li className="relative cursor-pointer">
+              <Link href={"/cart"} className="bg-gray-800 rounded-full p-2 ">
+                <div>
+                  carrito
+                  <span className="text-xs text-red-500 absolute right-0 top-0 m-1 bottom-0 -left-4 font-bold">
+                    {cart.length}
+                  </span>
+                </div>
+              </Link>
             </li>
+
             <li>
               <Link href={"/contact"}>Contacto</Link>
             </li>

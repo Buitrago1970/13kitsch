@@ -11,7 +11,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const {
     query: { id },
@@ -47,18 +47,17 @@ export default function ProductPage() {
   }
 
   function handleAddToCart() {
-    if(selectedSize === '' ){
-      alert('Selecciona talla ')
-      return
+    if (selectedSize === "") {
+      alert("Selecciona talla ");
+      return;
     }
-    if(selectedColor === '' ){
-      alert('Selecciona color ')
-      return
-
+    if (selectedColor === "") {
+      alert("Selecciona color ");
+      return;
     }
-    dispatch(addToCart({ product, selectedSize, selectedColor }))
+    dispatch(addToCart({ product, selectedSize, selectedColor }));
   }
-  
+
   const { name, description, price, image, features, imgcolorslider } = product;
 
   return (
@@ -96,7 +95,7 @@ export default function ProductPage() {
                       }`}
                       key={item.id}
                       data-value={item.id}
-                        onClick={handleColorChange}
+                      onClick={handleColorChange}
                     >
                       <Image
                         src={
@@ -179,7 +178,12 @@ export default function ProductPage() {
           <p className="text-2xl text-center my-4 font-normal">
             $ {formattedPrice}
           </p>
-          <button className="w-2/3 h-11 border rounded-md mb-3 bg-black text-white hover:opacity-80" onClick={()=> {handleAddToCart()}}>
+          <button
+            className="w-2/3 h-11 border rounded-md mb-3 bg-black text-white hover:opacity-80"
+            onClick={() => {
+              handleAddToCart();
+            }}
+          >
             Añadir a la cesta
           </button>
           <button className="w-2/3 h-11 border rounded-md border-black bg-white text-black mb-3 hover:opacity-80">
