@@ -2,12 +2,35 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/logo.gif";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const cart = useSelector((state) => state.products.cart);
-  console.log(cart, "cart");
+  // actual time
+  const [time, setTime] = useState(new Date());
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  // Setear el tiempo inicial cuando se renderiza el componente en el cliente
+  useEffect(() => {
+    const initialTime = new Date();
+    setTime(initialTime);
+  }, []);
+
+  const timeString = time.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });
   return (
     <nav>
       <div className="h-14 items-center flex justify-between border-b border-t border-black">
@@ -15,8 +38,8 @@ export default function Navbar() {
           <Image src={logo} alt="13Kitsch" objectFit="cover" layout="fill" />
         </div>
         <div className="mr-6 ">
-          <p className=" text-emerald-700 border-black  font-bold">
-            09:05:02 AM
+          <p className=" text-emerald-600 text-border font-bold ">
+            {timeString}
           </p>
         </div>
       </div>

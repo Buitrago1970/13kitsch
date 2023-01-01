@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  .mi-clase-de-imagen {
-    object-fit: cover;
+  .text-border{
+    text-shadow:
+    -1px 0px 0px rgb(0, 0, 0),
+    1px 0px 0px rgb(0, 0, 0),
+    0px -1px 0px rgb(0, 0, 0),
+    0px 1px 0px rgb(0, 0, 0);
   }
 }

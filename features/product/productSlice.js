@@ -14,17 +14,20 @@ export const productSlice = createSlice({
         },
         // Acción para agregar un producto al carrito
         addToCart: (state, action) => {
-            
             state.cart.push({
                 product: action.payload.product,
                 size: action.payload.selectedSize,
                 color: action.payload.selectedColor
             });
+        },
+        //accion para eliminar un producto del carrito
+        deleteFromCart: (state, action) => {
+            state.cart = state.cart.filter((item) => item.product.Slug !== action.payload.id);
         }
     }
 })
 
-export const { setProducts, addToCart } = productSlice.actions
+export const { setProducts, addToCart, deleteFromCart } = productSlice.actions
 
 export default productSlice.reducer
 

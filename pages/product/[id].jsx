@@ -12,6 +12,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     query: { id },
@@ -35,17 +36,7 @@ export default function ProductPage() {
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
   };
-  let formattedPrice;
-  //format price
-  if (product && product.price) {
-    formattedPrice = product.price.toLocaleString("es-ES", {
-      style: "currency",
-      currency: "EUR",
-    });
-  } else {
-    formattedPrice = "No disponible";
-  }
-
+  //add to cart
   function handleAddToCart() {
     if (selectedSize === "") {
       alert("Selecciona talla ");
@@ -57,8 +48,29 @@ export default function ProductPage() {
     }
     dispatch(addToCart({ product, selectedSize, selectedColor }));
   }
+  //go to cart
+  function handleGoToCart() {
+    if (selectedSize === "") {
+      alert("Selecciona talla ");
+      return;
+    }
+    if (selectedColor === "") {
+      alert("Selecciona color ");
+      return;
+    }
+    dispatch(addToCart({ product, selectedSize, selectedColor }));
+    router.push("/cart");
+  }
+  //format price
+  let formattedPrice;
 
-  const { name, description, price, image, features, imgcolorslider } = product;
+  if (product.price) {
+    formattedPrice = product.price
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  const { name, description, image, features, imgcolorslider } = product;
 
   return (
     <section className="min-h-screen  grid grid-cols-2 grid-rows-1 ">
@@ -176,7 +188,7 @@ export default function ProductPage() {
         </div>
         <div className="  my-4 flex flex-col items-center font-light ">
           <p className="text-2xl text-center my-4 font-normal">
-            $ {formattedPrice}
+            COP ${formattedPrice}
           </p>
           <button
             className="w-2/3 h-11 border rounded-md mb-3 bg-black text-white hover:opacity-80"
@@ -186,7 +198,12 @@ export default function ProductPage() {
           >
             Añadir a la cesta
           </button>
-          <button className="w-2/3 h-11 border rounded-md border-black bg-white text-black mb-3 hover:opacity-80">
+          <button
+            className="w-2/3 h-11 border rounded-md border-black bg-white text-black mb-3 hover:opacity-80"
+            onClick={() => {
+              handleGoToCart();
+            }}
+          >
             Comprar ahora
           </button>
         </div>

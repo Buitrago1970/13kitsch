@@ -1,11 +1,25 @@
 import React from "react";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../../features/product/productSlice";
 
 export default function ItemShoppingCard(product) {
-  // console.log(product.product.product, "product");
+  const dispatch = useDispatch();
   const { product: productData } = product.product;
   const { color, size } = product.product;
   const image = productData.image.data[0].attributes.formats.medium.url;
+  //format price
+  let formattedPrice = productData.price.toLocaleString("es-CO");
+  //delete to cart
+  function handleDeleteToCart() {
+    // form alert to confirm delete
+    const id = productData.Slug;
+
+    if (window.confirm("¿Estás seguro de querer eliminar este producto?")) {
+      dispatch(deleteFromCart({ id }));
+    }
+  }
+
   return (
     <div className=" grid overflow-hidden mb-5 border-b border-black grid-cols-2 grid-rows-[70px_minmax(500px,_1fr)_40px] bg-white ">
       <div className="border-r border-black row-span-3 p-2 ">
@@ -48,12 +62,19 @@ export default function ItemShoppingCard(product) {
             <p>L </p>
           </div>
           <div className="text-xl font-semibold">
-            <p>COP ${productData.price}</p>
+            <p>COP ${formattedPrice}</p>
           </div>
         </div>
       </div>
       <div className="px-4 flex items-center">
-        <p>Eliminar</p>
+        <button
+          className=" text-red-400 text-xs font-semibold lowercase"
+          onClick={() => {
+            handleDeleteToCart();
+          }}
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   );
