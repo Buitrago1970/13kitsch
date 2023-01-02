@@ -39,7 +39,7 @@ export default function Navbar() {
         </div>
         <div className="mr-6 ">
           <p className=" text-emerald-600 text-border font-bold ">
-            {timeString}
+            {/* {timeString} */}
           </p>
         </div>
       </div>
