@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../../features/product/productSlice";
@@ -7,9 +7,19 @@ export default function ItemShoppingCard(product) {
   const dispatch = useDispatch();
   const { product: productData } = product.product;
   const { color, size } = product.product;
-  const image = productData.image.data[0].attributes.formats.medium.url;
+
+  //get image
+  let image = productData.image.data[0].attributes.url;
+
   //format price
-  let formattedPrice = productData.price.toLocaleString("es-CO");
+  let formattedPrice;
+
+  if (productData.price) {
+    formattedPrice = productData.price
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   //delete to cart
   function handleDeleteToCart() {
     // form alert to confirm delete
@@ -36,7 +46,7 @@ export default function ItemShoppingCard(product) {
         </div>
       </div>
       <div className="flex flex-col  border-b border-black p-4  font-semibold">
-        <p className="text-xs">M46161</p>
+        <p className="text-xs">{productData.Slug}</p>
         <p className="uppercase text-xl ">{productData.name}</p>
       </div>
       <div className="flex flex-col justify-between border-b p-4">

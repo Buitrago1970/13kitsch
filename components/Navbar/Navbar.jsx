@@ -34,9 +34,10 @@ export default function Navbar() {
   return (
     <nav>
       <div className="h-14 items-center flex justify-between border-b border-t border-black">
-        <div className="h-full w-1/6 border-r border-black relative bg-black">
+        <div className="h-full w-1/6 border-r border-black relative ">
           <Image src={logo} alt="13Kitsch" objectFit="cover" layout="fill" />
         </div>
+
         <div className="mr-6 ">
           <p className=" text-emerald-600 text-border font-bold ">
             {/* {timeString} */}

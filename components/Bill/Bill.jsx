@@ -54,6 +54,7 @@ export default function Bill({ cart }) {
         </ul>
         <div className="text-xs italic text-center flex space-x-1 justify-center">
           <p>Pedidos superiores a ${formattedFreeDelivery}, envio</p>
+          {/* <p>Este pedido cuenta con envio </p> */}
           <p className="text-green-500 italic">gratis</p>
         </div>
       </div>
