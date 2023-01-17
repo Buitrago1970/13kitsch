@@ -9,6 +9,7 @@ export default function checkout() {
   const [showcart, setShowCart] = React.useState(false);
   const [mail, setMail] = React.useState("test@example.com");
   const [shipping, setShipping] = React.useState("PhysicalStore");
+  const [payment, setPayment] = React.useState("");
   let formattedTotal = total.toLocaleString("es-CO");
 
   return (
@@ -224,46 +225,154 @@ export default function checkout() {
         {currentStep === 3 ? (
           <div className="py-10 border-b border-black flex flex-col ">
             <p className="text-center font-bold">3. Pago</p>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Nombre de la tarjeta</p>
-                <p>*obligatorio</p>
+            <div>
+              <p className="mx-20 font-semibold my-10 pl-2">Opciones de Pago</p>
+              {/* payment options */}
+              <div className="flex justify-center flex-col items-center mt-7">
+                <div className="w-3/4 border border-black rounded">
+                  <ul className="">
+                    <li className="px-2 py-3 cursor-pointer hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer">
+                        {/* dot */}
+                        <div className="px-2">
+                          <input
+                            value="nequi"
+                            type="radio"
+                            className="w-4 h-4"
+                            name="radio"
+                            onChange={(e) => {
+                              setPayment(e.target.value);
+                            }}
+                            defaultChecked={true}
+                          />
+                        </div>
+                        {/* image */}
+                        <div>
+                          <img
+                            src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
+                            alt=""
+                            className="w-10 mx-2"
+                          />
+                        </div>
+                        {/* text */}
+                        <div className=" ">
+                          <span className="">
+                            <p className="text-sm  ">Nequi</p>
+                            <p className="text-gray-400 mb-1 text-xs">
+                              Paga por nequi con el numero whatsapp
+                            </p>
+                          </span>
+                        </div>
+                      </label>
+                    </li>
+                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer">
+                        {/* dot */}
+                        <div className="px-2">
+                          <input
+                            value="tarjeta"
+                            type="radio"
+                            className="w-4 h-4"
+                            name="radio"
+                            onChange={(e) => {
+                              setPayment(e.target.value);
+                            }}
+                          />
+                        </div>
+                        {/* image */}
+                        <div>
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/4341/4341764.png"
+                            alt=""
+                            className="w-10 mx-2"
+                          />
+                        </div>
+                        {/* text */}
+                        <div className=" ">
+                          <span className="">
+                            <p className="text-sm  ">
+                              tarjeta de Credito / debito
+                            </p>
+                            <p className="text-gray-400 mb-1 text-xs">
+                              Paga con tarjeta de credito o debito
+                            </p>
+                          </span>
+                        </div>
+                      </label>
+                    </li>
+
+                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer">
+                        {/* dot */}
+                        <div className="px-2">
+                          <input
+                            value="whatsapp"
+                            type="radio"
+                            className="w-4 h-4"
+                            name="radio"
+                            onChange={(e) => {
+                              setPayment(e.target.value);
+                            }}
+                          />
+                          {/* <span className=""></span> */}
+                        </div>
+                        {/* image */}
+                        <div>
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png"
+                            alt=""
+                            className="w-10 mx-2"
+                          />
+                        </div>
+                        {/* text */}
+                        <div className=" ">
+                          <span className="">
+                            <p className="text-sm  ">whatsapp</p>
+                            <p className="text-gray-400 mb-1 text-xs">
+                              Paga por whatsapp
+                            </p>
+                          </span>
+                        </div>
+                      </label>
+                    </li>
+                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer">
+                        {/* dot */}
+                        <div className="px-2">
+                          <input
+                            value="efectivo"
+                            type="radio"
+                            className="w-4 h-4"
+                            name="radio"
+                            onChange={(e) => {
+                              setPayment(e.target.value);
+                            }}
+                          />
+                        </div>
+                        {/* image */}
+                        <div>
+                          <img
+                            src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
+                            alt=""
+                            className="w-10 mx-2"
+                          />
+                        </div>
+                        {/* text */}
+                        <div className=" ">
+                          <span className="">
+                            <p className="text-sm  ">Efectivo contraentrega</p>
+                            <p className="text-gray-400 mb-1 text-xs">
+                              Paga en efectivo contraentrega
+                            </p>
+                          </span>
+                        </div>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <input
-                type="text"
-                className="w-9/12 border border-black h-11 rounded"
-              />
             </div>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Numero de la tarjeta</p>
-                <p>*obligatorio</p>
-              </div>
-              <input
-                type="text"
-                className="w-9/12 border border-black h-11 rounded"
-              />
-            </div>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Fecha de expiracion</p>
-                <p>*obligatorio</p>
-              </div>
-              <input
-                type="text"
-                className="w-9/12 border border-black h-11 rounded"
-              />
-            </div>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Codigo de seguridad</p>
-                <p>*obligatorio</p>
-              </div>
-              <input
-                type="text"
-                className="w-9/12 border border-black h-11 rounded"
-              />
-            </div>
+
             <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
               Continuar
             </button>
