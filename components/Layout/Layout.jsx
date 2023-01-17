@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     <>
       <Navbar />
       {children}
-      <footer className="grid  grid-cols-2  border-t border-black bg-gray-100 mt-3">
+      <footer className="grid  grid-cols-2  border-t border-black bg-gray-100 ">
         <div className="px-2">
           <p>CONECTAR</p>
           <div className="italic font-semibold flex flex-col text-sm">

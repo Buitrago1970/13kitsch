@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   popular: [],
   cart: [],
+  total: 0,
 };
 
 export const productSlice = createSlice({
@@ -31,10 +32,19 @@ export const productSlice = createSlice({
     setPopularProducts: (state, action) => {
       state.popular = action.payload;
     },
+    //acccion para agregar el total de productos al carrito
+    setTotal: (state, action) => {
+      state.total = action.payload.payload;
+    },
   },
 });
 
-export const { setProducts, addToCart, deleteFromCart, setPopularProducts } =
-  productSlice.actions;
+export const {
+  setProducts,
+  addToCart,
+  deleteFromCart,
+  setPopularProducts,
+  setTotal,
+} = productSlice.actions;
 
 export default productSlice.reducer;

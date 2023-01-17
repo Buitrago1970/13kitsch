@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { setTotal } from "../../features/product/productSlice";
 
 export default function Bill({ cart }) {
+  const dispatch = useDispatch();
   //cal subtotal
   const subtotal = cart.reduce((acc, item) => {
     return acc + parseInt(item.product.price);
@@ -60,7 +63,12 @@ export default function Bill({ cart }) {
       </div>
       <div className="w-full flex justify-center">
         <Link href="/checkout">
-          <button className="bg-black  h-14 w-96 text-white">
+          <button
+            className="bg-black  h-14 w-96 text-white"
+            onClick={() => {
+              dispatch(setTotal({ type: "FETCH_SUCCESS", payload: total }));
+            }}
+          >
             Realizar pedido {cart.length > 0 ? `(${cart.length})` : null}
           </button>
         </Link>
