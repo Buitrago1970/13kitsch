@@ -20,16 +20,23 @@
     0px -1px 0px rgb(255, 255, 255),
     0px 1px 0px rgb(255, 255, 255);
   }
+ */
   .grid-header{
     display: grid;
     grid-template-columns: 0.5fr 1fr 0.5fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      ""
-      "hr hr hr";
-    }
-    .hr{
-      
-    }
-
+    place-items: center;
+  }
+  .grid-navbar{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+  }
+  /* .boxxxx{
+    z-index: 1;
+  }
+  .boxzz{
+    z-index: 2;
+  }  */
 }
