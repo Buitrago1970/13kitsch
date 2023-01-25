@@ -1,16 +1,74 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { info } from "autoprefixer";
+import Modal from "../components/Modal/Modal";
+import modal from "../components/Modal/Modal";
 
 export default function checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
   const [currentStep, setCurrentStep] = React.useState(3);
   const [showcart, setShowCart] = React.useState(false);
-  const [mail, setMail] = React.useState("test@example.com");
+  const [mail, setMail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [prefix, setPrefix] = React.useState("+57");
+  const [address, setAddress] = React.useState("");
+  const [reference, setReference] = React.useState("");
   const [shipping, setShipping] = React.useState("PhysicalStore");
   const [payment, setPayment] = React.useState("");
+  const [showModal, setShowModal] = React.useState(false);
   let formattedTotal = total.toLocaleString("es-CO");
+
+  const handleEmail = () => {
+    //verify email
+    const emailIsValid = (email) => {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+    //if email is ok, then go to next step
+    if (emailIsValid(mail)) {
+      setCurrentStep(2);
+    } else {
+      alert("Email no valido");
+    }
+  };
+  //
+  const handleShippingPhysicalStore = () => {
+    //verify info
+    const infoIsValid = (name, phone) => {
+      return /^[a-zA-Z ]+$/.test(name) && /^[0-9]+$/.test(phone);
+    };
+
+    //if info is ok, then go to next step
+    if (infoIsValid(name, phone)) {
+      setCurrentStep(3);
+    } else {
+      alert("Informacion no valida");
+    }
+  };
+  const handleShippingHome = () => {
+    //verify info
+    const infoIsValid = (address) => {
+      return /^[a-zA-Z0-9 ]+$/.test(address);
+    };
+    if (infoIsValid(address)) {
+      setCurrentStep(3);
+    } else {
+      alert("Informacion no valida");
+    }
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [showModal]);
+  const handlePayment = () => {
+    setShowModal(true);
+  };
 
   return (
     <section className="min-h-screen">
@@ -38,10 +96,15 @@ export default function checkout() {
               <input
                 type="text"
                 className="w-9/12 border border-black h-11 rounded"
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
               />
             </div>
 
-            <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
+            <button
+              className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+              onClick={() => handleEmail()}
+            >
               Continuar
             </button>
             <button className="bg-white text-black w-9/12 h-11 m-auto mt-5 rounded mx-auto border border-black uppercase">
@@ -147,6 +210,8 @@ export default function checkout() {
                       <input
                         type="text"
                         className="w-9/12 border border-black h-11 rounded"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                     {/* phone number */}
@@ -158,6 +223,8 @@ export default function checkout() {
                         <input
                           type="text"
                           className=" border border-black h-11 rounded w-full"
+                          value={prefix}
+                          onChange={(e) => setPrefix(e.target.value)}
                         />
                       </div>
                       <div className=" my-10 mb-16 w-[75%]">
@@ -168,6 +235,8 @@ export default function checkout() {
                         <input
                           type="text"
                           className=" border border-black h-11 rounded w-full"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
                         />
                       </div>
                     </div>
@@ -175,7 +244,12 @@ export default function checkout() {
                   <div className="bg-yellow-100 px-4 py-4 rounded font-medium text-base w-9/12 text-center">
                     <p>!Tu pedio sera enviado a la tienda el 66 de enero!</p>
                   </div>
-                  <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
+                  <button
+                    className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+                    onClick={() => {
+                      handleShippingPhysicalStore();
+                    }}
+                  >
                     Guardar y continuar
                   </button>
                 </div>
@@ -198,6 +272,8 @@ export default function checkout() {
                   <input
                     type="text"
                     className="w-9/12 border border-black h-11 rounded"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
                 <div className="flex justify-center flex-col items-center mt-7">
@@ -207,9 +283,16 @@ export default function checkout() {
                   <input
                     type="text"
                     className="w-9/12 border border-black h-20 rounded"
+                    value={reference}
+                    onChange={(e) => setReference(e.target.value)}
                   />
                 </div>
-                <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
+                <button
+                  className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+                  onClick={() => {
+                    handleShippingHome();
+                  }}
+                >
                   Continuar
                 </button>
               </>
@@ -373,7 +456,12 @@ export default function checkout() {
               </div>
             </div>
 
-            <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
+            <button
+              className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+              onClick={() => {
+                handlePayment();
+              }}
+            >
               Continuar
             </button>
           </div>
@@ -417,6 +505,11 @@ export default function checkout() {
           </div>
         )}
       </div>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        payment={payment}
+      />
     </section>
   );
 }

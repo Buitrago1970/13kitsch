@@ -7,12 +7,13 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        '128': '43rem',
+        128: "43rem",
       },
       colors: {
-        'basic-gary': '#F2F2F2',
+        "basic-gary": "#F2F2F2",
+        "transparent-black": "rgba(0, 0, 0, 0.7)",
       },
     },
   },
   plugins: [],
-}
+};

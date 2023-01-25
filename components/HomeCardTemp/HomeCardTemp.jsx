@@ -38,7 +38,7 @@ export default function HomeCardTemp() {
               as={`/product/${product.id}`}
               key={product.id}
             >
-              <div className="h-[550px] border-r border-b border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-100">
+              <div className="h-[550px] border-r border-b border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700">
                 <div className="w-full h-3/4 relative mt-10">
                   <Image
                     src={`http://localhost:1337${product.attributes.image.data[0].attributes.formats.medium.url}`}
