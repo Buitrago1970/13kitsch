@@ -1,10 +1,11 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
+// import Navbar from "../Navbar/Navbar";
+import TopSection from "../Top-section/TopSection";
 
 export default function Layout({ children }) {
   return (
     <>
-      <Navbar />
+      <TopSection />
       {children}
       <footer className="grid  grid-cols-2  border-t border-black bg-gray-100 ">
         <div className="px-2">
