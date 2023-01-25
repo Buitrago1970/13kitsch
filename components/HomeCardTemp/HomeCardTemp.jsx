@@ -24,7 +24,7 @@ export default function HomeCardTemp() {
 
   return (
     <>
-      <div className="h-10 border-b border-black flex items-center px-3">
+      <div className="h-10 border-b products-count flex items-center px-3">
         <p className="">
           {products.products.payload && products.products.payload.length}{" "}
           Productos

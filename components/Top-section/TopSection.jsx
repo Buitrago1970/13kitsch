@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 
 export default function HeaderSection() {
   return (
-    <section className="bg-pink-500">
+    <section className="section-top">
       <Header />
       <Navbar />
     </section>

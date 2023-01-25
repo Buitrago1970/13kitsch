@@ -11,14 +11,14 @@ export default function Header() {
         <a
           href="https://www.instagram.com/13kitsch/"
           target="_blank"
-          className=" flex items-center justify-center bg-[#EE218A] border border-black h-8 w-40 text-center rounded-full absolute  cursor-pointer"
+          className=" flex items-center justify-center bg-[#EE218A] border border-black h-8 w-40 text-center rounded-full absolute  cursor-pointer  hover:w-72 z-30 duration-1000"
         >
           <p>Instagram</p>
         </a>
-        <a className=" flex items-center justify-center bg-[#006DD1] border border-black h-8 w-36 text-center rounded-full  absolute left-[136px] cursor-pointer">
+        <a className=" flex items-center justify-center bg-[#006DD1] border border-black h-8 w-36 text-center rounded-full  absolute left-[136px] cursor-pointer hover:w-56 z-20 duration-1000">
           facebook
         </a>
-        <a className=" flex items-center justify-center bg-white border border-black h-8 w-24 text-center rounded-full text-black  absolute left-[255px] cursor-pointer">
+        <a className=" flex items-center justify-center bg-white border border-black h-8 w-24 text-center rounded-full text-black  absolute left-[255px] cursor-pointer  hover:w-40 duration-1000">
           TikTok
         </a>
       </div>
