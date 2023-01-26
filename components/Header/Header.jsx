@@ -6,7 +6,7 @@ export default function Header() {
   const cart = useSelector((state) => state.products.cart);
 
   return (
-    <header className="grid-header px-14  h-20">
+    <header className="grid-header px-14 h-20 bg-header">
       <div className="flex items-center justify-between w-full text-white font-semibold text-border ">
         <a
           href="https://www.instagram.com/13kitsch/"
@@ -29,7 +29,11 @@ export default function Header() {
         <Link href="/cart">
           <div className="cursor-pointer hover:text-border-white text-blacktransition-colors duration-500">
             <p className="font-bold text-base">CARRITO</p>
-            <span className="rounded-full border border-black bg-white w-[26px] h-[26px] text-center absolute bottom-3 -right-7">
+            <span
+              className={`${
+                cart.length > 0 ? "full rounded" : "bg-white rounded-full"
+              } flex justify-center items-center  border border-black  w-[26px] h-[26px] text-center absolute bottom-3 -right-7 duration-700`}
+            >
               {cart.length}
             </span>
           </div>
