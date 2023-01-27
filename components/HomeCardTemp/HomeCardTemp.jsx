@@ -30,7 +30,7 @@ export default function HomeCardTemp() {
           Productos
         </p>
       </div>
-      <section className="w-full min-h-screen grid grid-cols-3">
+      <section className="grid-cols-2 w-full  grid md:grid-cols-3 xl:grid-cols-4">
         {products.products.payload &&
           products.products.payload.map((product) => (
             <Link
