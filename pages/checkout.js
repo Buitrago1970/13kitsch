@@ -8,7 +8,7 @@ import modal from "../components/Modal/Modal";
 export default function checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(3);
+  const [currentStep, setCurrentStep] = React.useState(2);
   const [showcart, setShowCart] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -16,8 +16,8 @@ export default function checkout() {
   const [prefix, setPrefix] = React.useState("+57");
   const [address, setAddress] = React.useState("");
   const [reference, setReference] = React.useState("");
-  const [shipping, setShipping] = React.useState("PhysicalStore");
-  const [payment, setPayment] = React.useState("");
+  const [shipping, setShipping] = React.useState("");
+  const [payment, setPayment] = React.useState("nequi");
   const [showModal, setShowModal] = React.useState(false);
   let formattedTotal = total.toLocaleString("es-CO");
 
@@ -70,6 +70,7 @@ export default function checkout() {
     setShowModal(true);
   };
 
+  console.log(payment, "payment- checkout");
   return (
     <section className="min-h-screen">
       <div className="m-auto w-1/2  border-l border-r border-black ">
@@ -112,7 +113,15 @@ export default function checkout() {
             </button>
           </div>
         ) : (
-          <div className="py-10 border-b border-black  ">
+          <div className="py-14 border-b border-black  relative">
+            <a
+              className="text-end text-sm underline absolute right-5 bottom-36 cursor-pointer"
+              onClick={() => {
+                setCurrentStep(1);
+              }}
+            >
+              Editar
+            </a>
             <div className="flex justify-center text-center font-bold items-center">
               <p className="font-normal text-xs mr-2">✓</p>
               <p>1. Correo electronico</p>
@@ -185,7 +194,7 @@ export default function checkout() {
                 </ul>
               </div>
             </div>
-            {shipping === "PhysicalStore" ? (
+            {shipping === "PhysicalStore" || shipping === "" ? (
               <>
                 {" "}
                 {/* pick up in physical store */}
@@ -264,6 +273,22 @@ export default function checkout() {
                     <p className="underline">Editar</p>
                   </Link>
                 </div>
+                <p className="font-bold text-center mt-14 mb-5">
+                  POR FAVOR, INGRESE SU INFORMACIÓN DE ENTREGA
+                </p>
+                <div className="flex justify-center flex-col items-center mt-7 mb-10">
+                  <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm ">
+                    <p>Nombre</p>
+                    <p>*obligatorio</p>
+                  </div>
+                  <input
+                    type="text"
+                    className="w-9/12 border border-black h-11 rounded"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+
                 <div className="flex justify-center flex-col items-center mt-7">
                   <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
                     <p>Direccion</p>
@@ -276,6 +301,7 @@ export default function checkout() {
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
+
                 <div className="flex justify-center flex-col items-center mt-7">
                   <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
                     <p>Referencias adicionales </p>
@@ -299,9 +325,68 @@ export default function checkout() {
             )}
           </div>
         ) : (
-          <div className="py-5 border-b border-black flex flex-col ">
-            <p className="text-center font-bold text-gray-300">2. Envio</p>
-          </div>
+          <>
+            {shipping === "" ? (
+              <div className="py-5  border-black flex flex-col border-b">
+                <p className="text-center font-bold text-gray-300">2.envio</p>
+              </div>
+            ) : (
+              <div className="py-14 border-b border-black  relative">
+                <a
+                  className="text-end text-sm underline absolute right-5 top-4 cursor-pointer"
+                  onClick={() => {
+                    setCurrentStep(2);
+                  }}
+                >
+                  Editar
+                </a>
+                {
+                  // shipping to physical store
+                  shipping === "PhysicalStore" ? (
+                    <>
+                      <div className="flex justify-center text-center font-bold items-center">
+                        <p className="font-normal text-xs mr-2">✓</p>
+                        <p>2. Envio</p>
+                      </div>
+                      <div className="flex flex-col items-center mt-5 text-sm">
+                        <p className="text-gray-400 mb-1">
+                          Tu pedido sera enviado a la tienda el 66 de enero
+                        </p>
+                        <p className=" mb-1">
+                          Suba Calle 165a # 54c -95 Local 401
+                        </p>
+                        <p>{name}</p>
+                        <p>{phone}</p>
+                      </div>
+                    </>
+                  ) : (
+                    // shipping to home
+                    <>
+                      <div className="flex justify-center text-center font-bold items-center">
+                        <p className="font-normal text-xs mr-2">✓</p>
+                        <p>2. Envio</p>
+                      </div>
+                      <div className="flex flex-col items-center mt-5 text-sm">
+                        <p className="text-gray-400 mb-1">
+                          Entrega a Domicilio
+                        </p>
+                        <p>ENVIO Gratis</p>
+                        <p>Entrega Garantizada el 31/01/2023</p>
+                      </div>
+                      <div className="flex flex-col items-center mt-5 text-sm">
+                        <p className="text-gray-400 mb-1">
+                          Direccion de envio:
+                        </p>
+                        <p>{name}</p>
+                        <p>{address}</p>
+                        <p>{reference}</p>
+                      </div>
+                    </>
+                  )
+                }
+              </div>
+            )}
+          </>
         )}
 
         {/* payment */}
@@ -314,8 +399,8 @@ export default function checkout() {
               <div className="flex justify-center flex-col items-center mt-7">
                 <div className="w-3/4 border border-black rounded">
                   <ul className="">
-                    <li className="px-2 py-3 cursor-pointer hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer">
+                    <li className="px-3  cursor-pointer hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
                         <div className="px-2">
                           <input
@@ -348,8 +433,8 @@ export default function checkout() {
                         </div>
                       </label>
                     </li>
-                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer">
+                    <li className="px-3  border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
                         <div className="px-2">
                           <input
@@ -384,8 +469,8 @@ export default function checkout() {
                       </label>
                     </li>
 
-                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer">
+                    <li className="px-3  border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
                         <div className="px-2">
                           <input
@@ -418,8 +503,8 @@ export default function checkout() {
                         </div>
                       </label>
                     </li>
-                    <li className="px-2 py-3 border-t border-black cursor-pointer  hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer">
+                    <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
+                      <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
                         <div className="px-2">
                           <input

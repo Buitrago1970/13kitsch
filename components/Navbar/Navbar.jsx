@@ -54,7 +54,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="w-full text-end mr-14">
-        <p className="font-semibold text-border-white ">{timeString}</p>
+        <p className="font-semibold text-border-white ">9:000---</p>
       </div>
     </nav>
   );

@@ -4,7 +4,10 @@ import M_Whatsapp from "../DiferentsModals/M_Whatsapp";
 import M_Nequi from "../DiferentsModals/M_Nequi";
 
 export default function modal({ showModal, setShowModal, payment }) {
-  if (showModal) {
+  console.log(payment, "payment");
+  console.log(showModal, "showModal");
+
+  if (showModal === true) {
     if (payment === "efectivo") {
       return <M_Cash setShowModal={setShowModal} />;
     }
