@@ -6,8 +6,8 @@ export default function Header() {
   const cart = useSelector((state) => state.products.cart);
 
   return (
-    <header className="grid-header px-14 h-20 bg-header">
-      <div className="flex items-center justify-between w-full text-white font-semibold text-border ">
+    <header className="grid-cols-1 grid-rows-1 h-16 grid-header relative px-5  bg-header md:grid-header  md:h-20  ">
+      <div className="hidden  md:flex items-center justify-between w-full text-white font-semibold text-border ">
         <a
           href="https://www.instagram.com/13kitsch/"
           target="_blank"
@@ -22,12 +22,12 @@ export default function Header() {
           TikTok
         </a>
       </div>
-      <div className="font-bold italic text-7xl">
+      <div className="text-5xl font-bold italic sm:text-7xl">
         <h1 className="text-border-white">Kitsch</h1>
       </div>
-      <div className="flex relative w-full justify-end mr-14">
+      <div className="flex absolute mr-24 w-full justify-end md:relative md:mr-14">
         <Link href="/cart">
-          <div className="cursor-pointer hover:text-border-white text-blacktransition-colors duration-500">
+          <div className=" cursor-pointer hover:text-border-white text-blacktransition-colors duration-500">
             <p className="font-bold text-base">CARRITO</p>
             <span
               className={`${
@@ -39,9 +39,9 @@ export default function Header() {
           </div>
         </Link>
       </div>
-      <hr className="border-black w-full" />
-      <hr className="border-black w-full" />
-      <hr className="border-black w-full" />
+      <hr className="hidden md:block border-black w-full" />
+      <hr className="hidden md:block border-black w-full" />
+      <hr className="hidden md:block border-black w-full" />
     </header>
   );
 }

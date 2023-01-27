@@ -37,10 +37,6 @@
     background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); 
     border-bottom: 1px solid #000000;
   }
-  .bg-header{
-    /* background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);  */
-
-  }
   .products-count{
     background-image: linear-gradient(to top, #ffffff 0%, #f3e7e9 100%);
   }
