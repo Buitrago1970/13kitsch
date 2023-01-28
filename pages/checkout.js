@@ -8,7 +8,7 @@ import modal from "../components/Modal/Modal";
 export default function checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(2);
+  const [currentStep, setCurrentStep] = React.useState(3);
   const [showcart, setShowCart] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -70,10 +70,9 @@ export default function checkout() {
     setShowModal(true);
   };
 
-  console.log(payment, "payment- checkout");
   return (
     <section className="min-h-screen">
-      <div className="m-auto w-1/2  border-l border-r border-black ">
+      <div className="m-auto w-full  border-l border-r border-black md:w-1/2 ">
         {/* title */}
         <div className="text-center py-10 font-bold text-2xl border-b border-black">
           <p>PAGAR</p>
@@ -90,25 +89,25 @@ export default function checkout() {
           <div className="py-10 border-b border-black flex flex-col ">
             <p className="text-center font-bold">1. Correo electronico</p>
             <div className="flex justify-center flex-col items-center my-10 mb-16">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
+              <div className="flex justify-between w-5/6 mb-1 text-gray-400 text-sm md:w-9/12">
                 <p>Correo electronico</p>
                 <p>*obligatorio</p>
               </div>
               <input
                 type="text"
-                className="w-9/12 border border-black h-11 rounded"
+                className="w-5/6 border border-black h-11 rounded md:w-9/12"
                 value={mail}
                 onChange={(e) => setMail(e.target.value)}
               />
             </div>
 
             <button
-              className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+              className="bg-black text-white w-5/6  h-11 m-auto  rounded mx-auto uppercase md:w-9/12 md:mt-10"
               onClick={() => handleEmail()}
             >
               Continuar
             </button>
-            <button className="bg-white text-black w-9/12 h-11 m-auto mt-5 rounded mx-auto border border-black uppercase">
+            <button className="bg-white text-black w-5/6 h-11 m-auto mt-5 rounded mx-auto border border-black uppercase md:w-9/12 ">
               Iniciar sesion con google
             </button>
           </div>
@@ -141,7 +140,7 @@ export default function checkout() {
             <p className="text-center font-bold">2. Envio</p>
             {/* select shipping metod */}
             <div className="flex justify-center flex-col items-center mt-7">
-              <div className="w-3/5 border border-black rounded">
+              <div className="w-10/12  border border-black rounded md:w-3/5">
                 <ul className="">
                   <li className="px-2 py-3 cursor-pointer hover:bg-gray-100">
                     <label className="flex items-center cursor-pointer">
@@ -207,24 +206,24 @@ export default function checkout() {
                       <p>Local 401</p>
                     </div>
                   </div>
-                  <p className="font-bold">
+                  <p className="font-bold p-2 text-center">
                     POR FAVOR, INGRESE SU INFORMACIÓN DE RECOGIDA
                   </p>
                   <div className="w-full">
                     <div className="flex justify-center flex-col items-center my-10 mb-1">
-                      <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
+                      <div className="flex justify-between w-10/12  mb-1 text-gray-400 text-sm md:w-9/12">
                         <p>Nombre</p>
                         <p>*obligatorio</p>
                       </div>
                       <input
                         type="text"
-                        className="w-9/12 border border-black h-11 rounded"
+                        className="w-10/12 border border-black h-11 rounded md:w-9/12"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
                     {/* phone number */}
-                    <div className="flex justify-center w-full  max-w-[538px] m-auto">
+                    <div className="flex justify-center w-10/12 items-end  m-auto md:max-w-[538px] ">
                       <div className=" my-10 mb-16 w-[25%] mr-3">
                         <div className="flex justify-between  mb-1 text-gray-400 text-sm">
                           <p>Prefijo</p>
@@ -254,7 +253,7 @@ export default function checkout() {
                     <p>!Tu pedio sera enviado a la tienda el 66 de enero!</p>
                   </div>
                   <button
-                    className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+                    className="bg-black text-white w-5/6 mt-10  h-11 m-auto  rounded mx-auto uppercase md:w-9/12 "
                     onClick={() => {
                       handleShippingPhysicalStore();
                     }}
@@ -277,44 +276,44 @@ export default function checkout() {
                   POR FAVOR, INGRESE SU INFORMACIÓN DE ENTREGA
                 </p>
                 <div className="flex justify-center flex-col items-center mt-7 mb-10">
-                  <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm ">
+                  <div className="flex justify-between w-5/6  mb-1 text-gray-400 text-sm  md:w-9/12">
                     <p>Nombre</p>
                     <p>*obligatorio</p>
                   </div>
                   <input
                     type="text"
-                    className="w-9/12 border border-black h-11 rounded"
+                    className="w-5/6  border border-black h-11 rounded  md:w-9/12"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
 
                 <div className="flex justify-center flex-col items-center mt-7">
-                  <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
+                  <div className="flex justify-between w-5/6 mb-1 text-gray-400 text-sm  md:w-9/12">
                     <p>Direccion</p>
                     <p>*obligatorio</p>
                   </div>
                   <input
                     type="text"
-                    className="w-9/12 border border-black h-11 rounded"
+                    className="w-5/6 border border-black h-11 rounded  md:w-9/12"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
 
                 <div className="flex justify-center flex-col items-center mt-7">
-                  <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
+                  <div className="flex justify-between w-5/6 mb-1 text-gray-400 text-sm  md:w-9/12">
                     <p>Referencias adicionales </p>
                   </div>
                   <input
                     type="text"
-                    className="w-9/12 border border-black h-20 rounded"
+                    className="w-5/6 border border-black h-20 rounded  md:w-9/12"
                     value={reference}
                     onChange={(e) => setReference(e.target.value)}
                   />
                 </div>
                 <button
-                  className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+                  className="bg-black text-white w-5/6 h-11 m-auto mt-10 rounded mx-auto uppercase  md:w-9/12"
                   onClick={() => {
                     handleShippingHome();
                   }}
@@ -394,10 +393,12 @@ export default function checkout() {
           <div className="py-10 border-b border-black flex flex-col ">
             <p className="text-center font-bold">3. Pago</p>
             <div>
-              <p className="mx-20 font-semibold my-10 pl-2">Opciones de Pago</p>
+              <p className="mx-20 text-center font-semibold my-10 md:pl-2 md:text-left">
+                Opciones de Pago
+              </p>
               {/* payment options */}
               <div className="flex justify-center flex-col items-center mt-7">
-                <div className="w-3/4 border border-black rounded">
+                <div className=" border border-black rounded w-5/6 md:w-3/4">
                   <ul className="">
                     <li className="px-3  cursor-pointer hover:bg-gray-100">
                       <label className="flex items-center cursor-pointer h-16 w-full">
@@ -542,7 +543,7 @@ export default function checkout() {
             </div>
 
             <button
-              className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase"
+              className="bg-black text-white h-11 w-5/6 m-auto mt-10 rounded mx-auto uppercase md:w-9/12 "
               onClick={() => {
                 handlePayment();
               }}

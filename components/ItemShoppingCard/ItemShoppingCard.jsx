@@ -31,9 +31,9 @@ export default function ItemShoppingCard(product) {
   }
 
   return (
-    <div className=" grid overflow-hidden mb-5 border-b border-black grid-cols-2 grid-rows-[70px_minmax(500px,_1fr)_40px] bg-white ">
-      <div className="border-r border-black row-span-3 p-2 ">
-        <div className=" h-full relative">
+    <div className=" grid overflow-hidden mb-5 border-b border-black grid-cols-1  bg-white md:grid-cols-2 md:grid-rows-[70px_minmax(500px,_1fr)_40px]  ">
+      <div className="h-[500px]  border-black row-span-3 p-2 md:border-r ">
+        <div className="relative h-full ">
           <div className="  ">
             <Image
               src={`http://localhost:1337${image}`}
@@ -45,11 +45,11 @@ export default function ItemShoppingCard(product) {
           <svg focusable="false" aria-hidden="true"></svg>
         </div>
       </div>
-      <div className="flex flex-col  border-b border-black p-4  font-semibold">
+      <div className="flex flex-col border-t border-b border-black p-4  font-semibold text-center ">
         <p className="text-xs">{productData.Slug}</p>
         <p className="uppercase text-xl ">{productData.name}</p>
       </div>
-      <div className="flex flex-col justify-between border-b p-4">
+      <div className="flex flex-col justify-between border-b p-4 space-y-10 text-center">
         <div className="text-base ">
           <ul>
             <li>
@@ -76,7 +76,7 @@ export default function ItemShoppingCard(product) {
           </div>
         </div>
       </div>
-      <div className="px-4 flex items-center">
+      <div className="px-4 flex items-center h-10">
         <button
           className=" text-red-400 text-xs font-semibold lowercase"
           onClick={() => {

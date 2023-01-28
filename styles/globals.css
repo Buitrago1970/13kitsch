@@ -43,4 +43,15 @@
   .full{
     background-color: #1fe053;
   }
+  .grid-shopping-cart{
+    grid-template-areas: " row-1 " 
+    " row-2";
+  }
+  .row-1 {
+    grid-area: row-1;
+  }
+  
+  .row-2 {
+    grid-area: row-2;
+  }
 }

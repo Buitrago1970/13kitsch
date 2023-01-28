@@ -31,7 +31,7 @@ export default function cart() {
         <h1 className="text-2xl font-semibold mb-16 text-center">
           Algunos productos que podrían interesarte ✨
         </h1>
-        <div className="w-full min-h-screen grid grid-cols-4">
+        <div className="grid-cols-2 w-full min-h-screen grid md:grid-cols-3 lg:grid-cols-4">
           {popular.payload &&
             popular.payload.map((product) => (
               <Link
@@ -64,7 +64,7 @@ export default function cart() {
     );
   } else {
     return (
-      <section className="min-h-screen grid  grid-cols-3 grid-rows-1">
+      <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3">
         <ShoppingCart cart={products.cart} />
         <Bill cart={products.cart} />
       </section>

@@ -29,9 +29,9 @@ export default function Bill({ cart }) {
   let formattedFreeDelivery = freeDelivery.toLocaleString("es-CO");
 
   return (
-    <div className=" h-64">
-      <div className="w-full p-8">
-        <ul className="mb-5">
+    <div className="h-72 row-1 mt-1 md:h-64 ">
+      <div className="w-full p-5 md:p-8">
+        <ul className="mb-10 md:mb-5">
           <li>
             <div className="flex justify-between font-semibold">
               <span>Subtotal</span>
