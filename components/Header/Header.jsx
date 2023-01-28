@@ -6,7 +6,7 @@ export default function Header() {
   const cart = useSelector((state) => state.products.cart);
 
   return (
-    <header className="grid-cols-1 grid-rows-1 h-16 grid-header relative px-5  bg-header md:grid-header  md:h-20  ">
+    <header className="grid-cols-2 grid-rows-1 h-16 grid-header relative px-5  bg-header sm:grid-cols-1 md:grid-header  md:h-20  ">
       <div className="hidden  md:flex items-center justify-between w-full text-white font-semibold text-border ">
         <a
           href="https://www.instagram.com/13kitsch/"

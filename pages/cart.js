@@ -64,7 +64,7 @@ export default function cart() {
     );
   } else {
     return (
-      <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3">
+      <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3 md:grid-shopping-cart-md">
         <ShoppingCart cart={products.cart} />
         <Bill cart={products.cart} />
       </section>

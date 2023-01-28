@@ -29,7 +29,7 @@ export default function Bill({ cart }) {
   let formattedFreeDelivery = freeDelivery.toLocaleString("es-CO");
 
   return (
-    <div className="h-72 row-1 mt-1 md:h-64 ">
+    <div className="h-72 row-1 mt-1 md:h-64 md:grid-area-none md:col-3 ">
       <div className="w-full p-5 md:p-8">
         <ul className="mb-10 md:mb-5">
           <li>
