@@ -22,12 +22,13 @@ export default function ProductPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
-        `http://localhost:1337/api/populars/${id}?populate=*`
+        `https://strapikitsch-app-lpgoh.ondigitalocean.app/api/populars/${id}?populate=*`
       );
       setProduct(result.data.data.attributes);
     }
     fetchData();
   }, [id]);
+
   //check if exist color
   useEffect(() => {
     if (
@@ -93,11 +94,9 @@ export default function ProductPage() {
           <Image
             src={
               image &&
-              `http://localhost:1337${image.data[0].attributes.formats.medium.url}`
+              `https://strapikitsch-app-lpgoh.ondigitalocean.app${image.data[0].attributes.formats.medium.url}`
             }
             alt="13Kitsch"
-            // objectFit="cover"
-            // layout="fill"
             width={500}
             height={500}
             objectFit="cover"
@@ -112,49 +111,50 @@ export default function ProductPage() {
           <p className="w-3/4 text-xs mb-4 lg:hidden"> COP ${formattedPrice}</p>
           <p className="text-xs mb-10">{description}</p>
         </div>
-        <div className="border-b border-black py-4 flex flex-col">
-          <p className="mx-3 text-sm">Selecionar color:</p>
-          <div className="flex justify-center py-3 ">
-            {imgcolorslider &&
-              imgcolorslider.data.map((item) => (
-                <>
-                  {item.attributes.formats.small ? (
-                    <button
-                      className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
+        {imgcolorslider && imgcolorslider.data ? (
+          imgcolorslider.data.map((item) => (
+            <div className="border-b border-black py-4 flex flex-col">
+              <p className="mx-3 text-sm">Selecionar color:</p>
+              <div className="flex justify-center py-3 ">
+                {item.attributes.formats.small ? (
+                  <button
+                    className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
+                      parseInt(selectedColor) === item.id
+                        ? " border-black "
+                        : ""
+                    }`}
+                    key={item.id}
+                    data-value={item.id}
+                    onClick={handleColorChange}
+                  >
+                    <Image
+                      src={
+                        image &&
+                        `https://strapikitsch-app-lpgoh.ondigitalocean.app${item.attributes.formats.small.url}`
+                      }
+                      alt="13Kitsch"
+                      width={55}
+                      height={55}
+                      objectFit="cover"
+                      key={item.id}
+                      data-value={item.id}
+                      onClick={handleColorChange}
+                      className={`${
                         parseInt(selectedColor) === item.id
                           ? " border-black "
                           : ""
                       }`}
-                      key={item.id}
-                      data-value={item.id}
-                      onClick={handleColorChange}
-                    >
-                      <Image
-                        src={
-                          image &&
-                          `http://localhost:1337${item.attributes.formats.small.url}`
-                        }
-                        alt="13Kitsch"
-                        width={55}
-                        height={55}
-                        objectFit="cover"
-                        key={item.id}
-                        data-value={item.id}
-                        onClick={handleColorChange}
-                        className={`${
-                          parseInt(selectedColor) === item.id
-                            ? " border-black "
-                            : ""
-                        }`}
-                      />
-                    </button>
-                  ) : (
-                    <></>
-                  )}
-                </>
-              ))}
-          </div>
-        </div>
+                    />
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
         <div className="border-b p-3 border-black">
           <p className="text-sm">Selecionar talla:</p>
           <div className="flex justify-center my-3 text-sm">

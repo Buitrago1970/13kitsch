@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../features/product/productSlice";
 
@@ -10,11 +10,12 @@ export default function HomeCardTemp() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
+  const URL =
+    "https://strapikitsch-app-lpgoh.ondigitalocean.app/api/products?populate=*";
+
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(
-        "http://localhost:1337/api/products?populate=*"
-      );
+      const result = await axios.get(URL);
       dispatch(
         setProducts({ type: "FETCH_SUCCESS", payload: result.data.data })
       );
@@ -41,7 +42,7 @@ export default function HomeCardTemp() {
               <div className="h-[550px] border-r border-b border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700">
                 <div className="w-full h-3/4 relative mt-10">
                   <Image
-                    src={`http://localhost:1337${product.attributes.image.data[0].attributes.formats.medium.url}`}
+                    src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${product.attributes.image.data[0].attributes.formats.medium.url}`}
                     alt="test"
                     objectFit="contain"
                     layout="fill"

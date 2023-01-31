@@ -32,11 +32,11 @@ export default function ItemShoppingCard(product) {
 
   return (
     <div className=" grid overflow-hidden mb-5 border-b border-black grid-cols-1  bg-white md:grid-cols-2 md:grid-rows-[70px_minmax(500px,_1fr)_40px]  ">
-      <div className="h-[500px]  border-black row-span-3 p-2 md:border-r ">
+      <div className="h-[500px]  border-black row-span-3 p-2  ">
         <div className="relative h-full ">
           <div className="  ">
             <Image
-              src={`http://localhost:1337${image}`}
+              src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${image}`}
               alt="13Kitsch"
               objectFit="contain"
               layout="fill"
@@ -45,11 +45,11 @@ export default function ItemShoppingCard(product) {
           <svg focusable="false" aria-hidden="true"></svg>
         </div>
       </div>
-      <div className="flex flex-col border-t border-b border-black p-4  font-semibold text-center ">
+      <div className="flex flex-col border-t border-b border-black p-4  font-semibold text-center md:text-left md:border-t-0 md:border-l ">
         <p className="text-xs">{productData.Slug}</p>
         <p className="uppercase text-xl ">{productData.name}</p>
       </div>
-      <div className="flex flex-col justify-between border-b p-4 space-y-10 text-center">
+      <div className="flex flex-col justify-between border-b p-4 space-y-10 text-center md:border-l md: border-black md:border-b-0">
         <div className="text-base ">
           <ul>
             <li>
@@ -76,7 +76,7 @@ export default function ItemShoppingCard(product) {
           </div>
         </div>
       </div>
-      <div className="px-4 flex items-center h-10">
+      <div className="px-4 flex items-center h-10 md:border-t md:border-l border-black">
         <button
           className=" text-red-400 text-xs font-semibold lowercase"
           onClick={() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
 
 import Image from "next/image";
@@ -21,7 +21,7 @@ export default function ProductPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
-        `http://localhost:1337/api/products/${id}?populate=*`
+        `https://strapikitsch-app-lpgoh.ondigitalocean.app/api/products/${id}?populate=*`
       );
       setProduct(result.data.data.attributes);
     }
@@ -79,7 +79,7 @@ export default function ProductPage() {
           <Image
             src={
               image &&
-              `http://localhost:1337${image.data[0].attributes.formats.medium.url}`
+              `https://strapikitsch-app-lpgoh.ondigitalocean.app${image.data[0].attributes.formats.medium.url}`
             }
             alt="13Kitsch"
             // objectFit="cover"
@@ -101,7 +101,7 @@ export default function ProductPage() {
         <div className="border-b border-black py-4 flex flex-col">
           <p className="mx-3 text-sm">Selecionar color:</p>
           <div className="flex justify-center py-3 ">
-            {imgcolorslider &&
+            {imgcolorslider && imgcolorslider.data ? (
               imgcolorslider.data.map((item) => (
                 <>
                   {item.attributes.formats.small ? (
@@ -118,7 +118,7 @@ export default function ProductPage() {
                       <Image
                         src={
                           image &&
-                          `http://localhost:1337${item.attributes.formats.small.url}`
+                          `https://strapikitsch-app-lpgoh.ondigitalocean.app${item.attributes.formats.small.url}`
                         }
                         alt="13Kitsch"
                         width={55}
@@ -138,9 +138,13 @@ export default function ProductPage() {
                     <></>
                   )}
                 </>
-              ))}
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
+
         <div className="border-b p-3 border-black">
           <p className="text-sm">Selecionar talla:</p>
           <div className="flex justify-center my-3 text-sm">

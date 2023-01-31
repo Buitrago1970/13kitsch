@@ -16,7 +16,7 @@ export default function cart() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
-        "http://localhost:1337/api/populars?populate=*"
+        "https://strapikitsch-app-lpgoh.ondigitalocean.app/api/populars/?populate=*"
       );
 
       dispatch(
@@ -33,17 +33,17 @@ export default function cart() {
         </h1>
         <div className="grid-cols-2 w-full min-h-screen grid md:grid-cols-3 lg:grid-cols-4">
           {popular.payload &&
-            popular.payload.map((product) => (
+            popular.payload.map((popularProduct) => (
               <Link
                 href="/popular/[id]"
-                as={`/popular/${product.id}`}
-                key={product.id}
+                as={`/popular/${popularProduct.id}`}
+                key={popularProduct.id}
               >
                 <div className="h-[500px] border-r border-b border-t border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-100">
                   <div className="w-full h-3/4 relative mt-10">
-                    {product.attributes.image.data[0].attributes.url ? (
+                    {popularProduct.attributes.image.data[0].attributes.url ? (
                       <Image
-                        src={`http://localhost:1337${product.attributes.image.data[0].attributes.url}`}
+                        src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${popularProduct.attributes.image.data[0].attributes.formats.medium.url}`}
                         alt="test"
                         objectFit="contain"
                         layout="fill"
@@ -53,7 +53,9 @@ export default function cart() {
                     )}
                   </div>
                   <div className="text-center absolute bottom-1 text-sm mb-10">
-                    <p className="font-bold">{product.attributes.name}</p>
+                    <p className="font-bold">
+                      {popularProduct.attributes.name}
+                    </p>
                     <p className="font-light">colors</p>
                   </div>
                 </div>
