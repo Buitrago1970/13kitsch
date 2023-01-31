@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { info } from "autoprefixer";
 import Image from "next/image";
+import Modal from "../components/Modal/Modal";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
