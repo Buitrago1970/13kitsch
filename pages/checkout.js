@@ -5,7 +5,7 @@ import { info } from "autoprefixer";
 import Modal from "../components/Modal/Modal";
 import modal from "../components/Modal/Modal";
 
-export default function checkout() {
+export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
   const [currentStep, setCurrentStep] = React.useState(3);
