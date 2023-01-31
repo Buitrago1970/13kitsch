@@ -38,12 +38,12 @@ export default function Header() {
       </div>
       <div className="flex absolute mr-24 w-full justify-end md:relative md:mr-14">
         <Link href="/cart">
-          <div className=" cursor-pointer hover:text-border-white text-blacktransition-colors duration-500">
-            <p className="font-bold text-base">CARRITO</p>
+          <div className="flex items-center cursor-pointer hover:text-border-white text-blacktransition-colors duration-500 md:block">
+            <p className="font-bold text-base mr-2">CARRITO</p>
             <span
               className={`${
                 cart.length > 0 ? "full rounded" : "bg-white rounded-full"
-              } flex justify-center items-center  border border-black  w-[26px] h-[26px] text-center absolute bottom-3 -right-7 duration-700`}
+              } flex justify-center  items-center right-0 bottom-0  border border-black  w-[26px] h-[26px] text-center relative   duration-700 md:absolute md:bottom-3  md:-right-7`}
             >
               {cart.length}
             </span>
