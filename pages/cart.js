@@ -31,7 +31,7 @@ export default function Cart() {
         <h1 className="text-2xl font-semibold mb-16 text-center">
           Algunos productos que podrían interesarte ✨
         </h1>
-        <div className="grid-cols-2 w-full min-h-screen grid md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid-cols-2 w-full min-h-screen grid md:grid-cols-3 lg:grid-cols-4 border-t border-black">
           {popular.payload &&
             popular.payload.map((popularProduct) => (
               <Link
@@ -39,20 +39,16 @@ export default function Cart() {
                 as={`/popular/${popularProduct.id}`}
                 key={popularProduct.id}
               >
-                <div className="h-[500px] border-r border-b border-t border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-100">
-                  <div className="w-full h-3/4 relative mt-10">
-                    {popularProduct.attributes.image.data[0].attributes.url ? (
-                      <Image
-                        src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${popularProduct.attributes.image.data[0].attributes.formats.medium.url}`}
-                        alt="test"
-                        objectFit="contain"
-                        layout="fill"
-                      />
-                    ) : (
-                      <></>
-                    )}
+                <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                  <div className="w-full h-3/4 relative ">
+                    <Image
+                      src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${popularProduct.attributes.image.data[0].attributes.formats.medium.url}`}
+                      alt="test"
+                      objectFit="contain"
+                      layout="fill"
+                    />
                   </div>
-                  <div className="text-center absolute bottom-1 text-sm mb-10">
+                  <div className=" text-center text-sm ">
                     <p className="font-bold">
                       {popularProduct.attributes.name}
                     </p>

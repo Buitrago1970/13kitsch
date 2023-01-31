@@ -25,13 +25,13 @@ export default function HomeCardTemp() {
 
   return (
     <>
-      <div className="h-10 border-b products-count flex items-center px-3">
-        <p className="">
+      <div className="h-10 border-b products-count flex items-center px-3 border-black">
+        <p className=" text-sm ">
           {products.products.payload && products.products.payload.length}{" "}
-          Productos
+          Resultados
         </p>
       </div>
-      <section className="grid-cols-2 w-full  grid md:grid-cols-3 xl:grid-cols-4">
+      <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.products.payload &&
           products.products.payload.map((product) => (
             <Link
@@ -39,8 +39,8 @@ export default function HomeCardTemp() {
               as={`/product/${product.id}`}
               key={product.id}
             >
-              <div className="h-[550px] border-r border-b border-black flex flex-col items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700">
-                <div className="w-full h-3/4 relative mt-10">
+              <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                <div className="w-full h-3/4 relative ">
                   <Image
                     src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${product.attributes.image.data[0].attributes.formats.medium.url}`}
                     alt="test"
@@ -48,7 +48,7 @@ export default function HomeCardTemp() {
                     layout="fill"
                   />
                 </div>
-                <div className="text-center absolute bottom-1 text-sm mb-10">
+                <div className=" text-center text-sm ">
                   <p className="font-bold">{product.attributes.name}</p>
                   <p className="font-light">colors</p>
                 </div>

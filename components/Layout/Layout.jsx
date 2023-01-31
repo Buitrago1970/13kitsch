@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <TopSection />
       {children}
-      <footer className="grid  grid-cols-2  border-t border-black bg-gray-100  items-center ">
+      <footer className="grid  grid-cols-2  border-t border-black bg-gray-100  items-center mt-36 ">
         <div className="px-2 font-semibold text-sm my-1">
           <p className="font-normal text-base mb-2">CONECTAR</p>
           <a
