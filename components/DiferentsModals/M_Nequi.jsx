@@ -19,19 +19,19 @@ export default function M_Nequi({ setShowModal }) {
         <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8">
           <div className="-mt-4">
             <div className="w-20 mx-auto">
-              <Image
+              {/* <Image
                 src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                 alt="Nequi icon"
-              />
+              /> */}
             </div>
             <h1 className="text-center font-bold text-3xl">Nequi</h1>
           </div>
           <div className="text-center ">
             <div className="w-32 my-10 mx-auto md:w-36">
-              <Image
+              {/* <Image
                 src="https://www.ocu.org/-/media/ta/images/qr-code.png?rev=2e1cc496-40d9-4e21-a7fb-9e2c76d6a288&hash=AF7C881FCFD0CBDA00B860726B5E340B&mw=960"
                 alt=""
-              />
+              /> */}
             </div>
             <p className="font-semibold text-2xl my-5">310 570 62 38</p>
             <p className="text-gray-400">

@@ -19,10 +19,10 @@ export default function M_Cash({ setShowModal }) {
         <div className="p-2 pt-0 pb-2 h-full grid md:p-8 ">
           <div className="-mt-4">
             <div className="w-24 mx-auto">
-              <Image
+              {/* <Image
                 src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
                 alt=""
-              />
+              /> */}
             </div>
             <h1 className="text-center font-bold text-3xl">Efectivo</h1>
           </div>

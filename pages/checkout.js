@@ -7,7 +7,7 @@ import Modal from "../components/Modal/Modal";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(3);
+  const [currentStep, setCurrentStep] = React.useState(1);
   const [showcart, setShowCart] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -416,11 +416,12 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <Image
+                          {/* <Image
                             src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                             alt=""
                             className="w-10 mx-2"
-                          />
+                            layout="fill"
+                          /> */}
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -449,11 +450,12 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <Image
+                          {/* <Image
                             src="https://cdn-icons-png.flaticon.com/512/4341/4341764.png"
                             alt=""
                             className="w-10 mx-2"
-                          />
+                            layout="fill"
+                          /> */}
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -486,11 +488,12 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <Image
+                          {/* <Image
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png"
                             alt=""
                             className="w-10 mx-2"
-                          />
+                            layout="fill"
+                          /> */}
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -519,11 +522,11 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <Image
+                          {/* <Image
                             src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
                             alt=""
                             className="w-10 mx-2"
-                          />
+                          /> */}
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -551,7 +554,7 @@ export default function Checkout() {
             </button>
           </div>
         ) : (
-          <div className="py-5  border-black flex flex-col ">
+          <div className="py-5  border-black flex flex-col border-b ">
             <p className="text-center font-bold text-gray-300">3. Pago</p>
           </div>
         )}
