@@ -2,13 +2,13 @@ import React from "react";
 import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
 import Bill from "../components/Bill/Bill";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setPopularProducts } from "../features/product/productSlice";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function cart() {
+export default function Cart() {
   const products = useSelector((state) => state.products);
   const popular = useSelector((state) => state.products.popular);
   const dispatch = useDispatch();
