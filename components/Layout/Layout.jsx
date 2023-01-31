@@ -5,9 +5,9 @@ import TopSection from "../Top-section/TopSection";
 export default function Layout({ children }) {
   return (
     <>
-      <TopSection />
+      {/* <TopSection /> */}
       {children}
-      <footer className="grid  grid-cols-2  border-t border-black bg-gray-100  items-center ">
+      {/* <footer className="grid  grid-cols-2  border-t border-black bg-gray-100  items-center ">
         <div className="px-2 font-semibold text-sm my-1">
           <p className="font-normal text-base mb-2">CONECTAR</p>
           <a
@@ -43,7 +43,7 @@ export default function Layout({ children }) {
           {" "}
           ® 2022 Kitsch
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
