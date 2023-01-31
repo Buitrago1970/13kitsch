@@ -13,14 +13,25 @@ export default function Layout({ children }) {
           <a
             href="https://www.instagram.com/13kitsch/"
             target="_blank"
+            rel="noreferrer"
             className="  cursor-pointer hover:text-gray-400 duration-700"
           >
             <p>Instagram</p>
           </a>
-          <a className="  cursor-pointer  hover:text-gray-400 duration-700 ">
+          <a
+            className="  cursor-pointer  hover:text-gray-400 duration-700 "
+            href="https://www.instagram.com/13kitsch/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <p>facebook</p>
           </a>
-          <a className="  rounded-full cursor-pointer   hover:text-gray-400 duration-700">
+          <a
+            className="  rounded-full cursor-pointer   hover:text-gray-400 duration-700"
+            href="https://www.instagram.com/13kitsch/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <p>TikTok</p>
           </a>
         </div>

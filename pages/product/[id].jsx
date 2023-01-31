@@ -26,7 +26,7 @@ export default function ProductPage() {
       setProduct(result.data.data.attributes);
     }
     fetchData();
-  }, []);
+  }, [id]);
   //save color
   const handleColorChange = (event) => {
     setSelectedColor(event.target.getAttribute("data-value"));

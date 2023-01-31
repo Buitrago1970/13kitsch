@@ -1,5 +1,7 @@
 import React from "react";
 
+import Image from "next/image";
+
 export default function M_Whatsapp({ setShowModal }) {
   return (
     <div className="w-screen  fixed inset-0 z-50  bg-transparent-black flex">
@@ -17,7 +19,7 @@ export default function M_Whatsapp({ setShowModal }) {
         <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8">
           <div className=" -mt-4">
             <div className="w-20 mx-auto">
-              <img
+              <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png"
                 alt="Whatsapp icon"
               />

@@ -1,6 +1,6 @@
 import React from "react";
 
-// import cashIcon from "../../assets/cash.png";
+import Image from "next/image";
 
 export default function M_Cash({ setShowModal }) {
   return (
@@ -19,7 +19,7 @@ export default function M_Cash({ setShowModal }) {
         <div className="p-2 pt-0 pb-2 h-full grid md:p-8 ">
           <div className="-mt-4">
             <div className="w-24 mx-auto">
-              <img
+              <Image
                 src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
                 alt=""
               />

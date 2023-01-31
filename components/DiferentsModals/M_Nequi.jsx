@@ -1,5 +1,7 @@
 import React from "react";
 
+import Image from "next/image";
+
 export default function M_Nequi({ setShowModal }) {
   return (
     <div className="w-screen  fixed inset-0 z-50  bg-transparent-black flex">
@@ -17,7 +19,7 @@ export default function M_Nequi({ setShowModal }) {
         <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8">
           <div className="-mt-4">
             <div className="w-20 mx-auto">
-              <img
+              <Image
                 src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                 alt="Nequi icon"
               />
@@ -26,7 +28,7 @@ export default function M_Nequi({ setShowModal }) {
           </div>
           <div className="text-center ">
             <div className="w-32 my-10 mx-auto md:w-36">
-              <img
+              <Image
                 src="https://www.ocu.org/-/media/ta/images/qr-code.png?rev=2e1cc496-40d9-4e21-a7fb-9e2c76d6a288&hash=AF7C881FCFD0CBDA00B860726B5E340B&mw=960"
                 alt=""
               />

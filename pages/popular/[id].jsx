@@ -113,7 +113,10 @@ export default function ProductPage() {
         </div>
         {imgcolorslider && imgcolorslider.data ? (
           imgcolorslider.data.map((item) => (
-            <div className="border-b border-black py-4 flex flex-col">
+            <div
+              className="border-b border-black py-4 flex flex-col"
+              key={item.id}
+            >
               <p className="mx-3 text-sm">Selecionar color:</p>
               <div className="flex justify-center py-3 ">
                 {item.attributes.formats.small ? (

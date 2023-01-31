@@ -11,14 +11,25 @@ export default function Header() {
         <a
           href="https://www.instagram.com/13kitsch/"
           target="_blank"
+          rel="noreferrer"
           className=" flex items-center justify-center  cursor-pointer hover:text-gray-400 duration-700"
         >
           <p>Instagram</p>
         </a>
-        <a className=" flex items-center justify-center  cursor-pointer  hover:text-gray-400 duration-700 ">
+        <a
+          className=" flex items-center justify-center  cursor-pointer  hover:text-gray-400 duration-700 "
+          href="https://www.instagram.com/13kitsch/"
+          target="_blank"
+          rel="noreferrer"
+        >
           facebook
         </a>
-        <a className=" flex items-center justify-centertext-center rounded-full cursor-pointer text-orange-400  hover:text-gray-400 duration-700">
+        <a
+          className=" flex items-center justify-centertext-center rounded-full cursor-pointer text-orange-400  hover:text-gray-400 duration-700"
+          href="https://www.instagram.com/13kitsch/"
+          target="_blank"
+          rel="noreferrer"
+        >
           TikTok
         </a>
       </div>

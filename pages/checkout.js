@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { info } from "autoprefixer";
-import Modal from "../components/Modal/Modal";
-import modal from "../components/Modal/Modal";
+import Image from "next/image";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
@@ -417,7 +416,7 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <img
+                          <Image
                             src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                             alt=""
                             className="w-10 mx-2"
@@ -450,7 +449,7 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <img
+                          <Image
                             src="https://cdn-icons-png.flaticon.com/512/4341/4341764.png"
                             alt=""
                             className="w-10 mx-2"
@@ -487,7 +486,7 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <img
+                          <Image
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png"
                             alt=""
                             className="w-10 mx-2"
@@ -520,7 +519,7 @@ export default function Checkout() {
                         </div>
                         {/* image */}
                         <div>
-                          <img
+                          <Image
                             src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
                             alt=""
                             className="w-10 mx-2"
