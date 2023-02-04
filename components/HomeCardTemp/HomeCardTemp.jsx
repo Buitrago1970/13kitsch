@@ -2,16 +2,26 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import Slider from "react-slick";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../features/product/productSlice";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function HomeCardTemp() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+  };
 
-  const URL =
-    "https://strapikitsch-app-lpgoh.ondigitalocean.app/api/products?populate=*";
+  const URL = "http://localhost:1337/api/products?populate=*";
 
   useEffect(() => {
     async function fetchData() {
@@ -41,15 +51,147 @@ export default function HomeCardTemp() {
             >
               <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
                 <div className="w-full h-3/4 relative ">
-                  <Image
-                    src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${product.attributes.image.data[0].attributes.formats.medium.url}`}
-                    alt="test"
-                    objectFit="contain"
-                    layout="fill"
-                  />
+                  <Slider {...settings}>
+                    {product.attributes.image.data.map((image) => (
+                      <Image
+                        src={`http://localhost:1337${image.attributes.formats.medium.url}`}
+                        alt="test"
+                        width={900}
+                        height={900}
+                        quality={100}
+                        objectFit="contain"
+                      />
+                    ))}
+                  </Slider>
                 </div>
                 <div className=" text-center text-sm ">
-                  <p className="font-bold">{product.attributes.name}</p>
+                  <p className="font-bold">
+                    {products.products.payload[0].attributes.name}
+                  </p>
+                  <p className="font-light">colors</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        {products.products.payload &&
+          products.products.payload.map((product) => (
+            <Link
+              href="/product/[id]"
+              as={`/product/${product.id}`}
+              key={product.id}
+            >
+              <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                <div className="w-full h-3/4 relative ">
+                  <Slider {...settings}>
+                    {product.attributes.image.data.map((image) => (
+                      <Image
+                        src={`http://localhost:1337${image.attributes.formats.medium.url}`}
+                        alt="test"
+                        width={900}
+                        height={900}
+                        quality={100}
+                        objectFit="contain"
+                      />
+                    ))}
+                  </Slider>
+                </div>
+                <div className=" text-center text-sm ">
+                  <p className="font-bold">
+                    {products.products.payload[0].attributes.name}
+                  </p>
+                  <p className="font-light">colors</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        {products.products.payload &&
+          products.products.payload.map((product) => (
+            <Link
+              href="/product/[id]"
+              as={`/product/${product.id}`}
+              key={product.id}
+            >
+              <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                <div className="w-full h-3/4 relative ">
+                  <Slider {...settings}>
+                    {product.attributes.image.data.map((image) => (
+                      <Image
+                        src={`http://localhost:1337${image.attributes.formats.medium.url}`}
+                        alt="test"
+                        width={900}
+                        height={900}
+                        quality={100}
+                        objectFit="contain"
+                      />
+                    ))}
+                  </Slider>
+                </div>
+                <div className=" text-center text-sm ">
+                  <p className="font-bold">
+                    {products.products.payload[0].attributes.name}
+                  </p>
+                  <p className="font-light">colors</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        {products.products.payload &&
+          products.products.payload.map((product) => (
+            <Link
+              href="/product/[id]"
+              as={`/product/${product.id}`}
+              key={product.id}
+            >
+              <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                <div className="w-full h-3/4 relative ">
+                  <Slider {...settings}>
+                    {product.attributes.image.data.map((image) => (
+                      <Image
+                        src={`http://localhost:1337${image.attributes.formats.medium.url}`}
+                        alt="test"
+                        width={900}
+                        height={900}
+                        quality={100}
+                        objectFit="contain"
+                      />
+                    ))}
+                  </Slider>
+                </div>
+                <div className=" text-center text-sm ">
+                  <p className="font-bold">
+                    {products.products.payload[0].attributes.name}
+                  </p>
+                  <p className="font-light">colors</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        {products.products.payload &&
+          products.products.payload.map((product) => (
+            <Link
+              href="/product/[id]"
+              as={`/product/${product.id}`}
+              key={product.id}
+            >
+              <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
+                <div className="w-full h-3/4 relative ">
+                  <Slider {...settings}>
+                    {product.attributes.image.data.map((image) => (
+                      <Image
+                        src={`http://localhost:1337${image.attributes.formats.medium.url}`}
+                        alt="test"
+                        width={900}
+                        height={900}
+                        quality={100}
+                        objectFit="contain"
+                      />
+                    ))}
+                  </Slider>
+                </div>
+                <div className=" text-center text-sm ">
+                  <p className="font-bold">
+                    {products.products.payload[0].attributes.name}
+                  </p>
                   <p className="font-light">colors</p>
                 </div>
               </div>

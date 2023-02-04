@@ -21,7 +21,7 @@ export default function ProductPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
-        `http://localhost:1337/api/products/${id}?populate=*`
+        `http://localhost:1337/api/explores/${id}?populate=*`
       );
       setProduct(result.data.data.attributes);
     }
@@ -71,6 +71,8 @@ export default function ProductPage() {
   }
 
   const { name, description, image, features, imagecolorslider } = product;
+  console.log(product, "product");
+  debugger;
 
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 ">

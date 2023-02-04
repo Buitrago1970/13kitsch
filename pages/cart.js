@@ -13,12 +13,11 @@ export default function Cart() {
   const popular = useSelector((state) => state.products.popular);
   const dispatch = useDispatch();
 
+  const URL = "http://localhost:1337/api/recommendeds?populate=*";
+
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(
-        "https://strapikitsch-app-lpgoh.ondigitalocean.app/api/populars/?populate=*"
-      );
-
+      const result = await axios.get(URL);
       dispatch(
         setPopularProducts({ type: "FETCH_SUCCESS", payload: result.data.data })
       );
@@ -42,7 +41,7 @@ export default function Cart() {
                 <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
                   <div className="w-full h-3/4 relative ">
                     <Image
-                      src={`https://strapikitsch-app-lpgoh.ondigitalocean.app${popularProduct.attributes.image.data[0].attributes.formats.medium.url}`}
+                      src={`http://localhost:1337${popularProduct.attributes.image.data[0].attributes.formats.medium.url}`}
                       alt="test"
                       objectFit="contain"
                       layout="fill"

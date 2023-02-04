@@ -54,7 +54,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="hidden  md:block w-full text-end mr-14">
-        <p className="font-semibold text-border-white ">{}</p>
+        <p className="font-semibold text-border-white ">9:00:00PM</p>
       </div>
     </nav>
   );

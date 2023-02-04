@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   popular: [],
   cart: [],
+  explore: [],
   total: 0,
 };
 
@@ -11,6 +12,7 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    // Acción para guardar todos los productos
     setProducts(state, action) {
       state.products = action.payload;
     },
@@ -28,9 +30,13 @@ export const productSlice = createSlice({
         (item) => item.product.Slug !== action.payload.id
       );
     },
-    //accion para traer los productos populares
+    //accion para guardar los productos populares
     setPopularProducts: (state, action) => {
       state.popular = action.payload;
+    },
+    //accion para guardar los productos de la seccion explore
+    setExploreProducts: (state, action) => {
+      state.explore = action.payload;
     },
     //acccion para agregar el total de productos al carrito
     setTotal: (state, action) => {
@@ -45,6 +51,7 @@ export const {
   deleteFromCart,
   setPopularProducts,
   setTotal,
+  setExploreProducts,
 } = productSlice.actions;
 
 export default productSlice.reducer;
