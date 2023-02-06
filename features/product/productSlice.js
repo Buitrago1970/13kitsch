@@ -21,7 +21,7 @@ export const productSlice = createSlice({
       state.cart.push({
         product: action.payload.product,
         size: action.payload.selectedSize,
-        color: action.payload.selectedColor,
+        color: action.payload.selectedColorName,
       });
     },
     //accion para eliminar un producto del carrito

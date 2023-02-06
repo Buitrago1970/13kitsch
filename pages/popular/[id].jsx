@@ -18,12 +18,12 @@ export default function ProductPage() {
   const {
     query: { id },
   } = useRouter();
+
+  const URL = "http://localhost:1337/api/recommendeds";
   //get data product
   useEffect(() => {
     async function fetchData() {
-      const result = await axios.get(
-        `https://strapikitsch-app-lpgoh.ondigitalocean.app/api/populars/${id}?populate=*`
-      );
+      const result = await axios.get(URL + `/${id}?populate=*`);
       setProduct(result.data.data.attributes);
     }
     fetchData();
@@ -94,7 +94,7 @@ export default function ProductPage() {
           <Image
             src={
               image &&
-              `https://strapikitsch-app-lpgoh.ondigitalocean.app${image.data[0].attributes.formats.medium.url}`
+              `http://localhost:1337${image.data[0].attributes.formats.medium.url}`
             }
             alt="13Kitsch"
             width={500}
@@ -133,7 +133,7 @@ export default function ProductPage() {
                     <Image
                       src={
                         image &&
-                        `https://strapikitsch-app-lpgoh.ondigitalocean.app${item.attributes.formats.small.url}`
+                        `http://localhost:1337${item.attributes.formats.small.url}`
                       }
                       alt="13Kitsch"
                       width={55}
@@ -202,7 +202,7 @@ export default function ProductPage() {
         <div className="border-b border-black p-4 text-sm">
           <ul className=" mx-5 list-disc space-y-1 ">
             {features &&
-              features.map((item) => <li key={item.id}>{item.features}</li>)}
+              features.map((item) => <li key={item.id}>{item.feature}</li>)}
           </ul>
           <div className="mt-8">
             <p>Material: 100% calfskin</p>
