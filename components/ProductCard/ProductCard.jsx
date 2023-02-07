@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Slider from "react-slick";
+import Link from "next/link";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductCard({ product }) {
-  const [hoverItemCard, setHoverItemCard] = React.useState(true);
+export default function ProductCard({ product, link }) {
+  const [hoverItemCard, setHoverItemCard] = useState(false);
 
   const settings = {
     dots: true,
@@ -24,7 +24,11 @@ export default function ProductCard({ product }) {
     return `$ ${formattedPrice}`;
   };
   return (
-    <Link href="/product/[id]" as={`/product/${product.id}`} key={product.id}>
+    <Link
+      href={`${link}/${product.id}`}
+      as={`${link}/${product.id}`}
+      key={product.id}
+    >
       <div
         className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
         onMouseEnter={() => setHoverItemCard(true)}
@@ -75,7 +79,7 @@ export default function ProductCard({ product }) {
         >
           {product.attributes.sizes.map((item) => (
             <>
-              <div className="w-4 h-4 flex font-light text-xs hover:text-sm hover:font-medium duration-500">
+              <div className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500">
                 {item.size}
               </div>
             </>

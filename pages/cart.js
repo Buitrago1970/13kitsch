@@ -1,26 +1,18 @@
 import React from "react";
-import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
-import Bill from "../components/Bill/Bill";
 import axios from "axios";
+import Link from "next/link";
+import Bill from "../components/Bill/Bill";
+import ShoppingCart from "../components/ShoppingCart/ShoppingCart";
+import ProductCard from "../components/ProductCard/ProductCard";
+
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setPopularProducts } from "../features/product/productSlice";
-import Link from "next/link";
-import Image from "next/image";
-import Slider from "react-slick";
 
 export default function Cart() {
   const products = useSelector((state) => state.products);
   const popular = useSelector((state) => state.products.popular);
   const dispatch = useDispatch();
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-  };
 
   const URL = "http://localhost:1337/api/recommendeds?populate=*";
 
@@ -42,34 +34,7 @@ export default function Cart() {
         <div className="grid-cols-2 w-full grid md:grid-cols-3 lg:grid-cols-4 border-t border-black">
           {popular.payload &&
             popular.payload.map((popularProduct) => (
-              <Link
-                href="/popular/[id]"
-                as={`/popular/${popularProduct.id}`}
-                key={popularProduct.id}
-              >
-                <div className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer hover:bg-gray-200 text-blacktransition-colors duration-700 md:h-[500px] md:justify-around">
-                  <div className="w-full h-3/4 relative ">
-                    <Slider {...settings}>
-                      {popularProduct.attributes.image.data.map((image) => (
-                        <Image
-                          src={`http://localhost:1337${image.attributes.formats.medium.url}`}
-                          alt="test"
-                          width={900}
-                          height={900}
-                          quality={100}
-                          objectFit="contain"
-                        />
-                      ))}
-                    </Slider>
-                  </div>
-                  <div className=" text-center text-sm ">
-                    <p className="font-bold">
-                      {popularProduct.attributes.name}
-                    </p>
-                    <p className="font-light">colors</p>
-                  </div>
-                </div>
-              </Link>
+              <ProductCard product={popularProduct} link={"/popular"} />
             ))}
         </div>
       </div>

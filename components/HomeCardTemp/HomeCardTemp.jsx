@@ -1,6 +1,7 @@
 import React from "react";
 
 import axios from "axios";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../features/product/productSlice";
@@ -34,7 +35,7 @@ export default function HomeCardTemp() {
       <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.products.payload &&
           products.products.payload.map((product) => (
-            <ProductCard product={product} />
+            <ProductCard product={product} link={"/product"} />
           ))}
       </section>
     </>
