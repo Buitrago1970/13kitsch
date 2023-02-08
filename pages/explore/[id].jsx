@@ -11,6 +11,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedColorName, setSelectedColorName] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function ProductPage() {
       alert("Selecciona color ");
       return;
     }
-    dispatch(addToCart({ product, selectedSize, selectedColorName }));
+    dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
   }
   //go to cart
   function handleGoToCart() {
@@ -61,7 +62,7 @@ export default function ProductPage() {
       alert("Selecciona color ");
       return;
     }
-    dispatch(addToCart({ product, selectedSize, selectedColorName }));
+    dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
     router.push("/cart");
   }
   //format price

@@ -13,7 +13,6 @@ export default function ProductPage({
   handleGoToCart,
 }) {
   const { name, description, image, features, sizes } = product;
-  console.log(colorWithImage);
 
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 ">

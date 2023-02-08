@@ -18,16 +18,34 @@ export const productSlice = createSlice({
     },
     // Acción para agregar un producto al carrito
     addToCart: (state, action) => {
-      state.cart.push({
-        product: action.payload.product,
-        size: action.payload.selectedSize,
-        color: action.payload.selectedColorName,
-      });
+      //si el producto ya existe en el carrito, solo se aumenta la cantidad
+      const found = state.cart.find(
+        (item) => item.product.Slug === action.payload.product.Slug
+      );
+      if (found) {
+        found.quantity += action.payload.quantity;
+      } else {
+        //si el producto no existe en el carrito, se agrega
+        state.cart.push({
+          product: action.payload.product,
+          size: action.payload.selectedSize,
+          color: action.payload.selectedColorName,
+          quantity: action.payload.quantity,
+        });
+      }
     },
     //accion para eliminar un producto del carrito
     deleteFromCart: (state, action) => {
       state.cart = state.cart.filter(
         (item) => item.product.Slug !== action.payload.id
+      );
+    },
+    //accion para cambiar la cantidad de un producto en el carrito
+    changeQuantity: (state, action) => {
+      state.cart = state.cart.map((item) =>
+        item.product.Slug === action.payload.id
+          ? { ...item, quantity: action.payload.payload }
+          : item
       );
     },
     //accion para guardar los productos populares
@@ -52,6 +70,7 @@ export const {
   setPopularProducts,
   setTotal,
   setExploreProducts,
+  changeQuantity,
 } = productSlice.actions;
 
 export default productSlice.reducer;
