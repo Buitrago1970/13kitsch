@@ -38,7 +38,6 @@ export default function Checkout() {
     const infoIsValid = (name, phone) => {
       return /^[a-zA-Z ]+$/.test(name) && /^[0-9]+$/.test(phone);
     };
-
     //if info is ok, then go to next step
     if (infoIsValid(name, phone)) {
       setCurrentStep(3);
@@ -49,12 +48,12 @@ export default function Checkout() {
   const handleShippingHome = () => {
     //verify info
     const infoIsValid = (address) => {
-      return /^[a-zA-Z0-9 ]+$/.test(address);
+      return address.length > 4;
     };
     if (infoIsValid(address)) {
       setCurrentStep(3);
     } else {
-      alert("Informacion no valida");
+      alert("Complete la direccion");
     }
   };
 
@@ -372,10 +371,13 @@ export default function Checkout() {
                         <p>Entrega Garantizada el 31/01/2023</p>
                       </div>
                       <div className="flex flex-col items-center mt-5 text-sm">
+                        <div className="flex">
+                          <p className=" mb-2">Envio a nombre de: &nbsp;</p>
+                          <p className="capitalize">{name}</p>
+                        </div>
                         <p className="text-gray-400 mb-1">
                           Direccion de envio:
                         </p>
-                        <p>{name}</p>
                         <p>{address}</p>
                         <p>{reference}</p>
                       </div>
