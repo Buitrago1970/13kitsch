@@ -51,7 +51,7 @@ export default function ProductCard({ product, link }) {
         <div
           className={`${
             hoverItemCard ? "opacity-0" : ""
-          } text-center text-xs space-y-0 relative flex flex-col items-center h-full justify-center duration-500`}
+          } text-center text-xs space-y-0 relative flex flex-col items-center h-full justify-center duration-700`}
         >
           <p className="font-bold uppercase">{product.attributes.name}</p>
           <p className="font-light">
@@ -61,13 +61,13 @@ export default function ProductCard({ product, link }) {
         <div
           className={`${
             hoverItemCard ? "" : "opacity-0"
-          } flex space-x-5  items-center absolute  bottom-16  duration-500 `}
+          } flex space-x-5  items-center absolute  bottom-16  duration-700 `}
         >
           {product.attributes.colors.map((item) => (
             <>
               <div
                 style={{ backgroundColor: item.hashcolor }}
-                className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-500"
+                className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
               ></div>
             </>
           ))}
