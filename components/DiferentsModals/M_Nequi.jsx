@@ -16,31 +16,36 @@ export default function M_Nequi({ setShowModal }) {
             x
           </button>
         </div>
-        <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8">
+        <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8 md:pt-0">
           <div className="-mt-4">
             <div className="w-20 mx-auto">
-              {/* <Image
+              <Image
                 src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                 alt="Nequi icon"
-              /> */}
+                width={100}
+                height={100}
+              />
             </div>
             <h1 className="text-center font-bold text-3xl">Nequi</h1>
           </div>
           <div className="text-center ">
-            <div className="w-32 my-10 mx-auto md:w-36">
-              {/* <Image
-                src="https://www.ocu.org/-/media/ta/images/qr-code.png?rev=2e1cc496-40d9-4e21-a7fb-9e2c76d6a288&hash=AF7C881FCFD0CBDA00B860726B5E340B&mw=960"
-                alt=""
-              /> */}
-            </div>
-            <p className="font-semibold text-2xl my-5">310 570 62 38</p>
-            <p className="text-gray-400">
-              paga escaneando este código QR o paga a este numero
+            <p className="font-semibold text-2xl my-5">+57 310 570 62 38</p>
+            <p>
+              Estimado cliente, si desea realizar su pago a través de la
+              plataforma Nequi para su compra en nuestra tienda , le ofrecemos
+              dos opciones para hacerlo de manera cómoda y segura. Puede
+              escribirnos a través de WhatsApp al número +57 3105706238 para
+              acordar los detalles del pago, o también puede hacerlo a través
+              del siguiente enlace que se encuentra disponible en nuestro sitio
+              web.
+            </p>
+            <p className="mt-3 ">
+              ¡Gracias por su compra y esperamos su mensaje!
             </p>
           </div>
-          <div className="flex justify-center items-center my-10 mt-0">
-            <button className="border border-black w-64 my-10 h-10 bg-[#FF2F73] text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none">
-              CONTINUAR
+          <div className="flex justify-center items-center mt-0 mb-11">
+            <button className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none">
+              CONTINUAR A WHASAPP
             </button>
           </div>
           <footer className="text-center  ">

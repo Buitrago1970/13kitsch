@@ -14,7 +14,8 @@ export default function Navbar() {
       <div className="hidden md:block w-full">
         <Link href="/">
           <div className="flex bg-white rounded-full border border-black w-36 h-8  items-center justify-center font-bold italic cursor-pointer  hover:bg-gray-300 text-blacktransition-colors duration-700">
-            <p>13Kitsch</p>
+            {/* <p>13Kitsch</p> */}
+            <p>Ver mis pedidos</p>
           </div>
         </Link>
       </div>

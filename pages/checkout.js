@@ -7,7 +7,7 @@ import Modal from "../components/Modal/Modal";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = React.useState(3);
   const [showcart, setShowCart] = React.useState(false);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -64,6 +64,8 @@ export default function Checkout() {
       document.body.classList.remove("overflow-hidden");
     }
   }, [showModal]);
+
+  console.log(showModal, "showModal");
   const handlePayment = () => {
     setShowModal(true);
   };
@@ -473,41 +475,6 @@ export default function Checkout() {
                       </label>
                     </li>
 
-                    <li className="px-3  border-t border-black cursor-pointer  hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer h-16 w-full">
-                        {/* dot */}
-                        <div className="px-2">
-                          <input
-                            value="whatsapp"
-                            type="radio"
-                            className="w-4 h-4"
-                            name="radio"
-                            onChange={(e) => {
-                              setPayment(e.target.value);
-                            }}
-                          />
-                          {/* <span className=""></span> */}
-                        </div>
-                        {/* image */}
-                        <div>
-                          {/* <Image
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png"
-                            alt=""
-                            className="w-10 mx-2"
-                            layout="fill"
-                          /> */}
-                        </div>
-                        {/* text */}
-                        <div className=" ">
-                          <span className="">
-                            <p className="text-sm  ">whatsapp</p>
-                            <p className="text-gray-400 mb-1 text-xs">
-                              Paga por whatsapp
-                            </p>
-                          </span>
-                        </div>
-                      </label>
-                    </li>
                     <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
                       <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
@@ -535,7 +502,8 @@ export default function Checkout() {
                           <span className="">
                             <p className="text-sm  ">Efectivo contraentrega</p>
                             <p className="text-gray-400 mb-1 text-xs">
-                              Paga en efectivo contraentrega
+                              Paga con tarjetas de credito y debito o efectivo
+                              en el momento de la entrega
                             </p>
                           </span>
                         </div>

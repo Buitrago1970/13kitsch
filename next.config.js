@@ -8,6 +8,8 @@ const nextConfig = {
       "instagram.fbog2-4.fna.fbcdn.net",
       "localhost",
       "strapikitsch-app-lpgoh.ondigitalocean.app",
+      "cdn-icons-png.flaticon.com",
+      "play-lh.googleusercontent.com",
     ],
   },
 };
