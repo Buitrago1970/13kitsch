@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function M_Cash({ setShowModal }) {
   return (
-    <div className="w-screen fixed inset-0 z-50  bg-transparent-black flex">
-      <div className="min-w-[300px] my-5 bg-white rounded m-auto md:w-[600px] md:h-[650px]">
+    <div className="w-screen fixed inset-0 z-50  bg-transparent-black flex justify-center ">
+      <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px] ">
         <div className="flex justify-end">
           <button
             className="rounded-full bg-red-500 text-black w-5 h-5 border border-black flex justify-center items-center m-2 shadow-md hover:bg-red-600 hover:shadow-none"
@@ -17,7 +17,7 @@ export default function M_Cash({ setShowModal }) {
             x
           </button>
         </div>
-        <div className="p-2 pt-0 pb-2 h-full grid md:p-8 ">
+        <div className="p-5 pt-4 pb-2 h-full grid md:p-8 overflow-y-scroll  ">
           <div className="-mt-4">
             <div className="w-20 mx-auto flex justify-center">
               <Image
@@ -32,14 +32,13 @@ export default function M_Cash({ setShowModal }) {
           <p className="text-center font-medium ">
             Querido cliente, estamos encantados de ofrecerle la opción de pago
             contra entrega para su comodidad y tranquilidad. Usted puede elegir
-            pagar en <strong>efectivo</strong>, con{" "}
-            <strong>tarjeta de crédito</strong> o <strong>débito</strong> al
-            momento de la entrega en la dirección especificada: xxxxxxxxx a
-            nombre de xxxxx. Nos aseguramos de que solo pague por su compra
-            cuando haya recibido su pedido y esté completamente satisfecho con
-            él. La entrega se realizará en un plazo de 7 días hábiles después de
-            haber confirmado su pedido. ¡Agradecemos su elección y estamos a su
-            disposición para cualquier pregunta o consulta!
+            pagar en efectivo con tarjeta de crédito o débito al momento de la
+            entrega en la dirección especificada: xxxxxxxxx a nombre de xxxxx.
+            Nos aseguramos de que solo pague por su compra cuando haya recibido
+            su pedido y esté completamente satisfecho con él. La entrega se
+            realizará en un plazo de 7 días hábiles después de haber confirmado
+            su pedido. ¡Agradecemos su elección y estamos a su disposición para
+            cualquier pregunta o consulta!
           </p>
           <div
             className="flex justify-center items-center my-10 "

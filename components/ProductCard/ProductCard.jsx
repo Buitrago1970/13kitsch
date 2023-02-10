@@ -40,8 +40,8 @@ export default function ProductCard({ product, link }) {
               <Image
                 src={`http://localhost:1337${image.attributes.url}`}
                 alt="test"
-                width={900}
-                height={900}
+                width={240}
+                height={240}
                 quality={100}
                 objectFit="contain"
               />

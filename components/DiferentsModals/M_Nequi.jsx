@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function M_Nequi({ setShowModal }) {
   return (
-    <div className="w-screen  fixed inset-0 z-50  bg-transparent-black flex">
-      <div className="w-[300px]  my-5 bg-white rounded md:w-[600px] h-[650px] m-auto  ">
+    <div className="w-screen  fixed inset-0 z-50  bg-transparent-black flex justify-center">
+      <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px]  ">
         <div className="flex justify-end">
           <button
             className="rounded-full bg-red-500 text-black w-5 h-5 border border-black flex justify-center items-center m-2 shadow-md hover:bg-red-600 hover:shadow-none"
@@ -16,9 +16,9 @@ export default function M_Nequi({ setShowModal }) {
             x
           </button>
         </div>
-        <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8 md:pt-0">
+        <div className="p-5 pt-4 pb-2 h-full grid md:p-8 overflow-y-scroll ">
           <div className="-mt-4">
-            <div className="w-20 mx-auto">
+            <div className="w-20 mx-auto flex justify-center">
               <Image
                 src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
                 alt="Nequi icon"
@@ -43,7 +43,12 @@ export default function M_Nequi({ setShowModal }) {
               ¡Gracias por su compra y esperamos su mensaje!
             </p>
           </div>
-          <div className="flex justify-center items-center mt-0 mb-11">
+          <div
+            className="flex justify-center items-center mt-0 mb-11"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          >
             <button className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none">
               CONTINUAR A WHASAPP
             </button>
