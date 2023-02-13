@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import Link from "next/link";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 import Image from "next/image";
 import Modal from "../components/Modal/Modal";
+import axios from "axios";
 
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
@@ -18,7 +20,30 @@ export default function Checkout() {
   const [shipping, setShipping] = React.useState("");
   const [payment, setPayment] = React.useState("nequi");
   const [showModal, setShowModal] = React.useState(false);
+  const [convertedAmount, setConvertedAmount] = React.useState("");
   let formattedTotal = total.toLocaleString("es-CO");
+
+  useEffect(() => {
+    //get the value of cop to usd
+    const getUsdValue = async () => {
+      const response = await axios.get(
+        "https://openexchangerates.org/api/latest.json?app_id=beddf67fdfe94dd68bfedbdf7b9d47ab"
+      );
+      const usdValue = response.data.rates.COP;
+      //round usd value
+      const usdValueRounded = Math.round(usdValue * 100) / 100;
+      //convert total to usd
+      const totalToUsd = total / usdValueRounded;
+      //round total to usd
+      const totalToUsdRounded = Math.round(totalToUsd * 100) / 100;
+
+      //convert total to usd string
+      const totalToUsdString = totalToUsdRounded.toString();
+      //set converted amount
+      setConvertedAmount(totalToUsdString);
+    };
+    getUsdValue();
+  }, []);
 
   const handleEmail = () => {
     //verify email
@@ -65,7 +90,6 @@ export default function Checkout() {
     }
   }, [showModal]);
 
-  console.log(showModal, "showModal");
   const handlePayment = () => {
     setShowModal(true);
   };
@@ -401,6 +425,14 @@ export default function Checkout() {
               </p>
               {/* payment options */}
               <div className="flex justify-center flex-col items-center mt-7">
+                <div>
+                  <p className="text-center font-semibold my-10 md:pl-2 md:text-left">
+                    Total a pagar
+                  </p>
+                  <p className="text-center font-semibold my-10 md:pl-2 md:text-left">
+                    {total} COP
+                  </p>
+                </div>
                 <div className=" border border-black rounded w-5/6 md:w-3/4">
                   <ul className="">
                     <li className="px-3  cursor-pointer hover:bg-gray-100">
@@ -438,43 +470,6 @@ export default function Checkout() {
                         </div>
                       </label>
                     </li>
-                    <li className="px-3  border-t border-black cursor-pointer  hover:bg-gray-100">
-                      <label className="flex items-center cursor-pointer h-16 w-full">
-                        {/* dot */}
-                        <div className="px-2">
-                          <input
-                            value="tarjeta"
-                            type="radio"
-                            className="w-4 h-4"
-                            name="radio"
-                            onChange={(e) => {
-                              setPayment(e.target.value);
-                            }}
-                          />
-                        </div>
-                        {/* image */}
-                        <div>
-                          {/* <Image
-                            src="https://cdn-icons-png.flaticon.com/512/4341/4341764.png"
-                            alt=""
-                            className="w-10 mx-2"
-                            layout="fill"
-                          /> */}
-                        </div>
-                        {/* text */}
-                        <div className=" ">
-                          <span className="">
-                            <p className="text-sm  ">
-                              tarjeta de Credito / debito
-                            </p>
-                            <p className="text-gray-400 mb-1 text-xs">
-                              Paga con tarjeta de credito o debito
-                            </p>
-                          </span>
-                        </div>
-                      </label>
-                    </li>
-
                     <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
                       <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
@@ -511,17 +506,56 @@ export default function Checkout() {
                     </li>
                   </ul>
                 </div>
+                <button
+                  className="bg-black text-white h-11 w-5/6 m-auto mt-10 rounded mx-auto uppercase md:w-9/12 "
+                  onClick={() => {
+                    handlePayment();
+                  }}
+                >
+                  Continuar
+                </button>
+                <div className="rounded w-5/6 md:w-3/4 my-14">
+                  <PayPalScriptProvider
+                    options={{
+                      "client-id":
+                        "AfSbdLR7pcbWlTPDGXj8tLs4we3dYDBOaTXdfgYCDnpyZ1QmUlsalbYK3mjWgSmw1ZmSM0K_RUuU7E2z",
+                      components: "buttons",
+                    }}
+                  >
+                    <PayPalButtons
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              description: "Compra de productos",
+                              amount: {
+                                value: convertedAmount,
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                      onApprove={async (data, actions) => {
+                        const order = await actions.order.capture();
+                        console.log(order, "order");
+                      }}
+                      onError={(err) => {
+                        console.error(err);
+                      }}
+                      onCancel={(data) => {
+                        console.log(data);
+                      }}
+                      style={{
+                        shape: "rect",
+                        color: "gold",
+                        layout: "vertical",
+                        label: "pay",
+                      }}
+                    />
+                  </PayPalScriptProvider>
+                </div>
               </div>
             </div>
-
-            <button
-              className="bg-black text-white h-11 w-5/6 m-auto mt-10 rounded mx-auto uppercase md:w-9/12 "
-              onClick={() => {
-                handlePayment();
-              }}
-            >
-              Continuar
-            </button>
           </div>
         ) : (
           <div className="py-5  border-black flex flex-col border-b ">

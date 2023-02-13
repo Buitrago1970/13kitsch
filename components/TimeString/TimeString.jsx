@@ -19,5 +19,7 @@ export default function TimeString() {
     second: "numeric",
     hour12: true,
   });
-  return <p className="font-semibold text-border-white ">{timeString}</p>;
+  return (
+    <p className="font-semibold text-white text-border-green">{timeString}</p>
+  );
 }

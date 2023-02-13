@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@loadable/component": "^5.15.3",
+    "@paypal/react-paypal-js": "^7.8.2",
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.1",
     "next": "12.2.5",
