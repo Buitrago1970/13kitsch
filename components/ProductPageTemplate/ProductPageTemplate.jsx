@@ -43,36 +43,32 @@ export default function ProductPage({
           <div className="flex justify-center py-3 ">
             {colorWithImage &&
               colorWithImage.map((item) => (
-                <>
-                  <button
-                    className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
-                      parseInt(selectedColor) === item.id
-                        ? " border-black "
-                        : ""
-                    }`}
+                <button
+                  className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
+                    parseInt(selectedColor) === item.id ? " border-black " : ""
+                  }`}
+                  key={item.color}
+                  data-value={item.id}
+                  onClick={handleColorChange}
+                  color-name={item.color}
+                >
+                  <Image
+                    src={image && `http://localhost:1337${item.image}`}
+                    alt="13Kitsch"
+                    width={55}
+                    height={55}
+                    objectFit="cover"
                     key={item.color}
                     data-value={item.id}
                     onClick={handleColorChange}
                     color-name={item.color}
-                  >
-                    <Image
-                      src={image && `http://localhost:1337${item.image}`}
-                      alt="13Kitsch"
-                      width={55}
-                      height={55}
-                      objectFit="cover"
-                      key={item.color}
-                      data-value={item.id}
-                      onClick={handleColorChange}
-                      color-name={item.color}
-                      className={`${
-                        parseInt(selectedColor) === item.color
-                          ? " border-black "
-                          : ""
-                      }`}
-                    />
-                  </button>
-                </>
+                    className={`${
+                      parseInt(selectedColor) === item.color
+                        ? " border-black "
+                        : ""
+                    }`}
+                  />
+                </button>
               ))}
           </div>
         </div>
@@ -90,6 +86,7 @@ export default function ProductPage({
                   }`}
                   value={item.size}
                   onClick={handleSizeChange}
+                  key={item.id}
                 >
                   {item.size}
                 </button>
