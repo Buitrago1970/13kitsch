@@ -20,8 +20,14 @@ export const productSlice = createSlice({
     addToCart: (state, action) => {
       //si el producto ya existe en el carrito, solo se aumenta la cantidad
       const found = state.cart.find(
-        (item) => item.product.Slug === action.payload.product.Slug
+        (item) =>
+          item.product.slug === action.payload.product.slug &&
+          item.size === action.payload.selectedSize &&
+          item.color === action.payload.selectedColorName
       );
+      console.log(found);
+
+      debugger;
       if (found) {
         found.quantity += action.payload.quantity;
       } else {

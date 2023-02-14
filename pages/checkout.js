@@ -43,7 +43,7 @@ export default function Checkout() {
       setConvertedAmount(totalToUsdString);
     };
     getUsdValue();
-  }, []);
+  }, [total]);
 
   const handleEmail = () => {
     //verify email
