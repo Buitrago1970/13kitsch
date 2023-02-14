@@ -61,6 +61,7 @@ export default function ProductCard({ product, link }) {
                 height={height}
                 quality={100}
                 objectFit="contain"
+                key={image.id}
               />
             ))}
           </Slider>
@@ -81,12 +82,11 @@ export default function ProductCard({ product, link }) {
           } flex space-x-5  items-center absolute  bottom-16  duration-700 `}
         >
           {product.attributes.colors.map((item) => (
-            <>
-              <div
-                style={{ backgroundColor: item.hashcolor }}
-                className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
-              ></div>
-            </>
+            <div
+              style={{ backgroundColor: item.hashcolor }}
+              className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
+              key={item.id}
+            ></div>
           ))}
         </div>
         <div
@@ -95,11 +95,12 @@ export default function ProductCard({ product, link }) {
           } flex space-x-2  items-center absolute  bottom-8  duration-300 text-center`}
         >
           {product.attributes.sizes.map((item) => (
-            <>
-              <div className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500">
-                {item.size}
-              </div>
-            </>
+            <div
+              className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500"
+              key={item.id}
+            >
+              {item.size}
+            </div>
           ))}
         </div>
       </div>

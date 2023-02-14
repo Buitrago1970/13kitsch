@@ -35,7 +35,7 @@ export default function HomeCardTemp() {
       <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.products.payload &&
           products.products.payload.map((product) => (
-            <ProductCard product={product} link={"/product"} />
+            <ProductCard product={product} link={"/product"} key={product.id} />
           ))}
       </section>
     </>

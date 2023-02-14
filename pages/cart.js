@@ -47,7 +47,11 @@ export default function Cart() {
         <div className="grid-cols-2 w-full grid md:grid-cols-3 lg:grid-cols-4 border-t border-black">
           {popular.payload &&
             popular.payload.map((popularProduct) => (
-              <ProductCard product={popularProduct} link={"/popular"} />
+              <ProductCard
+                product={popularProduct}
+                link={"/popular"}
+                key={popularProduct.id}
+              />
             ))}
         </div>
       </div>

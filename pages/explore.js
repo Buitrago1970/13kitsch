@@ -32,7 +32,7 @@ export default function Expolore() {
       <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.explore.payload &&
           products.explore.payload.map((product) => (
-            <ProductCard product={product} link={"/explore"} />
+            <ProductCard product={product} link={"/explore"} key={product.id} />
           ))}
       </section>
     </>
