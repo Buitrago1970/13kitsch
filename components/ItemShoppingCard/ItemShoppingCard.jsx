@@ -17,7 +17,9 @@ export default function ItemShoppingCard(product) {
   let formattedPrice;
 
   if (productData.price) {
-    formattedPrice = productData.price
+    // price is multiply by number of products
+    formattedPrice = productData.price * quantityProduct;
+    formattedPrice = formattedPrice
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
@@ -25,7 +27,7 @@ export default function ItemShoppingCard(product) {
   //delete to cart
   function handleDeleteToCart() {
     // form alert to confirm delete
-    const id = productData.Slug;
+    const id = productData.slug;
     if (window.confirm("¿Estás seguro de querer eliminar este producto?")) {
       dispatch(deleteFromCart({ id }));
     }

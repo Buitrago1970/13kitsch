@@ -3,12 +3,11 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setTotal } from "../../features/product/productSlice";
 
-export default function Bill({ cart }) {
+export default function Bill({ cart, totalPrice }) {
   const dispatch = useDispatch();
-  //cal subtotal
-  const subtotal = cart.reduce((acc, item) => {
-    return acc + parseInt(item.product.price);
-  }, 0);
+  //cal subtotal price
+  const subtotal = totalPrice;
+
   //call delivery
   let delivery = 0;
   //free delivery

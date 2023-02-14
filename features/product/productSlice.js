@@ -25,9 +25,6 @@ export const productSlice = createSlice({
           item.size === action.payload.selectedSize &&
           item.color === action.payload.selectedColorName
       );
-      console.log(found);
-
-      debugger;
       if (found) {
         found.quantity += action.payload.quantity;
       } else {
@@ -42,8 +39,9 @@ export const productSlice = createSlice({
     },
     //accion para eliminar un producto del carrito
     deleteFromCart: (state, action) => {
+      debugger;
       state.cart = state.cart.filter(
-        (item) => item.product.Slug !== action.payload.id
+        (item) => item.product.slug !== action.payload.id
       );
     },
     //accion para cambiar la cantidad de un producto en el carrito
