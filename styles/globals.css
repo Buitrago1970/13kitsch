@@ -143,6 +143,7 @@
   transition: all .33s ease;
 }
 
+
 .card:before {
   background-position: 50% 50%;
   background-size: 300% 300%;
@@ -159,7 +160,8 @@
   filter: brightness(.5) contrast(1);
   z-index: 1;
   }
-  
+
+
   .card:after {
   opacity: 1;
   background-image: url("https://i.pinimg.com/originals/3a/da/39/3ada39d638661b34d2962e564284dc84.gif"),

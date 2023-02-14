@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import Link from "next/link";
@@ -8,7 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductCard({ product, link }) {
   const [hoverItemCard, setHoverItemCard] = useState(false);
-
+  const [width, setWidth] = useState(900);
+  const [height, setHeight] = useState(900);
   const settings = {
     dots: true,
     infinite: true,
@@ -23,6 +24,22 @@ export default function ProductCard({ product, link }) {
     formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     return `$ ${formattedPrice}`;
   };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setWidth(270);
+        setHeight(270);
+      } else {
+        setWidth(900);
+        setHeight(900);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <Link
       href={`${link}/${product.id}`}
@@ -30,7 +47,7 @@ export default function ProductCard({ product, link }) {
       key={product.id}
     >
       <div
-        className="flex flex-col justify-evenly h-[340px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
+        className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
         onMouseEnter={() => setHoverItemCard(true)}
         onMouseLeave={() => setHoverItemCard(false)}
       >
@@ -40,8 +57,8 @@ export default function ProductCard({ product, link }) {
               <Image
                 src={`http://localhost:1337${image.attributes.url}`}
                 alt="test"
-                width={900}
-                height={900}
+                width={width}
+                height={height}
                 quality={100}
                 objectFit="contain"
               />
