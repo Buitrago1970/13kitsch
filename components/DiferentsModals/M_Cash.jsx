@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function M_Cash({ setShowModal }) {
   return (
-    <div className="w-screen fixed inset-0 z-50  bg-transparent-black flex justify-center ">
+    <div className="w-screen fixed inset-0 z-[99999]  bg-transparent-black flex justify-center ">
       <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px] ">
         <div className="flex justify-end">
           <button

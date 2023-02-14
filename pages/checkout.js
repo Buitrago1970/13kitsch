@@ -10,7 +10,7 @@ export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
   const [currentStep, setCurrentStep] = React.useState(3);
-  const [showcart, setShowCart] = React.useState(false);
+  const [showcart, setShowCart] = React.useState(true);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -21,7 +21,7 @@ export default function Checkout() {
   const [payment, setPayment] = React.useState("nequi");
   const [showModal, setShowModal] = React.useState(false);
   const [convertedAmount, setConvertedAmount] = React.useState("");
-  let formattedTotal = total.toLocaleString("es-CO");
+  const [totalPrice, setTotalPrice] = React.useState("");
 
   useEffect(() => {
     //get the value of cop to usd
@@ -93,6 +93,18 @@ export default function Checkout() {
   const handlePayment = () => {
     setShowModal(true);
   };
+  // cal total price
+  useEffect(() => {
+    let totalPrice = 0;
+
+    if (cart.length > 0) {
+      cart.forEach((product) => {
+        totalPrice += product.product.price * product.quantity;
+      });
+    }
+    setTotalPrice(totalPrice);
+  }, [cart]);
+  let formattedTotal = totalPrice.toLocaleString("es-CO");
 
   return (
     <section className="min-h-screen">
@@ -104,7 +116,15 @@ export default function Checkout() {
             <p>{cart.length} articulos</p>
             <p className="text-black ml-5">${formattedTotal} COP</p>
           </div>
-          <p className="underline font-normal text-xs mt-2 cursor-pointer">
+          <p
+            className="underline font-normal text-xs mt-2 cursor-pointer"
+            onClick={() => {
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              });
+            }}
+          >
             Ver resumen del pedido
           </p>
         </div>
@@ -425,14 +445,6 @@ export default function Checkout() {
               </p>
               {/* payment options */}
               <div className="flex justify-center flex-col items-center mt-7">
-                <div>
-                  <p className="text-center font-semibold my-10 md:pl-2 md:text-left">
-                    Total a pagar
-                  </p>
-                  <p className="text-center font-semibold my-10 md:pl-2 md:text-left">
-                    {total} COP
-                  </p>
-                </div>
                 <div className=" border border-black rounded w-5/6 md:w-3/4">
                   <ul className="">
                     <li className="px-3  cursor-pointer hover:bg-gray-100">
@@ -451,13 +463,14 @@ export default function Checkout() {
                           />
                         </div>
                         {/* image */}
-                        <div>
-                          {/* <Image
+                        <div className="mx-2">
+                          <Image
                             src="https://play-lh.googleusercontent.com/J2CfzgROe1_weYm7yNIffrAGsGeahADM6r2qMN3C9pNw-i0TJR71LGbVX9y2N7t6dw"
-                            alt=""
-                            className="w-10 mx-2"
-                            layout="fill"
-                          /> */}
+                            alt="Nequi icon"
+                            width={35}
+                            height={35}
+                            quality={100}
+                          />
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -485,12 +498,14 @@ export default function Checkout() {
                           />
                         </div>
                         {/* image */}
-                        <div>
-                          {/* <Image
+                        <div className="mx-2">
+                          <Image
                             src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
-                            alt=""
-                            className="w-10 mx-2"
-                          /> */}
+                            alt="Cash icon"
+                            width={35}
+                            height={35}
+                            quality={100}
+                          />
                         </div>
                         {/* text */}
                         <div className=" ">
@@ -550,6 +565,7 @@ export default function Checkout() {
                         color: "gold",
                         layout: "vertical",
                         label: "pay",
+                        zIndex: -1,
                       }}
                     />
                   </PayPalScriptProvider>
@@ -565,36 +581,71 @@ export default function Checkout() {
         {/* review */}
 
         {showcart && (
-          <div className="py-10 border-b border-black flex flex-col ">
-            <p className="text-center font-bold">4. Resumen</p>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Nombre del producto</p>
-                <p>Precio</p>
+          <>
+            <div
+              className="flex justify-center text-center font-bold items-center border-b border-black py-3"
+              id="final"
+            >
+              <p>RESUMEN DE PEDIDOS</p>
+            </div>
+
+            {cart.map((product) => (
+              <div className="text-sm flex border-b border-black">
+                <div>
+                  <Image
+                    src={`http://localhost:1337${product.product.image.data[0].attributes.url}`}
+                    width={200}
+                    height={200}
+                    alt={product.product.name}
+                    quality={100}
+                    objectFit="cover"
+                  />
+                </div>
+                <div className="p-2 ">
+                  <div className="mb-3">
+                    <p className="font-bold uppercase">
+                      {product.product.name}
+                    </p>
+                    <p>
+                      ${" "}
+                      {product.product.price.toLocaleString("es-CO", {
+                        style: "currency",
+                        currency: "CO",
+                      })}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="flex space-x-1">
+                      <p>Color:</p>
+                      <p>{product.color}</p>
+                    </div>
+                    <div className="flex space-x-1">
+                      <p>Tamaño:</p>
+                      <p>{product.size}</p>
+                    </div>
+                    <div className="flex space-x-1">
+                      <p>Cantidad:</p>
+                      <p>{product.quantity}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Nombre del producto</p>
-                <p>Precio</p>
+            ))}
+            <div className="text-sm space-y-3 p-3">
+              <div className="flex justify-between ">
+                <p>SUBTOTAL</p>
+                <p>$ {formattedTotal}</p>
               </div>
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Nombre del producto</p>
-                <p>Precio</p>
+              <div className="flex justify-between ">
+                <p>ENVÍO</p>
+                <p>$ 0,00 </p>
               </div>
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Nombre del producto</p>
-                <p>Precio</p>
+              <div className="flex justify-between font-semibold">
+                <p>TOTAL</p>
+                <p>$ {formattedTotal}</p>
               </div>
             </div>
-            <div className="flex justify-center flex-col items-center mt-7">
-              <div className="flex justify-between w-9/12 mb-1 text-gray-400 text-sm">
-                <p>Total</p>
-                <p>Precio</p>
-              </div>
-            </div>
-            <button className="bg-black text-white w-9/12 h-11 m-auto mt-10 rounded mx-auto uppercase">
-              Continuar
-            </button>
-          </div>
+          </>
         )}
       </div>
       <Modal
