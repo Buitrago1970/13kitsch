@@ -68,7 +68,7 @@ const SuccessReceipt = () => {
         </div>
         <div className="buttons-mail-info">
           <div className="flex flex-col mx-2 my-14 md:my-20 space-y-4">
-            <Link href="/userprofile">
+            <Link href="/orders">
               <button className="bg-white border shadow border-black text-black h-10  rounded-md w-full hover:bg-gray-300 text-blacktransition-colors duration-700 ">
                 Ver mis pedidos
               </button>
