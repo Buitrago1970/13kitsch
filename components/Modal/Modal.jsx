@@ -3,16 +3,37 @@ import M_Cash from "../DiferentsModals/M_Cash";
 // import M_Whatsapp from "../DiferentsModals/M_Whatsapp";
 import M_Nequi from "../DiferentsModals/M_Nequi";
 
-export default function modal({ showModal, setShowModal, payment }) {
+export default function modal({
+  showModal,
+  setShowModal,
+  payment,
+  handleSendOrder,
+  address,
+  mail,
+  name,
+}) {
   if (showModal === true) {
     if (payment === "efectivo") {
-      return <M_Cash setShowModal={setShowModal} />;
+      return (
+        <M_Cash
+          setShowModal={setShowModal}
+          handleSendOrder={handleSendOrder}
+          address={address}
+          mail={mail}
+          name={name}
+        />
+      );
     }
     // if (payment === "whatsapp") {
     //   return <M_Whatsapp setShowModal={setShowModal} />;
     // }
     if (payment === "nequi") {
-      return <M_Nequi setShowModal={setShowModal} />;
+      return (
+        <M_Nequi
+          setShowModal={setShowModal}
+          handleSendOrder={handleSendOrder}
+        />
+      );
     }
   } else {
     return null;

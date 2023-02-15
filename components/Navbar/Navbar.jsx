@@ -12,9 +12,8 @@ export default function Navbar() {
   return (
     <nav className="px-3  grid-cols-1 grid-navbar h-[66px] md:px-10  md:grid-navbar  ">
       <div className="hidden md:block w-full">
-        <Link href="/">
+        <Link href="/Orders">
           <div className="flex bg-white rounded-full border border-black w-36 h-8  items-center justify-center font-bold italic cursor-pointer  hover:bg-gray-300 text-blacktransition-colors duration-700">
-            {/* <p>13Kitsch</p> */}
             <p>Ver mis pedidos</p>
           </div>
         </Link>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Modal from "../components/Modal/Modal";
@@ -9,7 +10,7 @@ import axios from "axios";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(3);
+  const [currentStep, setCurrentStep] = React.useState(1);
   const [showcart, setShowCart] = React.useState(true);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -22,6 +23,8 @@ export default function Checkout() {
   const [showModal, setShowModal] = React.useState(false);
   const [convertedAmount, setConvertedAmount] = React.useState("");
   const [totalPrice, setTotalPrice] = React.useState("");
+  const urlPostOrder = "http://localhost:1337/api/orders";
+  const router = useRouter();
 
   useEffect(() => {
     //get the value of cop to usd
@@ -105,6 +108,50 @@ export default function Checkout() {
     setTotalPrice(totalPrice);
   }, [cart]);
   let formattedTotal = totalPrice.toLocaleString("es-CO");
+
+  const handleSendOrder = () => {
+    //create order object
+    const orderId = Math.round(Math.random() * 1000000);
+    const orderInfo = {
+      cart,
+      total,
+      orderId,
+    };
+    const userInfo = {
+      mail,
+      name,
+      phone,
+      prefix,
+      address,
+      reference,
+      shipping,
+      payment,
+    };
+    //send order to backend
+    axios
+      .post(urlPostOrder, {
+        data: {
+          orderInfo,
+          userInfo,
+          email: mail,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          //save de order in local storage
+          localStorage.setItem("order", JSON.stringify(response.data));
+          console.log(response.data);
+          alert("Orden enviada");
+          //redirect to success page
+          router.push("/success");
+        }
+      })
+      .catch((error) => {
+        // La petición falló
+        alert("Error al enviar el pedido", error);
+        console.log(error);
+      });
+  };
 
   return (
     <section className="min-h-screen">
@@ -652,6 +699,10 @@ export default function Checkout() {
         showModal={showModal}
         setShowModal={setShowModal}
         payment={payment}
+        handleSendOrder={handleSendOrder}
+        address={address}
+        mail={mail}
+        name={name}
       />
     </section>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 
 import axios from "axios";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../features/product/productSlice";

@@ -1,9 +1,14 @@
 import React from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 
-export default function M_Cash({ setShowModal }) {
+export default function M_Cash({
+  setShowModal,
+  handleSendOrder,
+  address,
+  mail,
+  name,
+}) {
   return (
     <div className="w-screen fixed inset-0 z-[99999]  bg-transparent-black flex justify-center ">
       <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px] ">
@@ -30,15 +35,17 @@ export default function M_Cash({ setShowModal }) {
             <h1 className="text-center font-bold text-3xl">Efectivo</h1>
           </div>
           <p className="text-center font-medium ">
-            Querido cliente, estamos encantados de ofrecerle la opción de pago
-            contra entrega para su comodidad y tranquilidad. Usted puede elegir
-            pagar en efectivo con tarjeta de crédito o débito al momento de la
-            entrega en la dirección especificada: xxxxxxxxx a nombre de xxxxx.
-            Nos aseguramos de que solo pague por su compra cuando haya recibido
-            su pedido y esté completamente satisfecho con él. La entrega se
-            realizará en un plazo de 7 días hábiles después de haber confirmado
-            su pedido. ¡Agradecemos su elección y estamos a su disposición para
-            cualquier pregunta o consulta!
+            {`
+              Querido cliente, estamos encantados de ofrecerle la opción de pago
+              contra entrega para su comodidad y tranquilidad. Usted puede elegir
+              pagar en efectivo con tarjeta de crédito o débito al momento de la
+              entrega en la dirección especificada:${address}a nombre de ${name}.
+              Nos aseguramos de que solo pague por su compra cuando haya recibido
+              su pedido y esté completamente satisfecho con él. La entrega se
+              realizará en un plazo de 7 días hábiles después de haber confirmado
+              su pedido. ¡Agradecemos su elección y estamos a su disposición para
+              cualquier pregunta o consulta!
+              `}
           </p>
           <div
             className="flex justify-center items-center my-10 "
@@ -46,11 +53,14 @@ export default function M_Cash({ setShowModal }) {
               setShowModal(false);
             }}
           >
-            <Link href="/Success">
-              <button className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none">
-                Confirmar pedido
-              </button>
-            </Link>
+            <button
+              className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none"
+              onClick={() => {
+                handleSendOrder();
+              }}
+            >
+              Confirmar pedido
+            </button>
           </div>
           <footer className="text-center  ">
             <p className="text-sm mb-3">

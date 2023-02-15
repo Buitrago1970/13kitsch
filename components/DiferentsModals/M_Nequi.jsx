@@ -2,7 +2,7 @@ import React from "react";
 
 import Image from "next/image";
 
-export default function M_Nequi({ setShowModal }) {
+export default function M_Nequi({ setShowModal, handleSendOrder }) {
   return (
     <div className="w-screen  fixed inset-0 z-[99999]  bg-transparent-black flex justify-center">
       <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px]  ">
@@ -49,7 +49,12 @@ export default function M_Nequi({ setShowModal }) {
               setShowModal(false);
             }}
           >
-            <button className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none">
+            <button
+              className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none"
+              onClick={() => {
+                handleSendOrder();
+              }}
+            >
               CONTINUAR A WHASAPP
             </button>
           </div>
