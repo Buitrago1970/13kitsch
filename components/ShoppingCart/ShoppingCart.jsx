@@ -10,7 +10,7 @@ export default function Shoppingcart({ cart }) {
       </div>
       <div>
         {cart.map((product) => (
-          <ItemShoppingCard key={product.id} product={product} />
+          <ItemShoppingCard product={product} key={product.product.slug} />
         ))}
       </div>
     </div>

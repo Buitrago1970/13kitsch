@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+// import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -10,8 +10,7 @@ import axios from "axios";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(3);
-  const [showcart, setShowCart] = React.useState(true);
+  const [currentStep, setCurrentStep] = React.useState(1);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -21,32 +20,32 @@ export default function Checkout() {
   const [shipping, setShipping] = React.useState("");
   const [payment, setPayment] = React.useState("nequi");
   const [showModal, setShowModal] = React.useState(false);
-  const [convertedAmount, setConvertedAmount] = React.useState("");
+  // const [convertedAmount, setConvertedAmount] = React.useState("");
   const [totalPrice, setTotalPrice] = React.useState("");
   const urlPostOrder = "http://localhost:1337/api/orders";
   const router = useRouter();
 
-  useEffect(() => {
-    //get the value of cop to usd
-    const getUsdValue = async () => {
-      const response = await axios.get(
-        "https://openexchangerates.org/api/latest.json?app_id=beddf67fdfe94dd68bfedbdf7b9d47ab"
-      );
-      const usdValue = response.data.rates.COP;
-      //round usd value
-      const usdValueRounded = Math.round(usdValue * 100) / 100;
-      //convert total to usd
-      const totalToUsd = total / usdValueRounded;
-      //round total to usd
-      const totalToUsdRounded = Math.round(totalToUsd * 100) / 100;
+  // useEffect(() => {
+  //   //get the value of cop to usd
+  //   const getUsdValue = async () => {
+  //     const response = await axios.get(
+  //       "https://openexchangerates.org/api/latest.json?app_id=beddf67fdfe94dd68bfedbdf7b9d47ab"
+  //     );
+  //     const usdValue = response.data.rates.COP;
+  //     //round usd value
+  //     const usdValueRounded = Math.round(usdValue * 100) / 100;
+  //     //convert total to usd
+  //     const totalToUsd = total / usdValueRounded;
+  //     //round total to usd
+  //     const totalToUsdRounded = Math.round(totalToUsd * 100) / 100;
 
-      //convert total to usd string
-      const totalToUsdString = totalToUsdRounded.toString();
-      //set converted amount
-      setConvertedAmount(totalToUsdString);
-    };
-    getUsdValue();
-  }, [total]);
+  //     //convert total to usd string
+  //     const totalToUsdString = totalToUsdRounded.toString();
+  //     //set converted amount
+  //     setConvertedAmount(totalToUsdString);
+  //   };
+  //   getUsdValue();
+  // }, [total]);
 
   const handleEmail = () => {
     //verify email
@@ -700,7 +699,7 @@ export default function Checkout() {
         )}
         {/* review */}
 
-        {showcart && (
+        {true && (
           <>
             <div
               className="flex justify-center text-center font-bold items-center border-b border-black py-3"
@@ -710,12 +709,15 @@ export default function Checkout() {
             </div>
 
             {cart.map((product) => (
-              <div className="text-sm flex border-b border-black">
+              <div
+                className="text-sm flex border-b border-black p-5 md:p-0"
+                key={product.product.slug}
+              >
                 <div>
                   <Image
                     src={`http://localhost:1337${product.product.image.data[0].attributes.url}`}
-                    width={200}
-                    height={200}
+                    width={150}
+                    height={150}
                     alt={product.product.name}
                     quality={100}
                     objectFit="cover"

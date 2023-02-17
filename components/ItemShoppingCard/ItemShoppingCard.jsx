@@ -82,13 +82,13 @@ export default function ItemShoppingCard(product) {
       <div className="flex flex-col justify-between border-b p-4 space-y-10 text-center md:border-l md: border-black md:border-b-0">
         <div className="text-base ">
           <ul>
-            <li>
+            <li key={"color"}>
               <div className="flex justify-between ">
                 <span>Color</span>
                 <span>{color}</span>
               </div>
             </li>
-            <li>
+            <li key={"size"}>
               <div className="flex justify-between ">
                 <span>Talla</span>
                 <span>{size}</span>
