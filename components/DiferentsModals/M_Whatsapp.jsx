@@ -19,10 +19,10 @@
 //         <div className="p-2 pt-0 pb-2 h-full md:grid md:p-8">
 //           <div className=" -mt-4">
 //             <div className="w-20 mx-auto">
-//               {/* <Image
+//               <Image
 //                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png"
 //                 alt="Whatsapp icon"
-//               /> */}
+//               />
 //             </div>
 //             <h1 className="text-center text-xl font-bold md:text-3xl">
 //               Whatsapp

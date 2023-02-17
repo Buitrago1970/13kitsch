@@ -138,6 +138,48 @@ export default function Checkout() {
       `https://wa.me/+573105706238?text=${encodeURIComponent(message)}`,
       "_blank"
     );
+
+    //create order object
+    const orderId = Math.round(Math.random() * 1000000);
+    const orderInfo = {
+      cart,
+      total,
+      orderId,
+    };
+    const userInfo = {
+      mail,
+      name,
+      phone,
+      prefix,
+      address,
+      reference,
+      shipping,
+      payment,
+    };
+    //send order to backend
+    axios
+      .post(urlPostOrder, {
+        data: {
+          orderInfo,
+          userInfo,
+          email: mail,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          //save de order in local storage
+          localStorage.setItem("order", JSON.stringify(response.data));
+          console.log(response.data);
+          alert("Orden enviada");
+          //redirect to success page
+          router.push("/success");
+        }
+      })
+      .catch((error) => {
+        // La petición falló
+        alert("Error al enviar el pedido", error);
+        console.log(error);
+      });
   };
   const handleSendOrderAgainstDelivery = () => {
     //create order object
@@ -157,8 +199,6 @@ export default function Checkout() {
       shipping,
       payment,
     };
-    console.log(orderInfo);
-    console.log(userInfo);
     //send order to backend
     axios
       .post(urlPostOrder, {
@@ -562,6 +602,7 @@ export default function Checkout() {
                         </div>
                       </label>
                     </li>
+
                     <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
                       <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
@@ -608,7 +649,7 @@ export default function Checkout() {
                 >
                   Continuar
                 </button>
-                <div className="rounded w-5/6 md:w-3/4 my-14">
+                {/* <div className="rounded w-5/6 md:w-3/4 my-14">
                   <PayPalScriptProvider
                     options={{
                       "client-id":
@@ -648,7 +689,7 @@ export default function Checkout() {
                       }}
                     />
                   </PayPalScriptProvider>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
