@@ -1,8 +1,40 @@
 import React from "react";
 
 import Image from "next/image";
+import axios from "axios";
 
 export default function M_Nequi({ setShowModal, handleSendOrder }) {
+  const goWhatsapp = () => {
+    // window.open(
+    //   "https://wa.me/+573105706238?text=Hola%2C%20quiero%20realizar%20un%20pago%20a%20trav%C3%A9s%20de%20la%20plataforma%20Nequi%20para%20mi%20compra%20en%20su%20tienda.%20Me%20pueden%20ayudar%3F"
+    // );
+    // const url = "https://graph.facebook.com/v15.0/114476118229734/messages";
+    // const accessToken =
+    //   "EAAGZBgE5dZBbwBALnrMxyfbLghsJ5ZBuLHdKkEsXtpcSrIVKlff0ZAYV0YssRW0hhv6yZBZCOHgiOnPMgPLKNJ1jPP61bPSGiZCMSTlC7gfWjUiZAkvFgIDc7aXpjUxHxvQvnZC3aUuFvOXnnZAmwRB5wDynXJZCfSBXeOYXmokIZCVKA8db2bQHUSCZAan6WJAARI86ZAT408Yn3XYwZDZD";
+    // const data = {
+    //   messaging_product: "whatsapp",
+    //   to: "573105706238",
+    //   type: "template",
+    //   template: {
+    //     name: "hello_world",
+    //     language: { code: "en_US" },
+    //   },
+    // };
+    // axios
+    //   .post(url, data, {
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
+
   return (
     <div className="w-screen  fixed inset-0 z-[99999]  bg-transparent-black flex justify-center">
       <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px]  ">
@@ -52,7 +84,7 @@ export default function M_Nequi({ setShowModal, handleSendOrder }) {
             <button
               className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none"
               onClick={() => {
-                handleSendOrder();
+                handleSendOrder("nequi");
               }}
             >
               CONTINUAR A WHASAPP

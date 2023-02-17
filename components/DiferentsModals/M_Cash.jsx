@@ -6,7 +6,6 @@ export default function M_Cash({
   setShowModal,
   handleSendOrder,
   address,
-  mail,
   name,
 }) {
   return (
@@ -56,7 +55,7 @@ export default function M_Cash({
             <button
               className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none"
               onClick={() => {
-                handleSendOrder();
+                handleSendOrder("againstDelivery");
               }}
             >
               Confirmar pedido

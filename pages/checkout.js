@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = React.useState(3);
   const [showcart, setShowCart] = React.useState(true);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -107,50 +107,82 @@ export default function Checkout() {
     }
     setTotalPrice(totalPrice);
   }, [cart]);
-  let formattedTotal = totalPrice.toLocaleString("es-CO");
+  let formattedTotal = totalPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-  const handleSendOrder = () => {
-    //create order object
-    const orderId = Math.round(Math.random() * 1000000);
-    const orderInfo = {
-      cart,
-      total,
-      orderId,
-    };
-    const userInfo = {
-      mail,
-      name,
-      phone,
-      prefix,
-      address,
-      reference,
-      shipping,
-      payment,
-    };
-    //send order to backend
-    axios
-      .post(urlPostOrder, {
-        data: {
-          orderInfo,
-          userInfo,
-          email: mail,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          //save de order in local storage
-          localStorage.setItem("order", JSON.stringify(response.data));
-          console.log(response.data);
-          alert("Orden enviada");
-          //redirect to success page
-          router.push("/success");
-        }
-      })
-      .catch((error) => {
-        // La petición falló
-        alert("Error al enviar el pedido", error);
-        console.log(error);
-      });
+  const handleSendOrder = (ordeType) => {
+    if (ordeType === "nequi") {
+      const productsName = cart.map((product) => product.product.name);
+      const productsPrice = cart.map((product) =>
+        product.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      );
+      const productsQuantity = cart.map((product) => product.quantity);
+
+      const productsTable = `| Producto                     | Precio  | Cantidad |\n${productsName
+        .map((name, index) => {
+          return `
+        ${name}  -   $${productsPrice[index]}  -  ${productsQuantity[index]}
+          `;
+        })
+
+        .join("")}`;
+
+      const message = `¡Hola! Espero que estés teniendo un excelente día. Quería realizar el pago por la plataforma Nequi por mi pedido.
+      
+      Aquí está el detalle de mi pedido:
+      ${productsTable}
+      Por favor, confírmame los detalles para proceder con el pago. ¡Gracias!`;
+
+      //send whatsapp message
+      window.open(
+        `https://wa.me/+573105706238?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    }
+    if (ordeType === "againstDelivery") {
+      //create order object
+      const orderId = Math.round(Math.random() * 1000000);
+      const orderInfo = {
+        cart,
+        total,
+        orderId,
+      };
+      const userInfo = {
+        mail,
+        name,
+        phone,
+        prefix,
+        address,
+        reference,
+        shipping,
+        payment,
+      };
+      //send order to backend
+      axios
+        .post(urlPostOrder, {
+          data: {
+            orderInfo,
+            userInfo,
+            email: mail,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            //save de order in local storage
+            localStorage.setItem("order", JSON.stringify(response.data));
+            console.log(response.data);
+            alert("Orden enviada");
+            //redirect to success page
+            router.push("/success");
+          }
+        })
+        .catch((error) => {
+          // La petición falló
+          alert("Error al enviar el pedido", error);
+          console.log(error);
+        });
+    }
   };
 
   return (
