@@ -111,78 +111,78 @@ export default function Checkout() {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-  const handleSendOrder = (ordeType) => {
-    if (ordeType === "nequi") {
-      const productsName = cart.map((product) => product.product.name);
-      const productsPrice = cart.map((product) =>
-        product.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-      );
-      const productsQuantity = cart.map((product) => product.quantity);
+  const handleSendOrderNequi = () => {
+    const productsName = cart.map((product) => product.product.name);
+    const productsPrice = cart.map((product) =>
+      product.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    );
+    const productsQuantity = cart.map((product) => product.quantity);
 
-      const productsTable = `| Producto                     | Precio  | Cantidad |\n${productsName
-        .map((name, index) => {
-          return `
+    const productsTable = `| Producto                     | Precio  | Cantidad |\n${productsName
+      .map((name, index) => {
+        return `
         ${name}  -   $${productsPrice[index]}  -  ${productsQuantity[index]}
           `;
-        })
+      })
 
-        .join("")}`;
+      .join("")} total: $${formattedTotal}`;
 
-      const message = `¡Hola! Espero que estés teniendo un excelente día. Quería realizar el pago por la plataforma Nequi por mi pedido.
+    const message = `¡Hola! Espero que estés teniendo un excelente día. Quería realizar el pago por la plataforma Nequi por mi pedido.
       
       Aquí está el detalle de mi pedido:
       ${productsTable}
       Por favor, confírmame los detalles para proceder con el pago. ¡Gracias!`;
 
-      //send whatsapp message
-      window.open(
-        `https://wa.me/+573105706238?text=${encodeURIComponent(message)}`,
-        "_blank"
-      );
-    }
-    if (ordeType === "againstDelivery") {
-      //create order object
-      const orderId = Math.round(Math.random() * 1000000);
-      const orderInfo = {
-        cart,
-        total,
-        orderId,
-      };
-      const userInfo = {
-        mail,
-        name,
-        phone,
-        prefix,
-        address,
-        reference,
-        shipping,
-        payment,
-      };
-      //send order to backend
-      axios
-        .post(urlPostOrder, {
-          data: {
-            orderInfo,
-            userInfo,
-            email: mail,
-          },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            //save de order in local storage
-            localStorage.setItem("order", JSON.stringify(response.data));
-            console.log(response.data);
-            alert("Orden enviada");
-            //redirect to success page
-            router.push("/success");
-          }
-        })
-        .catch((error) => {
-          // La petición falló
-          alert("Error al enviar el pedido", error);
-          console.log(error);
-        });
-    }
+    //send whatsapp message
+    window.open(
+      `https://wa.me/+573105706238?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
+  const handleSendOrderAgainstDelivery = () => {
+    //create order object
+    const orderId = Math.round(Math.random() * 1000000);
+    const orderInfo = {
+      cart,
+      total,
+      orderId,
+    };
+    const userInfo = {
+      mail,
+      name,
+      phone,
+      prefix,
+      address,
+      reference,
+      shipping,
+      payment,
+    };
+    console.log(orderInfo);
+    console.log(userInfo);
+    //send order to backend
+    axios
+      .post(urlPostOrder, {
+        data: {
+          orderInfo,
+          userInfo,
+          email: mail,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          //save de order in local storage
+          localStorage.setItem("order", JSON.stringify(response.data));
+          console.log(response.data);
+          alert("Orden enviada");
+          //redirect to success page
+          router.push("/success");
+        }
+      })
+      .catch((error) => {
+        // La petición falló
+        alert("Error al enviar el pedido", error);
+        console.log(error);
+      });
   };
 
   return (
@@ -731,7 +731,8 @@ export default function Checkout() {
         showModal={showModal}
         setShowModal={setShowModal}
         payment={payment}
-        handleSendOrder={handleSendOrder}
+        handleSendOrderNequi={handleSendOrderNequi}
+        handleSendOrderAgainstDelivery={handleSendOrderAgainstDelivery}
         address={address}
         mail={mail}
         name={name}

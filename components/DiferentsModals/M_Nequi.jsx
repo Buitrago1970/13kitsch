@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import axios from "axios";
 
-export default function M_Nequi({ setShowModal, handleSendOrder }) {
+export default function M_Nequi({ setShowModal, handleSendOrderNequi }) {
   const goWhatsapp = () => {
     // window.open(
     //   "https://wa.me/+573105706238?text=Hola%2C%20quiero%20realizar%20un%20pago%20a%20trav%C3%A9s%20de%20la%20plataforma%20Nequi%20para%20mi%20compra%20en%20su%20tienda.%20Me%20pueden%20ayudar%3F"
@@ -84,7 +84,7 @@ export default function M_Nequi({ setShowModal, handleSendOrder }) {
             <button
               className="border border-black w-64 h-10 bg-green-500 text-white uppercase text-sm rounded-xl hover:opacity-95 shadow-md hover:shadow-none"
               onClick={() => {
-                handleSendOrder("nequi");
+                handleSendOrderNequi();
               }}
             >
               CONTINUAR A WHASAPP

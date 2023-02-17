@@ -7,7 +7,8 @@ export default function modal({
   showModal,
   setShowModal,
   payment,
-  handleSendOrder,
+  handleSendOrderAgainstDelivery,
+  handleSendOrderNequi,
   address,
   mail,
   name,
@@ -17,7 +18,7 @@ export default function modal({
       return (
         <M_Cash
           setShowModal={setShowModal}
-          handleSendOrder={handleSendOrder}
+          handleSendOrderAgainstDelivery={handleSendOrderAgainstDelivery}
           address={address}
           mail={mail}
           name={name}
@@ -31,7 +32,7 @@ export default function modal({
       return (
         <M_Nequi
           setShowModal={setShowModal}
-          handleSendOrder={handleSendOrder}
+          handleSendOrderNequi={handleSendOrderNequi}
         />
       );
     }
