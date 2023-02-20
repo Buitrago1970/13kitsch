@@ -11,6 +11,7 @@ export default function ProductPage({
   handleSizeChange,
   handleAddToCart,
   handleGoToCart,
+  URL,
 }) {
   const { name, description, image, features, sizes } = product;
 
@@ -20,8 +21,7 @@ export default function ProductPage({
         <div className="flex justify-center items-center">
           <Image
             src={
-              image &&
-              `http://localhost:1337${image.data[0].attributes.formats.medium.url}`
+              image && `${URL}${image.data[0].attributes.formats.medium.url}`
             }
             alt="13Kitsch"
             width={500}
@@ -53,7 +53,7 @@ export default function ProductPage({
                   color-name={item.color}
                 >
                   <Image
-                    src={image && `http://localhost:1337${item.image}`}
+                    src={image && `${URL}${item.image}`}
                     alt="13Kitsch"
                     width={55}
                     height={55}

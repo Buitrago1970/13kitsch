@@ -7,7 +7,8 @@ import { setExploreProducts } from "../features/product/productSlice";
 import ProductCard from "../components/ProductCard/ProductCard";
 
 export default function Expolore() {
-  const URL = "http://localhost:1337/api/explores?populate=*";
+  const API_URL = process.env.NEXT_PUBLIC_URL;
+  const URL = `${API_URL}/api/explores?populate=*`;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
@@ -32,7 +33,12 @@ export default function Expolore() {
       <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.explore.payload &&
           products.explore.payload.map((product) => (
-            <ProductCard product={product} link={"/explore"} key={product.id} />
+            <ProductCard
+              product={product}
+              link={"/explore"}
+              key={product.id}
+              URL={URL}
+            />
           ))}
       </section>
     </>

@@ -11,7 +11,9 @@ export default function HomeCardTemp() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
-  const URL = "http://localhost:1337/api/products?populate=*";
+  const API_URL = process.env.NEXT_PUBLIC_URL;
+
+  const URL = `${API_URL}/api/products?populate=*`;
 
   useEffect(() => {
     async function fetchData() {
@@ -34,7 +36,12 @@ export default function HomeCardTemp() {
       <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
         {products.products.payload &&
           products.products.payload.map((product) => (
-            <ProductCard product={product} link={"/product"} key={product.id} />
+            <ProductCard
+              product={product}
+              link={"/product"}
+              key={product.id}
+              URL={API_URL}
+            />
           ))}
       </section>
     </>

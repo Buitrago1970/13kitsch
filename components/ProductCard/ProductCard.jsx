@@ -6,7 +6,7 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductCard({ product, link }) {
+export default function ProductCard({ product, link, URL }) {
   const [hoverItemCard, setHoverItemCard] = useState(false);
   const [width, setWidth] = useState(900);
   const [height, setHeight] = useState(900);
@@ -55,7 +55,7 @@ export default function ProductCard({ product, link }) {
           <Slider {...settings}>
             {product.attributes.image.data.map((image) => (
               <Image
-                src={`http://localhost:1337${image.attributes.url}`}
+                src={`${URL}${image.attributes.url}`}
                 alt="test"
                 width={width}
                 height={height}

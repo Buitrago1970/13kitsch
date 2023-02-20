@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -10,6 +11,7 @@ const nextConfig = {
       "strapikitsch-app-lpgoh.ondigitalocean.app",
       "cdn-icons-png.flaticon.com",
       "play-lh.googleusercontent.com",
+      "kitsch-backend.onrender.com",
     ],
   },
 };

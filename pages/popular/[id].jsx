@@ -16,12 +16,13 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_URL;
 
   const {
     query: { id },
   } = useRouter();
 
-  const URL = "http://localhost:1337/api/recommendeds";
+  const URL = `${API_URL}/api/recommendeds`;
   //get data product
   useEffect(() => {
     async function fetchData() {

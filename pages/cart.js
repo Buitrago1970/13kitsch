@@ -13,6 +13,7 @@ export default function Cart() {
   const popular = useSelector((state) => state.products.popular);
   const dispatch = useDispatch();
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const API_URL = process.env.NEXT_PUBLIC_URL;
 
   // cal total price
   useEffect(() => {
@@ -26,17 +27,21 @@ export default function Cart() {
     setTotalPrice(totalPrice);
   }, [dispatch, products.cart]);
 
-  const URL = "http://localhost:1337/api/recommendeds?populate=*";
-
-  useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get(URL);
-      dispatch(
-        setPopularProducts({ type: "FETCH_SUCCESS", payload: result.data.data })
-      );
-    }
-    fetchData();
-  }, [dispatch]);
+  const URL = `${API_URL}/api/recommendeds?populate=*`;
+  if (products.cart === 0) {
+    useEffect(() => {
+      async function fetchData() {
+        const result = await axios.get(URL);
+        dispatch(
+          setPopularProducts({
+            type: "FETCH_SUCCESS",
+            payload: result.data.data,
+          })
+        );
+      }
+      fetchData();
+    }, [dispatch]);
+  }
 
   if (products.cart.length === 0) {
     return (
@@ -59,7 +64,7 @@ export default function Cart() {
   } else {
     return (
       <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3 md:grid-shopping-cart-md">
-        <ShoppingCart cart={products.cart} />
+        <ShoppingCart cart={products.cart} URL={API_URL} />
         <Bill cart={products.cart} totalPrice={totalPrice} />
       </section>
     );

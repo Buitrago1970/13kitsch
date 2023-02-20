@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../../features/product/productSlice";
 import { changeQuantity } from "../../features/product/productSlice";
 
-export default function ItemShoppingCard(product) {
+export default function ItemShoppingCard({ product, URL }) {
   const dispatch = useDispatch();
-  const { product: productData } = product.product;
-  const { color, size, quantity } = product.product;
+  const { product: productData } = product;
+  const { color, size, quantity } = product;
   const [quantityProduct, setQuantityProduct] = React.useState(quantity);
 
   //get image
@@ -66,7 +66,7 @@ export default function ItemShoppingCard(product) {
         <div className="relative h-full ">
           <div className="  ">
             <Image
-              src={`http://localhost:1337${image}`}
+              src={`${URL}${image}`}
               alt="13Kitsch"
               objectFit="contain"
               layout="fill"

@@ -14,6 +14,8 @@ export default function ProductPage() {
   const [selectedColorName, setSelectedColorName] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  const API_URL = process.env.NEXT_PUBLIC_URL;
+
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -24,7 +26,7 @@ export default function ProductPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await axios.get(
-        `http://localhost:1337/api/products/${id}?populate=*`
+        `${API_URL}/api/products/${id}?populate=*`
       );
       setProduct(result.data.data.attributes);
     }
@@ -97,6 +99,7 @@ export default function ProductPage() {
       handleAddToCart={handleAddToCart}
       handleSizeChange={handleSizeChange}
       handleColorChange={handleColorChange}
+      URL={API_URL}
     />
   );
 }

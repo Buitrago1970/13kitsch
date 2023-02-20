@@ -39,7 +39,6 @@ export const productSlice = createSlice({
     },
     //accion para eliminar un producto del carrito
     deleteFromCart: (state, action) => {
-      debugger;
       state.cart = state.cart.filter(
         (item) => item.product.slug !== action.payload.id
       );

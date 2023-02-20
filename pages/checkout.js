@@ -22,7 +22,8 @@ export default function Checkout() {
   const [showModal, setShowModal] = React.useState(false);
   // const [convertedAmount, setConvertedAmount] = React.useState("");
   const [totalPrice, setTotalPrice] = React.useState("");
-  const urlPostOrder = "http://localhost:1337/api/orders";
+  const API_URL = process.env.NEXT_PUBLIC_URL;
+  const urlPostOrder = `${API_URL}/api/orders`;
   const router = useRouter();
 
   // useEffect(() => {
@@ -715,7 +716,7 @@ export default function Checkout() {
               >
                 <div>
                   <Image
-                    src={`http://localhost:1337${product.product.image.data[0].attributes.url}`}
+                    src={`${API_URL}${product.product.image.data[0].attributes.url}`}
                     width={150}
                     height={150}
                     alt={product.product.name}
