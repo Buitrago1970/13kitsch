@@ -16,6 +16,14 @@ export const productSlice = createSlice({
     setProducts(state, action) {
       state.products = action.payload;
     },
+    //accion para guardar los productos populares
+    setPopularProducts: (state, action) => {
+      state.popular = action.payload;
+    },
+    //accion para guardar los productos de la seccion explore
+    setExploreProducts: (state, action) => {
+      state.explore = action.payload;
+    },
     // Acción para agregar un producto al carrito
     addToCart: (state, action) => {
       //si el producto ya existe en el carrito, solo se aumenta la cantidad
@@ -51,14 +59,7 @@ export const productSlice = createSlice({
           : item
       );
     },
-    //accion para guardar los productos populares
-    setPopularProducts: (state, action) => {
-      state.popular = action.payload;
-    },
-    //accion para guardar los productos de la seccion explore
-    setExploreProducts: (state, action) => {
-      state.explore = action.payload;
-    },
+
     //acccion para agregar el total de productos al carrito
     setTotal: (state, action) => {
       state.total = action.payload.payload;

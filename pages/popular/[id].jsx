@@ -1,10 +1,10 @@
 import React from "react";
+import { createClient } from "contentful";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
-
-import axios from "axios";
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
 export default function ProductPage() {
@@ -12,36 +12,28 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedColorName, setSelectedColorName] = useState("");
-  const [existColor, setExistColor] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const router = useRouter();
-  const API_URL = process.env.NEXT_PUBLIC_URL;
 
   const {
     query: { id },
   } = useRouter();
 
-  const URL = `${API_URL}/api/recommendeds`;
-  //get data product
   useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get(URL + `/${id}?populate=*`);
-      setProduct(result.data.data.attributes);
-    }
-    fetchData();
+    const getStataicProps = async () => {
+      const client = createClient({
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+      });
+      const res = await client.getEntries({
+        content_type: "cart",
+        "fields.slug": id,
+      });
+      setProduct(res.items[0].fields);
+    };
+    getStataicProps();
   }, [id]);
-
-  //check if exist color
-  useEffect(() => {
-    if (
-      product.imgcolorslider &&
-      product.imgcolorslider.data &&
-      product.imgcolorslider.data.length > 0
-    ) {
-      setExistColor(true);
-    }
-  }, [product]);
 
   //save color
   const handleColorChange = (event) => {
@@ -71,11 +63,9 @@ export default function ProductPage() {
       alert("Selecciona talla ");
       return;
     }
-    if (existColor) {
-      if (selectedColor === "") {
-        alert("Selecciona color ");
-        return;
-      }
+    if (selectedColor === "") {
+      alert("Selecciona color ");
+      return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
     router.push("/cart");
@@ -88,23 +78,11 @@ export default function ProductPage() {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
-  let colorWithImage = [];
-  if (product.colors && product.imagecolorslider) {
-    colorWithImage = product.colors.map((color, index) => {
-      const colorImage = product.imagecolorslider.data[index].attributes.url;
-      return {
-        id: color.id,
-        color: color.color,
-        image: colorImage ? colorImage : null,
-      };
-    });
-  }
   return (
     <ProductPageTemplate
       product={product}
       selectedColor={selectedColor}
       selectedSize={selectedSize}
-      colorWithImage={colorWithImage}
       formattedPrice={formattedPrice}
       handleGoToCart={handleGoToCart}
       handleAddToCart={handleAddToCart}
