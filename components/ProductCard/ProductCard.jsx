@@ -21,7 +21,7 @@ export default function ProductCard({ product, link }) {
   };
   const formattedPrice = (price) => {
     let formattedPrice;
-    formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return `$ ${formattedPrice}`;
   };
   useEffect(() => {

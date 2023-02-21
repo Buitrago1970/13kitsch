@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../features/product/productSlice";
 import { createClient } from "contentful";
 import ProductCard from "../ProductCard/ProductCard";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function HomeCardTemp() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -37,7 +34,6 @@ export default function HomeCardTemp() {
               product={product.fields}
               link={"/product"}
               key={product.sys.id}
-              URL={API_URL}
             />
           ))}
       </section>

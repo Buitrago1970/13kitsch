@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = React.useState(3);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -154,31 +154,54 @@ export default function Checkout() {
       shipping,
       payment,
     };
-    //send order to backend
-    axios
-      .post(urlPostOrder, {
-        data: {
-          orderInfo,
-          userInfo,
-          email: mail,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          //save de order in local storage
-          localStorage.setItem("order", JSON.stringify(response.data));
-          console.log(response.data);
-          alert("Orden enviada");
-          //redirect to success page
-          router.push("/success");
-        }
-      })
-      .catch((error) => {
-        // La petición falló
-        alert("Error al enviar el pedido", error);
-        console.log(error);
-      });
   };
+  const handleSendOrderWhasapp = () => {
+    const productsName = cart.map((product) => product.product.name);
+    const productsPrice = cart.map((product) =>
+      product.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    );
+    const productsQuantity = cart.map((product) => product.quantity);
+
+    const productsTable = `| Producto                     | Precio  | Cantidad |\n${productsName
+      .map((name, index) => {
+        return `
+        ${name}  -   $${productsPrice[index]}  -  ${productsQuantity[index]}
+          `;
+      })
+
+      .join("")} total: $${formattedTotal}`;
+
+    const message = `¡Hola! Espero que estés teniendo un excelente día. Quiero realizar el pago de mi pedido a través de WhatsApp.
+      
+      Aquí está el detalle de mi pedido:
+      ${productsTable}
+      Por favor, confírmame los detalles para proceder con el pago. ¡Gracias!`;
+
+    //send whatsapp message
+    window.open(
+      `https://wa.me/+573105706238?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+
+    //create order object
+    const orderId = Math.round(Math.random() * 1000000);
+    const orderInfo = {
+      cart,
+      total,
+      orderId,
+    };
+    const userInfo = {
+      mail,
+      name,
+      phone,
+      prefix,
+      address,
+      reference,
+      shipping,
+      payment,
+    };
+  };
+
   const handleSendOrderAgainstDelivery = () => {
     //create order object
     const orderId = Math.round(Math.random() * 1000000);
@@ -487,8 +510,27 @@ export default function Checkout() {
         ) : (
           <>
             {shipping === "" ? (
-              <div className="py-5  border-black flex flex-col border-b">
-                <p className="text-center font-bold text-gray-300">2.envio</p>
+              <div className="py-5  border-black flex flex-col border-b relative">
+                {" "}
+                <a
+                  className="text-end text-sm underline absolute right-5 top-4 cursor-pointer"
+                  onClick={() => {
+                    setCurrentStep(2);
+                  }}
+                >
+                  Editar
+                </a>
+                <p className="text-center font-bold ">2. Envio</p>
+                <div className="flex justify-center items-center ">
+                  <p className="text-gray-400 text-sm mr-2">✓</p>
+                  <p className="text-sm">Recoger en tienda</p>
+                </div>
+                <div className="flex justify-center items-center mt-5">
+                  <p className="text-gray-400 text-sm mr-2">
+                    Su pedido sera despachado a nombre de:
+                  </p>
+                  <p className="text-sm underline">Juan</p>
+                </div>
               </div>
             ) : (
               <div className="py-14 border-b border-black  relative">
@@ -594,16 +636,52 @@ export default function Checkout() {
                           <span className="">
                             <p className="text-sm  ">Nequi</p>
                             <p className="text-gray-400 mb-1 text-xs">
-                              Paga por nequi con el numero whatsapp
+                              Paga con Nequi desde WhatsApp, ¡fácil y rápido!
+                            </p>
+                          </span>
+                        </div>
+                      </label>
+                    </li>{" "}
+                    <li className="px-3  cursor-pointer hover:bg-gray-100 border-t border-black">
+                      <label className="flex items-center cursor-pointer h-16 w-full">
+                        {/* dot */}
+                        <div className="px-2">
+                          <input
+                            value="whatsapp"
+                            type="radio"
+                            className="w-4 h-4"
+                            name="radio"
+                            onChange={(e) => {
+                              setPayment(e.target.value);
+                            }}
+                            defaultChecked={false}
+                          />
+                        </div>
+                        {/* image */}
+                        <div className="mx-2">
+                          <Image
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png"
+                            alt="Whatsapp icon"
+                            width={35}
+                            height={35}
+                            quality={100}
+                          />
+                        </div>
+                        {/* text */}
+                        <div className=" ">
+                          <span className="">
+                            <p className="text-sm  ">Whatsapp</p>
+                            <p className="text-gray-400 mb-1 text-xs">
+                              Continúa el pago contactándonos a través de
+                              WhatsApp
                             </p>
                           </span>
                         </div>
                       </label>
                     </li>
-
-                    <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
+                    {/* <li className="px-3 border-t border-black cursor-pointer  hover:bg-gray-100">
                       <label className="flex items-center cursor-pointer h-16 w-full">
-                        {/* dot */}
+                        dot
                         <div className="px-2">
                           <input
                             value="efectivo"
@@ -615,7 +693,7 @@ export default function Checkout() {
                             }}
                           />
                         </div>
-                        {/* image */}
+                        image
                         <div className="mx-2">
                           <Image
                             src="https://cdn-icons-png.flaticon.com/512/2086/2086775.png"
@@ -625,7 +703,7 @@ export default function Checkout() {
                             quality={100}
                           />
                         </div>
-                        {/* text */}
+                        text
                         <div className=" ">
                           <span className="">
                             <p className="text-sm  ">Efectivo contraentrega</p>
@@ -636,7 +714,7 @@ export default function Checkout() {
                           </span>
                         </div>
                       </label>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
                 <button
@@ -697,7 +775,6 @@ export default function Checkout() {
           </div>
         )}
         {/* review */}
-
         {true && (
           <>
             <div
@@ -714,7 +791,7 @@ export default function Checkout() {
               >
                 <div>
                   <Image
-                    src={`${API_URL}${product.product.image.data[0].attributes.url}`}
+                    src={`https:${product.product.image[0].fields.file.url}`}
                     width={150}
                     height={150}
                     alt={product.product.name}
@@ -729,10 +806,9 @@ export default function Checkout() {
                     </p>
                     <p>
                       ${" "}
-                      {product.product.price.toLocaleString("es-CO", {
-                        style: "currency",
-                        currency: "CO",
-                      })}
+                      {product.product.price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                     </p>
                   </div>
                   <div>
@@ -774,6 +850,7 @@ export default function Checkout() {
         setShowModal={setShowModal}
         payment={payment}
         handleSendOrderNequi={handleSendOrderNequi}
+        handleSendOrderWhasapp={handleSendOrderWhasapp}
         handleSendOrderAgainstDelivery={handleSendOrderAgainstDelivery}
         address={address}
         mail={mail}

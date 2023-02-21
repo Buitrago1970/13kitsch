@@ -92,11 +92,11 @@ export default function M_Nequi({ setShowModal, handleSendOrderNequi }) {
           </div>
           <footer className="text-center  ">
             <p className="text-sm mb-3">
-              ❗️Le enviaremos por correo electronico una confirmacion del
-              pedido con detalles e informacion de seguimiento
+              ❗️Le enviaremos por correo electrónico una confirmación del
+              pedido con los detalles e información de seguimiento.
             </p>
             <p className="text-xs text-gray-400">
-              Para mas información llamar al +57 310-570-6238 | tel 6746457
+              Para más información llamar al +57 310-570-6238, teléfono 6746457.
             </p>
             <p className="text-xs text-gray-400 ">correo contacto@kitsch.com</p>
           </footer>

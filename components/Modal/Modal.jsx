@@ -1,6 +1,6 @@
 import React from "react";
 import M_Cash from "../DiferentsModals/M_Cash";
-// import M_Whatsapp from "../DiferentsModals/M_Whatsapp";
+import M_Whatsapp from "../DiferentsModals/M_Whatsapp";
 import M_Nequi from "../DiferentsModals/M_Nequi";
 
 export default function modal({
@@ -9,6 +9,7 @@ export default function modal({
   payment,
   handleSendOrderAgainstDelivery,
   handleSendOrderNequi,
+  handleSendOrderWhasapp,
   address,
   mail,
   name,
@@ -25,9 +26,14 @@ export default function modal({
         />
       );
     }
-    // if (payment === "whatsapp") {
-    //   return <M_Whatsapp setShowModal={setShowModal} />;
-    // }
+    if (payment === "whatsapp") {
+      return (
+        <M_Whatsapp
+          setShowModal={setShowModal}
+          handleSendOrderWhasapp={handleSendOrderWhasapp}
+        />
+      );
+    }
     if (payment === "nequi") {
       return (
         <M_Nequi
