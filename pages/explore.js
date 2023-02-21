@@ -19,7 +19,8 @@ export default function Expolore() {
       dispatch(setExploreProducts(res.items));
     };
     getStataicProps();
-  }, []);
+  }, [dispatch]);
+
   return (
     <>
       <div className="h-10 border-b products-count flex items-center px-3 border-black">

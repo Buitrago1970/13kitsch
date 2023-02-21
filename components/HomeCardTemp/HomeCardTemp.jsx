@@ -19,7 +19,7 @@ export default function HomeCardTemp() {
       dispatch(setProducts(res.items));
     };
     getStaticProps();
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <div className="h-10 border-b products-count flex items-center px-3 border-black">

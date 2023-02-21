@@ -35,7 +35,7 @@ export default function Cart() {
       dispatch(setPopularProducts(res.items));
     };
     getStataicProps();
-  }, []);
+  }, [dispatch]);
 
   if (cart.length === 0) {
     return (

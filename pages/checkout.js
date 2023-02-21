@@ -221,29 +221,29 @@ export default function Checkout() {
       payment,
     };
     //send order to backend
-    axios
-      .post(urlPostOrder, {
-        data: {
-          orderInfo,
-          userInfo,
-          email: mail,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          //save de order in local storage
-          localStorage.setItem("order", JSON.stringify(response.data));
-          console.log(response.data);
-          alert("Orden enviada");
-          //redirect to success page
-          router.push("/success");
-        }
-      })
-      .catch((error) => {
-        // La petición falló
-        alert("Error al enviar el pedido", error);
-        console.log(error);
-      });
+    // axios
+    //   .post(urlPostOrder, {
+    //     data: {
+    //       orderInfo,
+    //       userInfo,
+    //       email: mail,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       //save de order in local storage
+    //       localStorage.setItem("order", JSON.stringify(response.data));
+    //       console.log(response.data);
+    //       alert("Orden enviada");
+    //       //redirect to success page
+    //       router.push("/success");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // La petición falló
+    //     alert("Error al enviar el pedido", error);
+    //     console.log(error);
+    //   });
   };
 
   return (

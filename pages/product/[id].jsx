@@ -35,7 +35,7 @@ export default function ProductPage() {
       setProduct(res.items[0].fields);
     };
     getStataicProps();
-  }, [id]);
+  }, [id, dispatch]);
 
   //save color
   const handleColorChange = (event) => {
