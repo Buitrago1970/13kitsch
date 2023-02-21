@@ -17,7 +17,6 @@ export default function Cart() {
   // cal total price
   useEffect(() => {
     let totalPrice = 0;
-
     if (cart.length > 0) {
       cart.forEach((product) => {
         totalPrice += product.product.price * product.quantity;
@@ -26,21 +25,18 @@ export default function Cart() {
     setTotalPrice(totalPrice);
   }, [dispatch, cart]);
 
-  if (cart.length === 0) {
-    useEffect(() => {
-      const getStataicProps = async () => {
-        const client = createClient({
-          space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-          accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-        });
-        const res = await client.getEntries({ content_type: "cart" });
-        dispatch(setPopularProducts(res.items));
-      };
-      getStataicProps();
-    }, []);
-  }
+  useEffect(() => {
+    const getStataicProps = async () => {
+      const client = createClient({
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+      });
+      const res = await client.getEntries({ content_type: "cart" });
+      dispatch(setPopularProducts(res.items));
+    };
+    getStataicProps();
+  }, []);
 
-  console.log(popular, "popular");
   if (cart.length === 0) {
     return (
       <div className="flex flex-col mt-20">

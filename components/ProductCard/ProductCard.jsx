@@ -39,8 +39,6 @@ export default function ProductCard({ product, link }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(product);
-  debugger;
 
   return (
     <Link

@@ -20,12 +20,10 @@ export default function Checkout() {
   const [shipping, setShipping] = React.useState("");
   const [payment, setPayment] = React.useState("nequi");
   const [showModal, setShowModal] = React.useState(false);
-  // const [convertedAmount, setConvertedAmount] = React.useState("");
   const [totalPrice, setTotalPrice] = React.useState("");
-  const API_URL = process.env.NEXT_PUBLIC_URL;
-  const urlPostOrder = `${API_URL}/api/orders`;
   const router = useRouter();
 
+  // const [convertedAmount, setConvertedAmount] = React.useState("");
   // useEffect(() => {
   //   //get the value of cop to usd
   //   const getUsdValue = async () => {

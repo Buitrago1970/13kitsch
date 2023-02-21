@@ -1,10 +1,10 @@
 import React from "react";
-import { createClient } from "contentful";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
+import { createClient } from "contentful";
+
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
 export default function ProductPage() {

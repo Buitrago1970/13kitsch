@@ -4,14 +4,11 @@ import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../../features/product/productSlice";
 import { changeQuantity } from "../../features/product/productSlice";
 
-export default function ItemShoppingCard({ product, URL }) {
+export default function ItemShoppingCard({ product }) {
   const dispatch = useDispatch();
   const { product: productData } = product;
   const { color, size, quantity } = product;
   const [quantityProduct, setQuantityProduct] = React.useState(quantity);
-
-  //get image
-  let image = productData.image.data[0].attributes.url;
 
   //format price
   let formattedPrice;
@@ -64,9 +61,9 @@ export default function ItemShoppingCard({ product, URL }) {
     <div className=" grid overflow-hidden mb-5 border border-black border-b grid-cols-1 shadow-lg rounded-sm  bg-white md:grid-cols-2 md:grid-rows-[70px_minmax(500px,_1fr)_40px]  ">
       <div className="h-[500px]  border-black row-span-3 p-2  ">
         <div className="relative h-full ">
-          <div className="  ">
+          <div>
             <Image
-              src={`${URL}${image}`}
+              src={`https:${product.product.image[0].fields.file.url}`}
               alt="13Kitsch"
               objectFit="contain"
               layout="fill"

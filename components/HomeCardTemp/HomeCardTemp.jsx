@@ -13,7 +13,7 @@ export default function HomeCardTemp() {
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    const getStataicProps = async () => {
+    const getStaticProps = async () => {
       const client = createClient({
         space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
         accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
@@ -21,7 +21,7 @@ export default function HomeCardTemp() {
       const res = await client.getEntries({ content_type: "product" });
       dispatch(setProducts(res.items));
     };
-    getStataicProps();
+    getStaticProps();
   }, []);
   return (
     <>
