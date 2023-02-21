@@ -33,6 +33,7 @@ export default function HomeCardTemp() {
             <ProductCard
               product={product.fields}
               link={"/product"}
+              id={product.sys.id}
               key={product.sys.id}
             />
           ))}

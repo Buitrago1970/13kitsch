@@ -6,7 +6,7 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductCard({ product, link }) {
+export default function ProductCard({ product, link, id }) {
   const [hoverItemCard, setHoverItemCard] = useState(false);
   const [width, setWidth] = useState(900);
   const [height, setHeight] = useState(900);
@@ -39,12 +39,11 @@ export default function ProductCard({ product, link }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   return (
     <Link
       href={`${link}/${product.slug}`}
       as={`${link}/${product.slug}`}
-      key={product.slug}
+      key={id}
     >
       <div
         className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
@@ -61,7 +60,7 @@ export default function ProductCard({ product, link }) {
                 height={height}
                 quality={100}
                 objectFit="contain"
-                key={image.id}
+                key={image.fields.file.url}
               />
             ))}
           </Slider>
@@ -79,11 +78,11 @@ export default function ProductCard({ product, link }) {
             hoverItemCard ? "" : "opacity-0"
           } flex space-x-5  items-center absolute  bottom-16  duration-700 `}
         >
-          {product.colors.map((item) => (
+          {product.colors.map((item, index) => (
             <div
               style={{ backgroundColor: item }}
               className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
-              key={item}
+              key={index}
             ></div>
           ))}
         </div>
@@ -92,10 +91,10 @@ export default function ProductCard({ product, link }) {
             hoverItemCard ? "" : "opacity-0"
           } flex space-x-2  items-center absolute  bottom-8  duration-300 text-center`}
         >
-          {product.size.map((item) => (
+          {product.size.map((item, index) => (
             <div
               className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500"
-              key={item.id}
+              key={index}
             >
               {item}
             </div>

@@ -45,7 +45,7 @@ export default function ProductPage({
                       ? " border-black "
                       : ""
                   }`}
-                  key={colorsSlice.fields.title[index]}
+                  key={index}
                   data-value={colorsSlice.fields.title[index]}
                   onClick={handleColorChange}
                   color-name={colorsSlice.fields.title[index]}
@@ -56,7 +56,7 @@ export default function ProductPage({
                     width={55}
                     height={55}
                     objectFit="cover"
-                    key={colorsSlice.fields.title[index]}
+                    key={index}
                     data-value={colorsSlice.fields.title[index]}
                     onClick={handleColorChange}
                     color-name={colorsSlice.fields.title[index]}
@@ -75,14 +75,14 @@ export default function ProductPage({
           <p className="text-sm">Selecionar talla:</p>
           <div className="flex justify-center my-3 text-sm">
             {size &&
-              size.map((item) => (
+              size.map((item, index) => (
                 <button
                   className={`w-12 h-8  mx-2 border rounded-lg ${
                     selectedSize === item ? "bg-orange-500  border-black " : ""
                   }`}
                   value={item}
                   onClick={handleSizeChange}
-                  key={item}
+                  key={index}
                 >
                   {item}
                 </button>
@@ -91,7 +91,8 @@ export default function ProductPage({
         </div>
         <div className="border-b border-black p-4 text-sm">
           <ul className=" mx-5 list-disc space-y-1 ">
-            {features && features.map((item) => <li key={item}>{item}</li>)}
+            {features &&
+              features.map((item, index) => <li key={index}>{item}</li>)}
           </ul>
           <div className="mt-8">
             <p>Material: 100% calfskin</p>

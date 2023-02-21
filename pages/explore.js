@@ -31,6 +31,7 @@ export default function Expolore() {
             <ProductCard
               product={product.fields}
               link={"/explore"}
+              id={product.sys.id}
               key={product.sys.id}
             />
           ))}

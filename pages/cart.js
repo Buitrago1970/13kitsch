@@ -50,6 +50,7 @@ export default function Cart() {
                 product={product.fields}
                 link={"/popular"}
                 key={product.sys.id}
+                id={product.sys.id}
               />
             ))}
         </div>

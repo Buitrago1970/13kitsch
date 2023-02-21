@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
   const total = useSelector((state) => state.products.total);
-  const [currentStep, setCurrentStep] = React.useState(3);
+  const [currentStep, setCurrentStep] = React.useState(1);
   const [mail, setMail] = React.useState("");
   const [name, setName] = React.useState("");
   const [phone, setPhone] = React.useState("");
