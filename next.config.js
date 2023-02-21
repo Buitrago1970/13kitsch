@@ -12,6 +12,7 @@ const nextConfig = {
       "cdn-icons-png.flaticon.com",
       "play-lh.googleusercontent.com",
       "kitsch-backend.onrender.com",
+      "images.ctfassets.net",
     ],
   },
 };

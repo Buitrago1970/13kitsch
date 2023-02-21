@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export default function ProductPage({
   product,
-  colorWithImage,
   formattedPrice,
   selectedColor,
   handleColorChange,
@@ -11,18 +10,15 @@ export default function ProductPage({
   handleSizeChange,
   handleAddToCart,
   handleGoToCart,
-  URL,
 }) {
-  const { name, description, image, features, sizes } = product;
+  const { name, description, image, features, size, colorsSlice } = product;
 
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 ">
       <div className=" my-16 ">
         <div className="flex justify-center items-center">
           <Image
-            src={
-              image && `${URL}${image.data[0].attributes.formats.medium.url}`
-            }
+            src={image && `https:${image[0].fields.file.url}`}
             alt="13Kitsch"
             width={500}
             height={500}
@@ -41,29 +37,31 @@ export default function ProductPage({
         <div className="border-b border-black py-4 flex flex-col">
           <p className="mx-3 text-sm">Selecionar color:</p>
           <div className="flex justify-center py-3 ">
-            {colorWithImage &&
-              colorWithImage.map((item) => (
+            {colorsSlice &&
+              colorsSlice.fields.thumbnail.map((item, index) => (
                 <button
                   className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
-                    parseInt(selectedColor) === item.id ? " border-black " : ""
+                    selectedColor === colorsSlice.fields.title[index]
+                      ? " border-black "
+                      : ""
                   }`}
-                  key={item.color}
-                  data-value={item.id}
+                  key={colorsSlice.fields.title[index]}
+                  data-value={colorsSlice.fields.title[index]}
                   onClick={handleColorChange}
-                  color-name={item.color}
+                  color-name={colorsSlice.fields.title[index]}
                 >
                   <Image
-                    src={image && `${URL}${item.image}`}
+                    src={item && `https:${item.fields.file.url}`}
                     alt="13Kitsch"
                     width={55}
                     height={55}
                     objectFit="cover"
-                    key={item.color}
-                    data-value={item.id}
+                    key={colorsSlice.fields.title[index]}
+                    data-value={colorsSlice.fields.title[index]}
                     onClick={handleColorChange}
-                    color-name={item.color}
+                    color-name={colorsSlice.fields.title[index]}
                     className={`${
-                      parseInt(selectedColor) === item.color
+                      selectedColor === colorsSlice.fields.title[index]
                         ? " border-black "
                         : ""
                     }`}
@@ -76,27 +74,24 @@ export default function ProductPage({
         <div className="border-b p-3 border-black">
           <p className="text-sm">Selecionar talla:</p>
           <div className="flex justify-center my-3 text-sm">
-            {sizes &&
-              sizes.map((item) => (
+            {size &&
+              size.map((item) => (
                 <button
                   className={`w-12 h-8  mx-2 border rounded-lg ${
-                    selectedSize === item.size
-                      ? "bg-orange-500  border-black "
-                      : ""
+                    selectedSize === item ? "bg-orange-500  border-black " : ""
                   }`}
-                  value={item.size}
+                  value={item}
                   onClick={handleSizeChange}
-                  key={item.id}
+                  key={item}
                 >
-                  {item.size}
+                  {item}
                 </button>
               ))}
           </div>
         </div>
         <div className="border-b border-black p-4 text-sm">
           <ul className=" mx-5 list-disc space-y-1 ">
-            {features &&
-              features.map((item) => <li key={item.id}>{item.feature}</li>)}
+            {features && features.map((item) => <li key={item}>{item}</li>)}
           </ul>
           <div className="mt-8">
             <p>Material: 100% calfskin</p>

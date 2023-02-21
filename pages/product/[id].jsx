@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { createClient } from "contentful";
+
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
 
-import axios from "axios";
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
 export default function ProductPage() {
@@ -14,23 +15,26 @@ export default function ProductPage() {
   const [selectedColorName, setSelectedColorName] = useState("");
   const [quantity, setQuantity] = useState(1);
 
-  const API_URL = process.env.NEXT_PUBLIC_URL;
-
   const dispatch = useDispatch();
   const router = useRouter();
 
   const {
     query: { id },
   } = useRouter();
-  //get data product
+
   useEffect(() => {
-    async function fetchData() {
-      const result = await axios.get(
-        `${API_URL}/api/products/${id}?populate=*`
-      );
-      setProduct(result.data.data.attributes);
-    }
-    fetchData();
+    const getStataicProps = async () => {
+      const client = createClient({
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+      });
+      const res = await client.getEntries({
+        content_type: "product",
+        "fields.slug": id,
+      });
+      setProduct(res.items[0].fields);
+    };
+    getStataicProps();
   }, [id]);
 
   //save color
@@ -77,29 +81,16 @@ export default function ProductPage() {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  let colorWithImage = [];
-  if (product.colors && product.imagecolorslider) {
-    colorWithImage = product.colors.map((color, index) => {
-      const colorImage = product.imagecolorslider.data[index].attributes.url;
-      return {
-        id: color.id,
-        color: color.color,
-        image: colorImage ? colorImage : null,
-      };
-    });
-  }
   return (
     <ProductPageTemplate
       product={product}
       selectedColor={selectedColor}
       selectedSize={selectedSize}
-      colorWithImage={colorWithImage}
       formattedPrice={formattedPrice}
       handleGoToCart={handleGoToCart}
       handleAddToCart={handleAddToCart}
       handleSizeChange={handleSizeChange}
       handleColorChange={handleColorChange}
-      URL={API_URL}
     />
   );
 }

@@ -6,7 +6,7 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default function ProductCard({ product, link, URL }) {
+export default function ProductCard({ product, images, link, URL }) {
   const [hoverItemCard, setHoverItemCard] = useState(false);
   const [width, setWidth] = useState(900);
   const [height, setHeight] = useState(900);
@@ -40,11 +40,13 @@ export default function ProductCard({ product, link, URL }) {
     };
   }, []);
 
+  console.log(product);
+
   return (
     <Link
-      href={`${link}/${product.id}`}
-      as={`${link}/${product.id}`}
-      key={product.id}
+      href={`${link}/${product.slug}`}
+      as={`${link}/${product.slug}`}
+      key={product.slug}
     >
       <div
         className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
@@ -53,9 +55,9 @@ export default function ProductCard({ product, link, URL }) {
       >
         <div className="w-full h-3/4 relative ">
           <Slider {...settings}>
-            {product.attributes.image.data.map((image) => (
+            {product.image.map((image) => (
               <Image
-                src={`${URL}${image.attributes.url}`}
+                src={`https:${image.fields.file.url}`}
                 alt="test"
                 width={width}
                 height={height}
@@ -71,21 +73,19 @@ export default function ProductCard({ product, link, URL }) {
             hoverItemCard ? "opacity-0" : ""
           } text-center text-xs space-y-0 relative flex flex-col items-center h-full justify-center duration-700`}
         >
-          <p className="font-bold uppercase">{product.attributes.name}</p>
-          <p className="font-light">
-            {formattedPrice(product.attributes.price)}
-          </p>
+          <p className="font-bold uppercase">{product.name}</p>
+          <p className="font-light">{formattedPrice(product.price)}</p>
         </div>
         <div
           className={`${
             hoverItemCard ? "" : "opacity-0"
           } flex space-x-5  items-center absolute  bottom-16  duration-700 `}
         >
-          {product.attributes.colors.map((item) => (
+          {product.colors.map((item) => (
             <div
-              style={{ backgroundColor: item.hashcolor }}
+              style={{ backgroundColor: item }}
               className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
-              key={item.id}
+              key={item}
             ></div>
           ))}
         </div>
@@ -94,12 +94,12 @@ export default function ProductCard({ product, link, URL }) {
             hoverItemCard ? "" : "opacity-0"
           } flex space-x-2  items-center absolute  bottom-8  duration-300 text-center`}
         >
-          {product.attributes.sizes.map((item) => (
+          {product.size.map((item) => (
             <div
               className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500"
               key={item.id}
             >
-              {item.size}
+              {item}
             </div>
           ))}
         </div>
