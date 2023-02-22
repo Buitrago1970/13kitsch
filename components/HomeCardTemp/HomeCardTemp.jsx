@@ -20,6 +20,7 @@ export default function HomeCardTemp() {
     };
     getStaticProps();
   }, [dispatch]);
+  console.log(process.env.CONTENTFUL_ACCESS_TOKEN);
   return (
     <>
       <div className="h-10 border-b products-count flex items-center px-3 border-black">
