@@ -20,7 +20,6 @@ export default function HomeCardTemp() {
     };
     x();
   }, [dispatch]);
-  console.log(process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID);
 
   return (
     <>

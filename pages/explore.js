@@ -12,8 +12,8 @@ export default function Expolore() {
   useEffect(() => {
     const getStataicProps = async () => {
       const client = createClient({
-        space: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
       });
       const res = await client.getEntries({ content_type: "exponer" });
       dispatch(setExploreProducts(res.items));
