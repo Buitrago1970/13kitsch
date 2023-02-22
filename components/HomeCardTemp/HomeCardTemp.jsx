@@ -10,17 +10,17 @@ export default function HomeCardTemp() {
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    const getStaticProps = async () => {
+    const x = async () => {
       const client = createClient({
-        space: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
       });
       const res = await client.getEntries({ content_type: "product" });
       dispatch(setProducts(res.items));
     };
-    getStaticProps();
+    x();
   }, [dispatch]);
-  console.log(process.env.CONTENTFUL_ACCESS_TOKEN);
+
   return (
     <>
       <div className="h-10 border-b products-count flex items-center px-3 border-black">

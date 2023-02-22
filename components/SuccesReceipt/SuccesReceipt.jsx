@@ -14,7 +14,7 @@ const SuccessReceipt = () => {
     const order = JSON.parse(localStorage.getItem("order"));
     setOrder(order);
     dispatch(clearCart());
-  }, []);
+  }, [dispatch]);
 
   console.log(order, "order");
 
