@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function ProductPage({
   product,
   formattedPrice,
+  colorExists,
   selectedColor,
   handleColorChange,
   selectedSize,
@@ -12,6 +13,8 @@ export default function ProductPage({
   handleGoToCart,
 }) {
   const { name, description, image, features, size, colorsSlice } = product;
+  console.log(colorsSlice, "colorsSlice");
+  console.log(colorExists, "colorExists");
 
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 ">
@@ -34,42 +37,44 @@ export default function ProductPage({
           <p className="w-3/4 text-xs mb-4 lg:hidden"> COP ${formattedPrice}</p>
           <p className="text-xs mb-10">{description}</p>
         </div>
-        <div className="border-b border-black py-4 flex flex-col">
-          <p className="mx-3 text-sm">Selecionar color:</p>
-          <div className="flex justify-center py-3 ">
-            {colorsSlice &&
-              colorsSlice.fields.thumbnail.map((item, index) => (
-                <button
-                  className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
-                    selectedColor === colorsSlice.fields.title[index]
-                      ? " border-black "
-                      : ""
-                  }`}
-                  key={index}
-                  data-value={colorsSlice.fields.title[index]}
-                  onClick={handleColorChange}
-                  color-name={colorsSlice.fields.title[index]}
-                >
-                  <Image
-                    src={item && `https:${item.fields.file.url}`}
-                    alt="13Kitsch"
-                    width={55}
-                    height={55}
-                    objectFit="cover"
-                    key={index}
-                    data-value={colorsSlice.fields.title[index]}
-                    onClick={handleColorChange}
-                    color-name={colorsSlice.fields.title[index]}
-                    className={`${
+        {colorExists && (
+          <div className="border-b border-black py-4 flex flex-col">
+            <p className="mx-3 text-sm">Selecionar color:</p>
+            <div className="flex justify-center py-3 ">
+              {colorsSlice &&
+                colorsSlice.fields.thumbnail.map((item, index) => (
+                  <button
+                    className={`mx-4 w-[70px] h-[70px] border rounded-md flex justify-center items-center  ${
                       selectedColor === colorsSlice.fields.title[index]
                         ? " border-black "
                         : ""
                     }`}
-                  />
-                </button>
-              ))}
+                    key={index}
+                    data-value={colorsSlice.fields.title[index]}
+                    onClick={handleColorChange}
+                    color-name={colorsSlice.fields.title[index]}
+                  >
+                    <Image
+                      src={item && `https:${item.fields.file.url}`}
+                      alt="13Kitsch"
+                      width={55}
+                      height={55}
+                      objectFit="cover"
+                      key={index}
+                      data-value={colorsSlice.fields.title[index]}
+                      onClick={handleColorChange}
+                      color-name={colorsSlice.fields.title[index]}
+                      className={`${
+                        selectedColor === colorsSlice.fields.title[index]
+                          ? " border-black "
+                          : ""
+                      }`}
+                    />
+                  </button>
+                ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="border-b p-3 border-black">
           <p className="text-sm">Selecionar talla:</p>

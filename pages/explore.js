@@ -26,7 +26,7 @@ export default function Expolore() {
       <div className="h-10 border-b products-count flex items-center px-3 border-black">
         <p className=" text-sm ">{products && products.length} Resultados</p>
       </div>
-      <section className="grid-cols-2 w-full grid md:grid-cols-3 xl:grid-cols-4">
+      <section className="grid-cols-2 w-full grid md:grid-cols-3">
         {products &&
           products.map((product) => (
             <ProductCard

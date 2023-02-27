@@ -13,6 +13,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedColorName, setSelectedColorName] = useState("");
+  const [colorExists, setColorExists] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
@@ -49,12 +50,14 @@ export default function ProductPage() {
   };
   //add to cart
   function handleAddToCart() {
+    if (colorExists) {
+      if (selectedColor === "") {
+        alert("Selecciona color ");
+        return;
+      }
+    }
     if (selectedSize === "") {
       alert("Selecciona talla ");
-      return;
-    }
-    if (selectedColor === "") {
-      alert("Selecciona color ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -65,9 +68,11 @@ export default function ProductPage() {
       alert("Selecciona talla ");
       return;
     }
-    if (selectedColor === "") {
-      alert("Selecciona color ");
-      return;
+    if (colorExists) {
+      if (selectedColor === "") {
+        alert("Selecciona color ");
+        return;
+      }
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
     router.push("/cart");
@@ -80,11 +85,20 @@ export default function ProductPage() {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
+  useEffect(() => {
+    console.log(product.colorsSlice, "colorsSlice, productPage");
+    if (product.colorsSlice === undefined) {
+      setColorExists(false);
+    } else {
+      setColorExists(true);
+    }
+  }, [product]);
 
   return (
     <ProductPageTemplate
       product={product}
       selectedColor={selectedColor}
+      colorExists={colorExists}
       selectedSize={selectedSize}
       formattedPrice={formattedPrice}
       handleGoToCart={handleGoToCart}

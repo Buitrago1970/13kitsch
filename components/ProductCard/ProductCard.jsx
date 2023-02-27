@@ -39,6 +39,7 @@ export default function ProductCard({ product, link, id }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <Link
       href={`${link}/${product.slug}`}
@@ -46,7 +47,7 @@ export default function ProductCard({ product, link, id }) {
       key={id}
     >
       <div
-        className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[500px] md:justify-around md:pt-2"
+        className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[600px] md:justify-around md:pt-2"
         onMouseEnter={() => setHoverItemCard(true)}
         onMouseLeave={() => setHoverItemCard(false)}
       >
