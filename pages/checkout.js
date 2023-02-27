@@ -279,7 +279,7 @@ export default function Checkout() {
               </div>
               <input
                 type="text"
-                className="w-5/6 border border-black h-11 rounded md:w-9/12"
+                className="w-5/6 border border-black h-11 rounded md:w-9/12 p-3"
                 value={mail}
                 onChange={(e) => setMail(e.target.value)}
               />
@@ -357,7 +357,7 @@ export default function Checkout() {
                         <input
                           value="HomeDelivery"
                           type="radio"
-                          className="w-4 h-4"
+                          className="w-4 h-4 "
                           name="radio"
                           onChange={(e) => setShipping(e.target.value)}
                         />
@@ -379,19 +379,20 @@ export default function Checkout() {
             </div>
             {shipping === "PhysicalStore" || shipping === "" ? (
               <>
-                {" "}
                 {/* pick up in physical store */}
                 <div className="flex justify-center flex-col items-center mt-7">
-                  <div className="my-5 mb-10 flex flex-col text-center">
-                    <p>
-                      Para recoger en nuestra tienda fisica por favor danos tu
-                      nombre, numero celular para llamarte en caso que sea
-                      necesario
+                  <div className="my-5 p-5  flex flex-col text-center md:px-28">
+                    <h1 className="text-xl font-bold my-5 ">
+                      Formulario de entrega
+                    </h1>
+                    <p className="mb-5">
+                      Si deseas recoger tu pedido en nuestra tienda física, por
+                      favor indícanos tu nombre y número celular para
+                      contactarte si hay algún inconveniente
                     </p>
-                    <p>Nuestara tienda fisica esta ubicada en </p>
-
-                    <div className="text-sm text-gray-400">
-                      <p>Colombia - Bogota</p>
+                    <p>Te esperamos en nuestra dirección: </p>
+                    <div className="text-sm text-gray-400 ">
+                      <p>Colombia - Bogotá</p>
                       <p>Suba Calle 165a # 54c -95</p>
                       <p>Local 401</p>
                     </div>
@@ -405,7 +406,7 @@ export default function Checkout() {
                       </div>
                       <input
                         type="text"
-                        className="w-10/12 border border-black h-11 rounded md:w-9/12"
+                        className="w-10/12 border border-black h-11 rounded md:w-9/12 p-3"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
@@ -418,7 +419,7 @@ export default function Checkout() {
                         </div>
                         <input
                           type="text"
-                          className=" border border-black h-11 rounded w-full"
+                          className=" border border-black h-11 rounded w-full p-3"
                           value={prefix}
                           onChange={(e) => setPrefix(e.target.value)}
                         />
@@ -430,7 +431,7 @@ export default function Checkout() {
                         </div>
                         <input
                           type="text"
-                          className=" border border-black h-11 rounded w-full"
+                          className=" border border-black h-11 rounded w-full p-3"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                         />
@@ -438,11 +439,13 @@ export default function Checkout() {
                     </div>
                   </div>
                   <div className="bg-gray-200 border border-black px-4 py-4 rounded font-medium text-base w-9/12 text-center">
-                    <p>Tu pedio sera enviado a la tienda el 23 de enero</p>
+                    {" "}
                     <p>
-                      Puedes pasar a cualquier hora entre las 7:00 o AM 7:00 PM
-                    </p>
-                    <p>despues del 23 de enero</p>
+                      Tu pedido estará listo para recoger en la tienda el 23 de
+                      enero
+                    </p>{" "}
+                    <p> El horario de atención es de 7:00 AM a 7:00 PM </p>{" "}
+                    <p>Gracias por tu preferencia</p>{" "}
                   </div>
                   <button
                     className="bg-black text-white w-5/6 mt-10  h-11 m-auto  rounded mx-auto uppercase md:w-9/12 "
@@ -464,14 +467,16 @@ export default function Checkout() {
                     <p className="underline">Editar</p>
                   </Link>
                 </div>
-                <div className="my-10 px-28 flex flex-col text-center">
-                  <h1 className="text-2xl font-medium my-5 ">
-                    Idicaciones de entrega
+                <div className="my-5 p-5  flex flex-col text-center md:px-28">
+                  <h1 className="text-xl font-bold my-5 ">
+                    Formulario de entrega
                   </h1>
+
                   <p>
-                    Para enviar el pedido a tu direccion regalonos tu nombre, la
-                    direccion a la cual quieres que mandemos el pedido y alguna
-                    referencia adicional de la direccion
+                    ¡Estamos felices de enviarte el pedido a tu dirección! Por
+                    favor, dinos tu nombre, la dirección donde quieres recibir
+                    el pedido y alguna referencia adicional que nos ayude a
+                    encontrarla. 😊
                   </p>
                 </div>
                 <div className="flex justify-center flex-col items-center mt-7 mb-10">
@@ -481,20 +486,20 @@ export default function Checkout() {
                   </div>
                   <input
                     type="text"
-                    className="w-5/6  border border-black h-11 rounded  md:w-9/12"
+                    className="w-5/6  border border-black h-11 rounded  md:w-9/12 p-3"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
 
                 <div className="flex justify-center flex-col items-center mt-7">
-                  <div className="flex justify-between w-5/6 mb-1 text-gray-400 text-sm  md:w-9/12">
+                  <div className="flex justify-between w-5/6 mb-1 text-gray-400 text-sm  md:w-9/12 p-3">
                     <p>Direccion</p>
                     <p>*obligatorio</p>
                   </div>
                   <input
                     type="text"
-                    className="w-5/6 border border-black h-11 rounded  md:w-9/12"
+                    className="w-5/6 border border-black h-11 rounded  md:w-9/12 p-3 "
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   />
@@ -506,7 +511,7 @@ export default function Checkout() {
                   </div>
                   <input
                     type="text"
-                    className="w-5/6 border border-black h-20 rounded  md:w-9/12"
+                    className="w-5/6 border border-black h-20 rounded  md:w-9/12 p-3"
                     value={reference}
                     onChange={(e) => setReference(e.target.value)}
                   />
@@ -526,7 +531,6 @@ export default function Checkout() {
           <>
             {shipping === "" ? (
               <div className="py-5  border-black flex flex-col border-b relative">
-                {" "}
                 <a
                   className="text-end text-sm underline absolute right-5 top-4 cursor-pointer"
                   onClick={() => {
@@ -567,7 +571,7 @@ export default function Checkout() {
                       </div>
                       <div className="flex flex-col items-center mt-5 text-sm">
                         <p className="text-gray-400 mb-1">
-                          Tu pedido sera enviado a la tienda el 66 de enero
+                          Puedes recoger tu pedido desde el 31/01/2023 en:
                         </p>
                         <p className=" mb-1">
                           Suba Calle 165a # 54c -95 Local 401
@@ -656,7 +660,7 @@ export default function Checkout() {
                           </span>
                         </div>
                       </label>
-                    </li>{" "}
+                    </li>
                     <li className="px-3  cursor-pointer hover:bg-gray-100 border-t border-black">
                       <label className="flex items-center cursor-pointer h-16 w-full">
                         {/* dot */}
@@ -820,7 +824,7 @@ export default function Checkout() {
                       {product.product.name}
                     </p>
                     <p>
-                      ${" "}
+                      $
                       {product.product.price
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
