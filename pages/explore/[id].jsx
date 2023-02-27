@@ -11,8 +11,8 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedColorName, setSelectedColorName] = useState("");
+  const [colorExists, setColorExists] = useState(true);
   const [quantity, setQuantity] = useState(1);
-
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -36,16 +36,6 @@ export default function ProductPage() {
     getStataicProps();
   }, [id]);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const result = await axios.get(
-  //       `http://localhost:1337/api/explores/${id}?populate=*`
-  //     );
-  //     setProduct(result.data.data.attributes);
-  //   }
-  //   fetchData();
-  // }, [id]);
-
   //save color
   const handleColorChange = (event) => {
     setSelectedColor(event.target.getAttribute("data-value"));
@@ -58,24 +48,28 @@ export default function ProductPage() {
   };
   //add to cart
   function handleAddToCart() {
+    if (colorExists) {
+      if (selectedColor === "") {
+        alert("Selecciona color ");
+        return;
+      }
+    }
     if (selectedSize === "") {
       alert("Selecciona talla ");
-      return;
-    }
-    if (selectedColor === "") {
-      alert("Selecciona color ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
   }
   //go to cart
   function handleGoToCart() {
+    if (colorExists) {
+      if (selectedColor === "") {
+        alert("Selecciona color ");
+        return;
+      }
+    }
     if (selectedSize === "") {
       alert("Selecciona talla ");
-      return;
-    }
-    if (selectedColor === "") {
-      alert("Selecciona color ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -90,25 +84,20 @@ export default function ProductPage() {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  let colorWithImage = [];
-
-  if (product.colors && product.imagecolorslider) {
-    colorWithImage = product.colors.map((color, index) => {
-      const colorImage = product.imagecolorslider.data[index].attributes.url;
-      return {
-        id: color.id,
-        color: color.color,
-        image: colorImage ? colorImage : null,
-      };
-    });
-  }
+  useEffect(() => {
+    if (product.colorsSlice === undefined) {
+      setColorExists(false);
+    } else {
+      setColorExists(true);
+    }
+  }, [product]);
 
   return (
     <ProductPageTemplate
       product={product}
       selectedColor={selectedColor}
+      colorExists={colorExists}
       selectedSize={selectedSize}
-      colorWithImage={colorWithImage}
       formattedPrice={formattedPrice}
       handleGoToCart={handleGoToCart}
       handleAddToCart={handleAddToCart}

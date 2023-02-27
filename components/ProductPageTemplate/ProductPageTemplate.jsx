@@ -13,9 +13,7 @@ export default function ProductPage({
   handleGoToCart,
 }) {
   const { name, description, image, features, size, colorsSlice } = product;
-  console.log(colorsSlice, "colorsSlice");
-  console.log(colorExists, "colorExists");
-
+  console.log(product.colorsSlice, "product.colorsSlice");
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 ">
       <div className=" my-16 ">

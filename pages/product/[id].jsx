@@ -86,7 +86,6 @@ export default function ProductPage() {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
   useEffect(() => {
-    console.log(product.colorsSlice, "colorsSlice, productPage");
     if (product.colorsSlice === undefined) {
       setColorExists(false);
     } else {
