@@ -383,16 +383,20 @@ export default function Checkout() {
                 {/* pick up in physical store */}
                 <div className="flex justify-center flex-col items-center mt-7">
                   <div className="my-5 mb-10 flex flex-col text-center">
-                    <h1 className="font-bold text-xl my-3">TIENDA</h1>
+                    <p>
+                      Para recoger en nuestra tienda fisica por favor danos tu
+                      nombre, numero celular para llamarte en caso que sea
+                      necesario
+                    </p>
+                    <p>Nuestara tienda fisica esta ubicada en </p>
+
                     <div className="text-sm text-gray-400">
                       <p>Colombia - Bogota</p>
                       <p>Suba Calle 165a # 54c -95</p>
                       <p>Local 401</p>
                     </div>
                   </div>
-                  <p className="font-bold p-2 text-center">
-                    POR FAVOR, INGRESE SU INFORMACIÓN DE RECOGIDA
-                  </p>
+
                   <div className="w-full">
                     <div className="flex justify-center flex-col items-center my-10 mb-1">
                       <div className="flex justify-between w-10/12  mb-1 text-gray-400 text-sm md:w-9/12">
@@ -433,8 +437,12 @@ export default function Checkout() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-yellow-100 px-4 py-4 rounded font-medium text-base w-9/12 text-center">
-                    <p>!Tu pedio sera enviado a la tienda el 66 de enero!</p>
+                  <div className="bg-gray-200 border border-black px-4 py-4 rounded font-medium text-base w-9/12 text-center">
+                    <p>Tu pedio sera enviado a la tienda el 23 de enero</p>
+                    <p>
+                      Puedes pasar a cualquier hora entre las 7:00 o AM 7:00 PM
+                    </p>
+                    <p>despues del 23 de enero</p>
                   </div>
                   <button
                     className="bg-black text-white w-5/6 mt-10  h-11 m-auto  rounded mx-auto uppercase md:w-9/12 "
@@ -456,9 +464,16 @@ export default function Checkout() {
                     <p className="underline">Editar</p>
                   </Link>
                 </div>
-                <p className="font-bold text-center mt-14 mb-5">
-                  POR FAVOR, INGRESE SU INFORMACIÓN DE ENTREGA
-                </p>
+                <div className="my-10 px-28 flex flex-col text-center">
+                  <h1 className="text-2xl font-medium my-5 ">
+                    Idicaciones de entrega
+                  </h1>
+                  <p>
+                    Para enviar el pedido a tu direccion regalonos tu nombre, la
+                    direccion a la cual quieres que mandemos el pedido y alguna
+                    referencia adicional de la direccion
+                  </p>
+                </div>
                 <div className="flex justify-center flex-col items-center mt-7 mb-10">
                   <div className="flex justify-between w-5/6  mb-1 text-gray-400 text-sm  md:w-9/12">
                     <p>Nombre</p>

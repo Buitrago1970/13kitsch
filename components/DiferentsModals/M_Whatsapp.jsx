@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function M_Whatsapp({ setShowModal, handleSendOrderWhasapp }) {
   return (
-    <div className="w-screen  fixed inset-0 z-50  bg-transparent-black flex">
-      <div className="w-[300px] bg-white rounded md:w-[600px] md:h-[650px] m-auto  ">
+    <div className="w-screen  fixed inset-0 z-[99999]  bg-transparent-black flex justify-center">
+      <div className="w-[500px] h-full my-5 bg-white rounded m-2 md:w-[600px] md:h-[650px]  ">
         <div className="flex justify-end">
           <button
             className="rounded-full bg-red-500 text-black w-5 h-5 border border-black flex justify-center items-center m-2 shadow-md hover:bg-red-600 hover:shadow-none"

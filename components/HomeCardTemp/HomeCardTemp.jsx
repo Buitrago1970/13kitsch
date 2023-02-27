@@ -28,7 +28,7 @@ export default function HomeCardTemp() {
           {products.products && products.products.length} - Resultados
         </p>
       </div>
-      <section className="grid-cols-2 w-full grid md:grid-cols-3  ">
+      <section className="grid-cols-2 w-full grid md:grid-cols-3  min-h-screen">
         {products.products &&
           products.products.map((product) => (
             <ProductCard

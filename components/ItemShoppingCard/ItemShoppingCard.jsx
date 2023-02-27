@@ -58,7 +58,7 @@ export default function ItemShoppingCard({ product }) {
   }
 
   return (
-    <div className=" grid overflow-hidden mb-5 border border-black border-b grid-cols-1 shadow-lg rounded-sm  bg-white md:grid-cols-2 md:grid-rows-[70px_minmax(500px,_1fr)_40px]  ">
+    <div className=" grid overflow-hidden mb-5 border border-black border-b grid-cols-1 shadow-lg rounded-sm  bg-white md:grid-cols-2 md:grid-rows-[100px_minmax(500px,_1fr)_40px]  ">
       <div className="h-[500px]  border-black row-span-3 p-2  ">
         <div className="relative h-full ">
           <div>
