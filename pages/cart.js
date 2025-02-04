@@ -39,29 +39,44 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="flex flex-col mt-20">
-        <h1 className="text-2xl font-semibold mb-16 text-center">
-          Algunos productos que podrían interesarte ✨
-        </h1>
-        <div className="grid-cols-2 w-full grid md:grid-cols-3 lg:grid-cols-4 border-t border-black min-h-screen bg-black p-1">
-          {popular &&
-            popular.map((product) => (
-              <ProductCard
-                product={product.fields}
-                link={"/popular"}
-                key={product.sys.id}
-                id={product.sys.id}
-              />
-            ))}
+      <div className="w-full">
+        <div className="container mx-auto px-6 py-16 pb-5 max-w-7xl">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-light mb-6 tracking-wide">
+              Su carrito está vacío
+            </h1>
+            <div className="w-24 h-0.5 bg-gray-300 mx-auto mb-8"></div>
+            <p className="text-gray-700 text-lg font-light tracking-wide mb-12">
+              Le invitamos a explorar nuestra exclusiva colección
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full bg-black/95 py-16">
+          <div className=" mx-auto px-4">
+           
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1">
+              {popular && popular.map((product) => (
+                <div key={product.sys.id} 
+                     className="bg-black/90 p-0.5 transition-colors duration-300 hover:bg-zinc-900">
+                  <ProductCard
+                    product={product.fields}
+                    link={"/popular"}
+                    id={product.sys.id}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );
-  } else {
-    return (
-      <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3 md:grid-shopping-cart-md">
-        <ShoppingCart cart={cart} />
-        <Bill cart={cart} totalPrice={totalPrice} />
-      </section>
-    );
   }
+
+  return (
+    <section className="grid-shopping-cart grid grid-cols-1 grid-rows-1 md:grid-cols-3 md:grid-shopping-cart-md">
+      <ShoppingCart cart={cart} />
+      <Bill cart={cart} totalPrice={totalPrice} />
+    </section>
+  );
 }
