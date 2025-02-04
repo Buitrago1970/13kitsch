@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import Header from "../Header/Header";
 
 export default function HeaderSection() {
@@ -7,7 +6,6 @@ export default function HeaderSection() {
     <>
       <section className="section-top">
         <Header />
-        <Navbar />
       </section>
     </>
   );
