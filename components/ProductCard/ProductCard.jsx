@@ -118,7 +118,7 @@ export default function ProductCard({ product, link, id }) {
         >
           {product.size.map((item, index) => (
             <div
-              className="px-2 py-1 text-xs border border-gray-300 rounded hover:border-black hover:bg-gray-100 transition-all duration-200 cursor-pointer"
+              className="px-2 py-1 text-xs border border-gray-300 rounded hover:border-black hover:bg-gray-100 transition-all duration-200 cursor-pointer uppercase"
               key={index}
             >
               {item}
