@@ -43,7 +43,7 @@ export default function Cart() {
         <h1 className="text-2xl font-semibold mb-16 text-center">
           Algunos productos que podrían interesarte ✨
         </h1>
-        <div className="grid-cols-2 w-full grid md:grid-cols-3 lg:grid-cols-4 border-t border-black">
+        <div className="grid-cols-2 w-full grid md:grid-cols-3 lg:grid-cols-4 border-t border-black min-h-screen bg-black p-1">
           {popular &&
             popular.map((product) => (
               <ProductCard

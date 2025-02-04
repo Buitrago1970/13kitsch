@@ -46,7 +46,7 @@ export default function Header() {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center space-x-6 h-11 w-[20%] text-xs">
+          <div className="flex items-center space-x-6 h-11 w-[20%] text-xs justify-around">
             <div className="relative">
               <button 
                 className="hover:text-gray-300 transition-colors cursor-pointer"

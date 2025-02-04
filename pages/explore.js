@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setExploreProducts } from "../features/product/productSlice";
 import { createClient } from "contentful";
-
+import BannerExplore from "../components/BannerExplore/BannerExplore";
 export default function Expolore() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.explore);
@@ -26,7 +26,8 @@ export default function Expolore() {
       <div className="h-10 border-b products-count flex items-center px-3 border-black">
         <p className=" text-sm ">{products && products.length} Resultados</p>
       </div>
-      <section className="grid-cols-2 w-full grid md:grid-cols-3">
+    <BannerExplore/>
+      <section className="grid-cols-2 w-full grid md:grid-cols-4 min-h-screen bg-black p-1">
         {products &&
           products.map((product) => (
             <ProductCard
