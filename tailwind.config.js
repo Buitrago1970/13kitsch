@@ -13,6 +13,15 @@ module.exports = {
         "basic-gary": "#F2F2F2",
         "transparent-black": "rgba(0, 0, 0, 0.7)",
       },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        scroll: 'scroll 30s linear infinite',
+      },
     },
   },
   plugins: [],
