@@ -57,13 +57,15 @@ export default function ProductCard({ product, link, id }) {
         <div className="justify-start relative flex flex-col w-full pl-3 mb-2">
           <p className="text-sm font-bold uppercase">{product.name}</p>
           <p className="font-light text-xs mb-2">{formattedPrice(product.price)}</p>
+          <div className="flex gap-1">
           {product.colors?.map((item, index) => (
-            <div
+            <p
               style={{ backgroundColor: item }}
               className=" rounded-xl w-3 h-3 border border-y-gray-300 hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
               key={index}
-            ></div>
+            ></p>
           ))}
+          </div>
         </div>
         
         <div className="flex-1 w-full relative overflow-hidden flex items-center justify-center p-4">
@@ -80,7 +82,8 @@ export default function ProductCard({ product, link, id }) {
                   objectFit: 'contain'
                 }}
                 className="object-contain"
-                priority
+                loading="lazy"
+                priority={false}
               />
             </div>
           )}
