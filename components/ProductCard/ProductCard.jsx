@@ -1,44 +1,47 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Slider from "react-slick";
 import Link from "next/link";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 export default function ProductCard({ product, link, id }) {
   const [hoverItemCard, setHoverItemCard] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [width, setWidth] = useState(900);
   const [height, setHeight] = useState(900);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    arrows: false,
-  };
+
   const formattedPrice = (price) => {
     let formattedPrice;
     formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return `$ ${formattedPrice}`;
   };
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setWidth(270);
         setHeight(270);
       } else {
-        setWidth(900);
-        setHeight(900);
+        setWidth(400);
+        setHeight(400);
       }
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === product.image.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? product.image.length - 1 : prev - 1
+    );
+  };
 
   return (
     <Link
@@ -47,54 +50,72 @@ export default function ProductCard({ product, link, id }) {
       key={id}
     >
       <div
-        className="flex flex-col justify-evenly h-[400px] border-r border-b border-black items-center relative cursor-pointer   md:h-[600px] md:justify-around md:pt-2"
+        className="flex flex-col rounded-sm min-h-[400px] max-h-[600px] h-full bg-white m-1 items-center relative cursor-pointer pt-3"
         onMouseEnter={() => setHoverItemCard(true)}
         onMouseLeave={() => setHoverItemCard(false)}
       >
-        <div className="w-full h-3/4 relative ">
-          <Slider {...settings}>
-            {product.image.map((image) => (
-              <Image
-                src={`https:${image.fields.file.url}`}
-                alt="test"
-                width={width}
-                height={height}
-                quality={100}
-                objectFit="contain"
-                key={image.fields.file.url}
-              />
-            ))}
-          </Slider>
-        </div>
-        <div
-          className={`${
-            hoverItemCard ? "opacity-0" : ""
-          } text-center text-xs space-y-0 relative flex flex-col items-center h-full justify-center duration-700`}
-        >
-          <p className="font-bold uppercase">{product.name}</p>
-          <p className="font-light">{formattedPrice(product.price)}</p>
-        </div>
-        <div
-          className={`${
-            hoverItemCard ? "" : "opacity-0"
-          } flex space-x-5  items-center absolute  bottom-16  duration-700 `}
-        >
-          {product.colors.map((item, index) => (
+        <div className="justify-start relative flex flex-col w-full pl-3 mb-2">
+          <p className="text-sm font-bold uppercase">{product.name}</p>
+          <p className="font-light text-xs mb-2">{formattedPrice(product.price)}</p>
+          {product.colors?.map((item, index) => (
             <div
               style={{ backgroundColor: item }}
-              className="rounded-sm w-4 h-4 border border-black hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
+              className=" rounded-xl w-3 h-3 border border-y-gray-300 hover:w-[18px] hover:h-[18px] hover:border-2 duration-700"
               key={index}
             ></div>
           ))}
         </div>
+        
+        <div className="flex-1 w-full relative overflow-hidden flex items-center justify-center p-4">
+          {product.image && product.image[currentImageIndex] && (
+            <div className="relative w-full h-full aspect-square flex justify-center items-center">
+              <Image
+                src={`https:${product.image[currentImageIndex].fields.file.url}`}
+                alt={product.name}
+                width={width}
+                height={height}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain'
+                }}
+                className="object-contain"
+                priority
+              />
+            </div>
+          )}
+          {hoverItemCard && product.image.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  prevImage();
+                }}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full"
+              >
+                &#8592;
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  nextImage();
+                }}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full"
+              >
+                &#8594;
+              </button>
+            </>
+          )}
+        </div>
+
         <div
           className={`${
             hoverItemCard ? "" : "opacity-0"
-          } flex space-x-2  items-center absolute  bottom-8  duration-300 text-center`}
+          } flex items-center justify-center gap-2 w-full py-4 duration-300`}
         >
           {product.size.map((item, index) => (
             <div
-              className="w-4 h-4 flex font-light text-xs  hover:font-medium duration-500"
+              className="px-2 py-1 text-xs border border-gray-300 rounded hover:border-black hover:bg-gray-100 transition-all duration-200 cursor-pointer"
               key={index}
             >
               {item}
