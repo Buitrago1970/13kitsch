@@ -4,7 +4,7 @@ import HomeCardTemp from "../components/HomeCardTemp/HomeCardTemp";
 export default function Home() {
   return (
     <>
-      <HomeCard />
+      <HomeCard  className="overflow-hidden"/>
       <div className="bg-black text-white text-center  w-full h-[25vh] flex flex-col  gap-4">
         <p className="text-[#E61B12] text-2xl font-bold">Hombre Otoño-Invierno 2024</p>
         <div className="flex flex-col items-center gap-2">

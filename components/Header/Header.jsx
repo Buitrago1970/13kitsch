@@ -73,12 +73,12 @@ export default function Header() {
               )}
             </div>
             <div className="flex items-center space-x-6">
-              <Link href="/saved">
+              {/* <Link href="/saved">
                 <span className="group relative inline-block font-medium hover:text-gray-300 transition-colors cursor-pointer">
                   Saved
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300"/>
                 </span>
-              </Link>
+              </Link> */}
               <Link href="/cart">
                 <span className="group relative inline-block font-medium hover:text-gray-300 transition-colors cursor-pointer">
                   BAG
