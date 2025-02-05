@@ -7,6 +7,7 @@ export default function HeaderSection() {
       <section className="section-top">
         <Header />
       </section>
+      <div className="pt-11 md:pt-11">{/* This div adds padding to prevent content from being hidden behind the fixed header */}</div>
     </>
   );
 }

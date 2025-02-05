@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function ProductPage({
   product,
   formattedPrice,
+  selectedCurrency,
   colorExists,
   selectedColor,
   handleColorChange,
@@ -87,8 +88,8 @@ export default function ProductPage({
           <p className="text-xl mt-4 mb-1 font-bold lg:text-3xl lg:my-4">
             {name}
           </p>
-          <p className="w-3/4 text-xs mb-4 lg:hidden text-gray-700">
-            COP ${formattedPrice}
+          <p className="w-3/4 text-xs mb-4 lg:hidden">
+            {formattedPrice}
           </p>
           <p className="text-sm mb-10 text-gray-600">{description}</p>
         </div>
@@ -169,9 +170,8 @@ export default function ProductPage({
         </div>
         <div className="my-4 flex flex-col items-center font-light">
           <div className="flex items-center space-x-3">
-            <p>COP</p>
             <p className="hidden lg:block text-2xl text-center my-4 font-normal">
-              ${formattedPrice}
+              {formattedPrice}
             </p>
           </div>
           <button

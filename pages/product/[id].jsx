@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createClient } from "contentful";
-
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
+import { convertPrice, formatPrice } from "../../utils/currencyUtils";
 
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
@@ -22,6 +22,8 @@ export default function ProductPage() {
   const {
     query: { id },
   } = useRouter();
+
+  const { selectedCurrency, rates } = useSelector((state) => state.currency);
 
   useEffect(() => {
     const getStataicProps = async () => {
@@ -81,9 +83,8 @@ export default function ProductPage() {
   let formattedPrice;
 
   if (product.price) {
-    formattedPrice = product.price
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    const convertedPrice = convertPrice(product.price, rates, selectedCurrency);
+    formattedPrice = formatPrice(convertedPrice, selectedCurrency);
   }
   useEffect(() => {
     if (product.colorsSlice === undefined) {
@@ -100,6 +101,7 @@ export default function ProductPage() {
       colorExists={colorExists}
       selectedSize={selectedSize}
       formattedPrice={formattedPrice}
+      selectedCurrency={selectedCurrency}
       handleGoToCart={handleGoToCart}
       handleAddToCart={handleAddToCart}
       handleSizeChange={handleSizeChange}
