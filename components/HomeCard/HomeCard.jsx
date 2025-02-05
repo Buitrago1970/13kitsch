@@ -3,15 +3,16 @@ import React from "react";
 export default function HomeCard() {
   const imageSrc = "/kitschRecurso 777.svg";
   return (
-    <div className="relative w-screen h-[80vh] max-w-full overflow-hidden">
-      {/* Imagen de fondo */}
+    // Reemplazado: se elimina "aspect-[16/9]" y se usa "h-[32vh]" para reducir la altura en un 60%
+    <div className="relative w-full h-[75vh] overflow-hidden">
+      {/* Imagen de fondo responsiva */}
       <img
         src="/banner.jpg"
         alt="Background"
-        className="absolute w-screen h-[80vh] object-cover top-0 left-0 "
+        className="absolute inset-0 w-full h-full object-cover"
       />
       {/* Contenedor del SVG animado */}
-      <div className="absolute inset-0 flex justify-center ">
+      <div className="absolute inset-0 flex justify-center">
         <div className="flex animate-scroll">
           {/* Primera copia del SVG */}
           <img
