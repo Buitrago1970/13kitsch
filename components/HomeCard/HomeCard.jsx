@@ -6,7 +6,7 @@ export default function HomeCard({ className = "" }) {
     <div className={`relative w-full h-full overflow-hidden ${className}`}>
       {/* Imagen de fondo que se ajusta siempre al contenedor */}
       <img
-        src="/banner.jpg"
+        src="extended_image.jpeg"
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover"
       />
