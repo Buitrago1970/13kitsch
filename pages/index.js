@@ -30,7 +30,7 @@ export default function Home() {
         {/* Para pantallas grandes */}
         <div className="hidden md:flex flex-col gap-4 h-[20vh] justify-center items-center">
           <p className="text-[#E61B12] text-2xl font-bold">
-            Hombre Otoño-Invierno 2024
+            Hombre Otoño-Invierno 2025
           </p>
           <div className="flex flex-col items-center gap-2">
             <p className="text-white text-sm">Deslizar Para descubrir</p>
@@ -42,7 +42,7 @@ export default function Home() {
         {/* Para pantallas pequeñas */}
         <div className="md:hidden flex flex-col gap-4 py-4 justify-center items-center">
           <p className="text-[#E61B12] text-2xl font-bold">
-            Hombre Otoño-Invierno 2024
+            Hombre Otoño-Invierno 2025
           </p>
           <div className="flex flex-col items-center gap-2">
             <p className="text-white text-sm">Deslizar Para descubrir</p>

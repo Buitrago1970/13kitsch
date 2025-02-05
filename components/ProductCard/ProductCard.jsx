@@ -19,14 +19,14 @@ export default function ProductCard({ product, link, id }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setWidth(200);
-        setHeight(200);
+        setWidth(400);  // increased from 300
+        setHeight(400); // increased from 300
       } else if (window.innerWidth < 768) {
-        setWidth(270);
-        setHeight(270);
+        setWidth(450);  // increased from 350
+        setHeight(450); // increased from 350
       } else {
-        setWidth(400);
-        setHeight(400);
+        setWidth(500);  // increased from 400
+        setHeight(500); // increased from 400
       }
     };
     handleResize();
