@@ -49,7 +49,7 @@ export default function HomeCardTemp() {
           {!isLoading && products.products && products.products.length} - Resultados
         </p>
       </div>
-      <section className="grid-cols-2 w-full grid md:grid-cols-3 min-h-screen bg-black p-1">
+      <section className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 min-h-screen bg-black p-1">
         {isLoading ? (
           <>
             {[...Array(6)].map((_, index) => (

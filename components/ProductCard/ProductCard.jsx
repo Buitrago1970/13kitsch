@@ -16,7 +16,10 @@ export default function ProductCard({ product, link, id }) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 640) {
+        setWidth(200);
+        setHeight(200);
+      } else if (window.innerWidth < 768) {
         setWidth(270);
         setHeight(270);
       } else {
@@ -50,7 +53,7 @@ export default function ProductCard({ product, link, id }) {
       key={id}
     >
       <div
-        className="flex flex-col rounded-sm min-h-[400px] max-h-[600px] h-full bg-white m-1 items-center relative cursor-pointer pt-3"
+        className="flex flex-col rounded-sm min-h-[300px] sm:min-h-[400px] max-h-[600px] h-full bg-white m-1 items-center relative cursor-pointer pt-3"
         onMouseEnter={() => setHoverItemCard(true)}
         onMouseLeave={() => setHoverItemCard(false)}
       >
