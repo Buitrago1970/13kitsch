@@ -32,7 +32,6 @@ export default function Collections() {
               <div className="h-128 border-r border-b border-black flex flex-col justify-center items-center relative cursor-pointer">
                 <div className="w-full h-full relative">
                   <Image
-                    // src="https://balenciaga.dam.kering.com/m/12e38bc725baafd4/Medium-725268TNU181000_F.jpg?v=3"
                     src={product.attributes}
                     alt="test"
                     objectFit="cover"
