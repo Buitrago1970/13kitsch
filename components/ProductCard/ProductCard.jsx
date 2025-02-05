@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from 'react-redux';
+import { convertPrice, formatPrice } from '../../utils/currencyUtils';
 
 export default function ProductCard({ product, link, id }) {
+  const { selectedCurrency, rates } = useSelector((state) => state.currency);
   const [hoverItemCard, setHoverItemCard] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [width, setWidth] = useState(900);
   const [height, setHeight] = useState(900);
 
   const formattedPrice = (price) => {
-    let formattedPrice;
-    formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return `$ ${formattedPrice}`;
+    const convertedPrice = convertPrice(price, rates, selectedCurrency);
+    return formatPrice(convertedPrice, selectedCurrency);
   };
 
   useEffect(() => {

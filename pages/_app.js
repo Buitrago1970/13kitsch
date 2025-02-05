@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { store } from "../store";
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 import Layout from "../components/Layout/Layout";
 import App from "next/app";
 
@@ -13,4 +13,5 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
+
 export default MyApp;

@@ -27,8 +27,8 @@ export default function Expolore() {
         <p className=" text-sm ">{products && products.length} Resultados</p>
       </div>
     <BannerExplore/>
-      <section className="grid-cols-2 w-full grid md:grid-cols-4 min-h-screen bg-black p-1">
-        {products &&
+    <section className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-1 min-h-screen bg-black p-1">
+    {products &&
           products.map((product) => (
             <ProductCard
               product={product.fields}
