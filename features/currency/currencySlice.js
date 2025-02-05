@@ -3,14 +3,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchExchangeRates = createAsyncThunk(
   'currency/fetchExchangeRates',
   async () => {
-    const response = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
+    const response = await fetch(`https://api.exchangerate-api.com/v4/latest/COP`);
     const data = await response.json();
     return data.rates;
   }
 );
 
 const initialState = {
-  selectedCurrency: 'USD',
+  selectedCurrency: 'COP',
   rates: null,
   status: 'idle',
   error: null

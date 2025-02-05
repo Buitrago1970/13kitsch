@@ -1,10 +1,10 @@
 export const convertPrice = (price, rates, targetCurrency) => {
   if (!rates || !price) return price;
   
-  // Si la moneda objetivo es USD, retornamos el precio original
-  if (targetCurrency === 'USD') return price;
+  // Si la moneda objetivo es COP, retornamos el precio original
+  if (targetCurrency === 'COP') return price;
   
-  // Convertimos el precio a la moneda objetivo
+  // Convertimos el precio desde COP a la moneda objetivo
   const convertedPrice = price * rates[targetCurrency];
   
   return Math.round(convertedPrice);
