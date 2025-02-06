@@ -7,6 +7,8 @@ import { setCurrency, fetchExchangeRates } from '../../features/currency/currenc
 export default function Header() {
   const dispatch = useDispatch();
   const currency = useSelector((state) => state.currency);
+  // Modificar esta línea para acceder correctamente al carrito
+  const cartItems = useSelector((state) => state.products.cart || []);
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -85,15 +87,14 @@ export default function Header() {
                 )}
               </div>
               <div className="flex items-center space-x-6">
-                {/* <Link href="/saved">
-                  <span className="group relative inline-block font-medium hover:text-gray-300 transition-colors cursor-pointer">
-                    Saved
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300"/>
-                  </span>
-                </Link> */}
                 <Link href="/cart">
                   <span className="group relative inline-block font-medium hover:text-gray-300 transition-colors cursor-pointer">
                     BAG
+                    {cartItems && cartItems.length > 0 && (
+                      <span className="absolute -top-2 -right-4 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                        {cartItems.length}
+                      </span>
+                    )}
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300"/>
                   </span>
                 </Link>
@@ -123,7 +124,14 @@ export default function Header() {
             </Link>
 
             <Link href="/cart">
-              <span className="text-sm">BAG</span>
+              <span className="text-sm relative">
+                BAG
+                {cartItems && cartItems.length > 0 && (
+                  <span className="absolute -top-2 -right-4 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                    {cartItems.length}
+                  </span>
+                )}
+              </span>
             </Link>
           </div>
 

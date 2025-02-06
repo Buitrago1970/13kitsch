@@ -69,7 +69,6 @@ export default function ProductPage({
   }
 
   const { name, description, image, features, size, colorsSlice } = product;
-  console.log(product, "product.colorsSlice");
   return (
     <section className="grid grid-cols-1 min-h-screen lg:grid-cols-2 grid-rows-1 gap-8 px-4">
       <div className="my-16">

@@ -5,6 +5,8 @@ import { createClient } from "contentful";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
 import { convertPrice, formatPrice } from "../../utils/currencyUtils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
@@ -54,25 +56,57 @@ export default function ProductPage() {
   function handleAddToCart() {
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.warning('Por favor selecciona un color', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         return;
       }
     }
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.warning('Por favor selecciona una talla', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
+    toast.success('¡Producto agregado al carrito!', {
+      position: "top-right",
+      autoClose: 2000,
+    });
   }
   //go to cart
   function handleGoToCart() {
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.warning('Por favor selecciona una talla', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
       return;
     }
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.warning('Por favor selecciona un color', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         return;
       }
     }
@@ -95,17 +129,20 @@ export default function ProductPage() {
   }, [product]);
 
   return (
-    <ProductPageTemplate
-      product={product}
-      selectedColor={selectedColor}
-      colorExists={colorExists}
-      selectedSize={selectedSize}
-      formattedPrice={formattedPrice}
-      selectedCurrency={selectedCurrency}
-      handleGoToCart={handleGoToCart}
-      handleAddToCart={handleAddToCart}
-      handleSizeChange={handleSizeChange}
-      handleColorChange={handleColorChange}
-    />
+    <>
+      <ToastContainer />
+      <ProductPageTemplate
+        product={product}
+        selectedColor={selectedColor}
+        colorExists={colorExists}
+        selectedSize={selectedSize}
+        formattedPrice={formattedPrice}
+        selectedCurrency={selectedCurrency}
+        handleGoToCart={handleGoToCart}
+        handleAddToCart={handleAddToCart}
+        handleSizeChange={handleSizeChange}
+        handleColorChange={handleColorChange}
+      />
+    </>
   );
 }
