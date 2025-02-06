@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
 import { createClient } from "contentful";
+import { ToastContainer, toast } from 'react-toastify';
 
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
 
@@ -50,12 +51,12 @@ export default function ProductPage() {
   function handleAddToCart() {
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.info("Selecciona color ");
         return;
       }
     }
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.info("Selecciona talla ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -64,12 +65,12 @@ export default function ProductPage() {
   function handleGoToCart() {
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.info("Selecciona color ");
         return;
       }
     }
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.info("Selecciona talla ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -91,6 +92,9 @@ export default function ProductPage() {
     }
   }, [product]);
   return (
+    <>
+         <ToastContainer position="top-center" />
+    
     <ProductPageTemplate
       product={product}
       selectedColor={selectedColor}
@@ -102,5 +106,6 @@ export default function ProductPage() {
       handleSizeChange={handleSizeChange}
       handleColorChange={handleColorChange}
     />
+    </>
   );
 }

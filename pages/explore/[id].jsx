@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/product/productSlice";
+import { ToastContainer, toast } from 'react-toastify';
 
 import { createClient } from "contentful";
 import ProductPageTemplate from "../../components/ProductPageTemplate/ProductPageTemplate";
@@ -50,12 +51,12 @@ export default function ProductPage() {
   function handleAddToCart() {
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.info("Selecciona color ");
         return;
       }
     }
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.info("Selecciona talla ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -64,12 +65,12 @@ export default function ProductPage() {
   function handleGoToCart() {
     if (colorExists) {
       if (selectedColor === "") {
-        alert("Selecciona color ");
+        toast.info("Selecciona color ");
         return;
       }
     }
     if (selectedSize === "") {
-      alert("Selecciona talla ");
+      toast.info("Selecciona talla ");
       return;
     }
     dispatch(addToCart({ product, selectedSize, selectedColorName, quantity }));
@@ -93,16 +94,19 @@ export default function ProductPage() {
   }, [product]);
 
   return (
-    <ProductPageTemplate
-      product={product}
-      selectedColor={selectedColor}
-      colorExists={colorExists}
-      selectedSize={selectedSize}
-      formattedPrice={formattedPrice}
-      handleGoToCart={handleGoToCart}
-      handleAddToCart={handleAddToCart}
-      handleSizeChange={handleSizeChange}
-      handleColorChange={handleColorChange}
-    />
+    <>
+     <ToastContainer position="top-center" />
+     <ProductPageTemplate
+       product={product}
+       selectedColor={selectedColor}
+       colorExists={colorExists}
+       selectedSize={selectedSize}
+       formattedPrice={formattedPrice}
+       handleGoToCart={handleGoToCart}
+       handleAddToCart={handleAddToCart}
+       handleSizeChange={handleSizeChange}
+       handleColorChange={handleColorChange}
+     />
+    </>
   );
 }

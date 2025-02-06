@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Modal from "../components/Modal/Modal";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Checkout() {
   const cart = useSelector((state) => state.products.cart);
@@ -55,7 +56,7 @@ export default function Checkout() {
     if (emailIsValid(mail)) {
       setCurrentStep(2);
     } else {
-      alert("Email no valido");
+      toast.error("Email no válido");
     }
   };
   //
@@ -68,7 +69,7 @@ export default function Checkout() {
     if (infoIsValid(name, phone)) {
       setCurrentStep(3);
     } else {
-      alert("Informacion no valida");
+      toast.error("Información no válida");
     }
   };
   const handleShippingHome = () => {
@@ -79,7 +80,7 @@ export default function Checkout() {
     if (infoIsValid(address)) {
       setCurrentStep(3);
     } else {
-      alert("Complete la direccion");
+      toast.error("Complete la dirección");
     }
   };
 
@@ -248,6 +249,7 @@ export default function Checkout() {
 
   return (
     <section className="min-h-screen">
+      <ToastContainer position="top-center" />
       <div className="m-auto w-full  border-l border-r border-black md:w-1/2 ">
         {/* title */}
         <div className="text-center py-10 font-bold text-2xl border-b border-black">
